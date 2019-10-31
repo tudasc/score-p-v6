@@ -1,0 +1,12 @@
+CC=opencc
+CXX=openCC
+F77=openf90
+FC=openf90
+
+#CPPFLAGS=
+#CFLAGS=
+#CXXFLAGS=
+#FFLAGS=
+#FCFLAGS=
+#LD_FLAGS=
+#LIBS=

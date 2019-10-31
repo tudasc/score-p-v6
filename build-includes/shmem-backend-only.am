@@ -1,0 +1,10 @@
+## -*- mode: makefile -*-
+
+include ../src/adapters/shmem/Makefile.shmem.inc.am
+include ../src/measurement/Makefile.shmem.inc.am
+include ../src/measurement/online_access/Makefile.shmem.inc.am
+include ../src/tools/config/Makefile.la_dependencies.inc.am
+
+## include tests
+include ../test/shmem/Makefile.shmem.inc.am
+include ../test/ipc/Makefile.shmem.inc.am

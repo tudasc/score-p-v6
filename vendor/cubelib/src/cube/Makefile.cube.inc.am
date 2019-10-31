@@ -1,0 +1,844 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2019                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+CUBE4_HEADERS_ROOT=$(srcdir)../src/cube/include/
+#CUBE_SRC_ROOT=$(srcdir)../src/cube/src/
+
+
+##if !WITHIOUT_CUBE_LIB
+
+##-------------------------------------------------------------------------##
+## POSIX Socket
+##-------------------------------------------------------------------------##
+
+if ENABLE_POSIX_SOCKET
+
+POSIX_SOCKET_SOURCES = \
+    $(SRC_ROOT)src/cube/include/network/CubePosixStreamSocket.h \
+    $(SRC_ROOT)src/cube/src/network/CubePosixStreamSocket.cpp
+
+dist_cube_headers_HEADERS += \
+    $(srcdir)/../src/cube/include/network/CubePosixStreamSocket.h
+
+endif
+
+##-------------------------------------------------------------------------##
+## Cube library
+##-------------------------------------------------------------------------##
+
+lib_LTLIBRARIES += libcube4.la
+
+libcube4_la_CPPFLAGS = $(AM_CPPFLAGS) \
+                       $(CUBE4_INC_PATH)
+libcube4_la_SOURCES  = \
+	$(SRC_ROOT)src/cube/include/Cube.h \
+	$(SRC_ROOT)src/cube/include/CubeIoProxy.h \
+	$(SRC_ROOT)src/cube/include/CubeNetworkProxy.h \
+	$(SRC_ROOT)src/cube/include/CubeProxy.h \
+	$(SRC_ROOT)src/cube/include/derivated/AggrCube.h \
+	$(SRC_ROOT)src/cube/include/derivated/AggrCubeMaps.h \
+	$(SRC_ROOT)src/cube/include/dimensions/CubeIdentObject.h \
+	$(SRC_ROOT)src/cube/include/dimensions/CubeSerializableVertex.h \
+	$(SRC_ROOT)src/cube/include/dimensions/CubeVertex.h \
+	$(SRC_ROOT)src/cube/include/dimensions/calltree/CubeCnode.h \
+	$(SRC_ROOT)src/cube/include/dimensions/calltree/CubeRegion.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeCustomPreDerivedExclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeCustomPreDerivedInclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeExclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeExclusiveMetricBuildInType.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeInclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeInclusiveMetricBuildInType.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeMetricBuildInType.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubeMetricValueType.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubePostDerivedMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubePreDerivedExclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/CubePreDerivedInclusiveMetric.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/cache/CubeCache.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/cache/CubeCaches.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/cache/CubeSimpleCache.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/CubeDataMarker.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/CubeZDataMarker.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeMemoryRowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeRORowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeROZRowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeRow.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeRowsManager.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeRowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeRowsSuppliers.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeSwapRowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeWORowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/data/rows/CubeWOZRowsSupplier.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeDenseIndex.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeIndex.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeIndexHeader.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeIndexManager.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeIndexMarker.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeIndexes.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/index/CubeSparseIndex.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/matrix/CubeAdvMatrix.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/matrix/CubeRowWiseMatrix.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeAllInMemoryPreloadStrategy.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeAllInMemoryStrategy.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeBasicStrategy.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeLastNRowsStrategy.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeManualStrategy.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/strategies/CubeStrategies.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeCharValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeComplexValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeDoubleValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeHistogramValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeMaxDoubleValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeMinDoubleValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeNDoublesValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubePreallocator.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeRateValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeScaleFuncValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeSignedLongValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeSignedShortValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeSignedValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeStatLevel1Value.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeStatLevel2Value.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeStatLevel3Value.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeStatLevel4Value.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeStringValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeTauAtomicValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeUnsignedLongValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeUnsignedShortValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeUnsignedValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeValue.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/CubeValues.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value/CubeNOPTrafo.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value/CubeSingleValueTrafo.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value/CubeSwapBytesTrafo.h \
+	$(SRC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value/CubeTrafos.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeLocation.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeLocationGroup.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeMachine.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeNode.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeProcess.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeSysres.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeSystemTreeNode.h \
+	$(SRC_ROOT)src/cube/include/dimensions/system/CubeThread.h \
+	$(SRC_ROOT)src/cube/include/network/CubeCallpathSubtreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeCallpathTreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeClientCallbackData.h \
+	$(SRC_ROOT)src/cube/include/network/CubeClientConnection.h \
+	$(SRC_ROOT)src/cube/include/network/CubeClientServerVersionRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeCloseCubeRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeConnection.h \
+	$(SRC_ROOT)src/cube/include/network/CubeDefineMetricRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeDisconnectRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeFlatTreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeMetricSubtreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeMetricTreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeNegotiateProtocolRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeNetworkRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeOpenCubeRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeProtocol.h \
+	$(SRC_ROOT)src/cube/include/network/CubeSaveCubeRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeSerializable.h \
+	$(SRC_ROOT)src/cube/include/network/CubeSerializablesFactory.h \
+	$(SRC_ROOT)src/cube/include/network/CubeServerCallbackData.h \
+	$(SRC_ROOT)src/cube/include/network/CubeServerConnection.h \
+	$(SRC_ROOT)src/cube/include/network/CubeSocket.h \
+	$(SRC_ROOT)src/cube/include/network/CubeSystemTreeValuesRequest.h \
+	$(SRC_ROOT)src/cube/include/network/CubeUrl.h \
+	$(SRC_ROOT)src/cube/include/network/cube_network_types.h \
+	$(SRC_ROOT)src/cube/include/service/CubeAbstractFactory.h \
+	$(SRC_ROOT)src/cube/include/service/CubeDeepSearchEnumerator.h \
+	$(SRC_ROOT)src/cube/include/service/CubeEnumerators.h \
+	$(SRC_ROOT)src/cube/include/service/CubeError.h \
+	$(SRC_ROOT)src/cube/include/service/CubeIDdeliverer.h \
+	$(SRC_ROOT)src/cube/include/service/CubeIdIndexMap.h \
+	$(SRC_ROOT)src/cube/include/service/CubeIstream.h \
+	$(SRC_ROOT)src/cube/include/service/CubeObjectsEnumerator.h \
+	$(SRC_ROOT)src/cube/include/service/CubeOperationProgress.h \
+	$(SRC_ROOT)src/cube/include/service/CubeOperator.h \
+	$(SRC_ROOT)src/cube/include/service/CubePlatformsCompat.h \
+	$(SRC_ROOT)src/cube/include/service/CubeServices.h \
+	$(SRC_ROOT)src/cube/include/service/CubeSingleton.h \
+	$(SRC_ROOT)src/cube/include/service/CubeTypes.h \
+	$(SRC_ROOT)src/cube/include/service/CubeWideSearchEnumerator.h \
+	$(SRC_ROOT)src/cube/include/service/CubeZfstream.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/CubeFileFinder.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/layout/CubeFileBaseLayout.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/layout/CubeFileEmbeddedLayout.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/layout/CubeLayoutDetector.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/layout/CubeLayouts.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/layout/CubeVirtualLayout.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/readers/CubeSimpleReader.h \
+	$(SRC_ROOT)src/cube/include/service/cubelayout/readers/CubeTarReader.h \
+	$(SRC_ROOT)src/cube/include/syntax/Cube4Parser.h \
+	$(SRC_ROOT)src/cube/include/syntax/Cube4Scanner.h \
+	$(SRC_ROOT)src/cube/include/syntax/CubeDriver.h \
+	$(SRC_ROOT)src/cube/include/syntax/CubeParseContext.h \
+	$(SRC_ROOT)src/cube/include/syntax/FlexLexer.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0Driver.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0MemoryInitializer.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0MemoryManager.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0ParseContext.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0Parser.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL0Scanner.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1Driver.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1MemoryInitializer.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1MemoryManager.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1ParseContext.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1Parser.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL1Scanner.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL2LocalMemoryManager.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL2MemoryInitializer.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePL2MemoryManager.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePLDriver.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePLMemoryInitializer.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/CubePLMemoryManager.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/CubeEvaluators.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/CubeGeneralEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeAndEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeBiggerEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeBinaryEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeDivideEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeEqualEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeHalfBiggerEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeHalfSmallerEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeMinusEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeMultEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeNotEqualEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeOrEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubePlusEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubePowerEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeRegexEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeSmallerEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeStringEqualityEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeStringSemiEqualityEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary/CubeXorEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeArgumentEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeCalcFlavorModificators.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeConstantEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeDefinedVariableEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeDirectMetricEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeNullaryEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeSizeOfVariableEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeStringConstantEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/CubeStringEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeAssignmentEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeExtendedIfEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeFullIfEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeMetricSetEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeShortIfEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeVariableEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeWhileEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeEncapsulation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeEnvEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeLowerCaseEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeMetricGetEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeNegativeEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeNotEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeUnaryEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/CubeUpperCaseEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/lambda_calcul/CubeLambdaCalculEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeACosEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeASinEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeATanEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeAbsEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCeilEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCosEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeExpEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeFloorEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeLnEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeNegEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubePosEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeRandomEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSgnEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSinEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSqrtEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeTanEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMaxEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMinEvaluation.h \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/location.hh \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/position.hh \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/stack.hh \
+	$(SRC_ROOT)src/cube/include/syntax/cubepl/stack.hh \
+	$(SRC_ROOT)src/cube/include/syntax/location.hh \
+	$(SRC_ROOT)src/cube/include/syntax/position.hh \
+	$(SRC_ROOT)src/cube/include/syntax/stack.hh \
+	$(SRC_ROOT)src/cube/include/syntax/stack.hh \
+	$(SRC_ROOT)src/cube/include/topologies/CubeCartesian.h \
+	$(SRC_ROOT)src/cube/src/Cube.cpp \
+	$(SRC_ROOT)src/cube/src/CubeAtomicDataRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeAtomicRowWiseDataRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeCalculationListRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeCalculationRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeCalculationRowWiseListRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeCalculationRowWiseRoutines.cpp \
+	$(SRC_ROOT)src/cube/src/CubeIoProxy.cpp \
+	$(SRC_ROOT)src/cube/src/CubeNetworkProxy.cpp \
+	$(SRC_ROOT)src/cube/src/CubeProxy.cpp \
+	$(SRC_ROOT)src/cube/src/derivated/AggrCube.cpp \
+	$(SRC_ROOT)src/cube/src/derivated/AggrCubeMaps.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/CubeIdentObject.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/CubeSerializableVertex.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/CubeVertex.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/calltree/CubeCnode.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/calltree/CubeRegion.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeCustomPreDerivedExclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeCustomPreDerivedInclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeExclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeInclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeMetricBuildInType.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeMetricCalculation.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeMetricDepricated.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubeMetricValueType.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubePostDerivedMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubePreDerivedExclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/CubePreDerivedInclusiveMetric.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/CubeDataMarker.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeRORowsSupplier.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeROZRowsSupplier.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeRow.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeRowsManager.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeSwapRowsSupplier.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeWORowsSupplier.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/data/rows/CubeWOZRowsSupplier.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/index/CubeDenseIndex.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/index/CubeIndexHeader.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/index/CubeIndexManager.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/index/CubeIndexMarker.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/index/CubeSparseIndex.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/matrix/CubeAdvMatrix.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/matrix/CubeRowWiseMatrix.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/strategies/CubeAllInMemoryPreloadStrategy.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/strategies/CubeAllInMemoryStrategy.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/strategies/CubeBasicStrategy.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/strategies/CubeLastNRowsStrategy.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/strategies/CubeManualStrategy.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeCharValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeComplexValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeDoubleValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeHistogramValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeMaxDoubleValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeMinDoubleValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeNDoublesValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeRateValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeScaleFuncValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeSignedLongValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeSignedShortValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeSignedValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeStatLevel1Value.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeStatLevel2Value.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeStatLevel3Value.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeStatLevel4Value.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeStringValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeTauAtomicValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeUnsignedLongValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeUnsignedShortValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeUnsignedValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/CubeValue.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/trafo/single_value/CubeNOPTrafo.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/metric/value/trafo/single_value/CubeSwapBytesTrafo.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/system/CubeLocation.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/system/CubeLocationGroup.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/system/CubeSysres.cpp \
+	$(SRC_ROOT)src/cube/src/dimensions/system/CubeSystemTreeNode.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeCallpathSubtreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeCallpathTreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeClientCallbackData.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeClientConnection.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeClientServerVersionRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeCloseCubeRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeConnection.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeDefineMetricRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeDisconnectRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeFlatTreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeMetricSubtreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeMetricTreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeNegotiateProtocolRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeNetworkRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeOpenCubeRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeProtocol.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeSaveCubeRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeSerializable.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeSerializablesFactory.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeServerCallbackData.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeServerConnection.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeSocket.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeSystemTreeValuesRequest.cpp \
+	$(SRC_ROOT)src/cube/src/network/CubeUrl.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeDeepSearchEnumerator.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeError.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeIdIndexMap.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeIstream.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeObjectsEnumerator.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubePlatformsCompat.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeServices.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeWideSearchEnumerator.cpp \
+	$(SRC_ROOT)src/cube/src/service/CubeZfstream.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/CubeFileFinder.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/layout/CubeFileBaseLayout.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/layout/CubeFileEmbeddedLayout.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/layout/CubeLayoutDetector.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/layout/CubeVirtualLayout.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/readers/CubeSimpleReader.cpp \
+	$(SRC_ROOT)src/cube/src/service/cubelayout/readers/CubeTarReader.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/Cube4Parser.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/Cube4Scanner.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/CubeDriver.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0Driver.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0MemoryInitializer.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0MemoryManager.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0Parser.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0Scanner.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1Driver.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1MemoryInitializer.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1MemoryManager.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1Parser.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1Scanner.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL2LocalMemoryManager.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL2MemoryInitializer.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL2MemoryManager.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/CubePLMemoryManager.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/CubeGeneralEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeAndEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeBiggerEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeBinaryEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeDivideEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeEqualEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeHalfBiggerEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeHalfSmallerEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeMinusEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeMultEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeNotEqualEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeOrEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubePlusEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubePowerEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeRegexEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeSmallerEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeStringEqualityEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeStringSemiEqualityEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/binary/CubeXorEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeArgumentEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeConstantEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeDefinedVariableEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeDirectMetricEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeNullaryEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeSizeOfVariableEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeStringConstantEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/CubeStringEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeAssignmentEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeExtendedIfEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeFullIfEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeMetricSetEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeShortIfEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeVariableEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/nullary/statements/CubeWhileEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeEncapsulation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeEnvEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeLowerCaseEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeMetricGetEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeNegativeEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeNotEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeUnaryEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/CubeUpperCaseEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/lambda_calcul/CubeLambdaCalculEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeACosEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeASinEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeATanEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeAbsEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCeilEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCosEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeExpEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeFloorEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeLnEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeNegEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubePosEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeRandomEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSgnEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSinEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSqrtEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/single_argument/CubeTanEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMaxEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMinEvaluation.cpp \
+	$(SRC_ROOT)src/cube/src/topologies/CubeCartesian.cpp \
+	$(POSIX_SOCKET_SOURCES)
+
+dist_cube_headers_HEADERS += \
+	$(srcdir)/../src/cube/include/Cube.h \
+	$(srcdir)/../src/cube/include/CubeIoProxy.h \
+	$(srcdir)/../src/cube/include/CubeNetworkProxy.h \
+	$(srcdir)/../src/cube/include/CubeProxy.h \
+	$(srcdir)/../src/cube/include/derivated/AggrCube.h \
+	$(srcdir)/../src/cube/include/derivated/AggrCubeMaps.h \
+	$(srcdir)/../src/cube/include/dimensions/CubeIdentObject.h \
+	$(srcdir)/../src/cube/include/dimensions/CubeSerializableVertex.h \
+	$(srcdir)/../src/cube/include/dimensions/CubeVertex.h \
+	$(srcdir)/../src/cube/include/dimensions/calltree/CubeCnode.h \
+	$(srcdir)/../src/cube/include/dimensions/calltree/CubeRegion.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeCustomPreDerivedExclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeCustomPreDerivedInclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeExclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeExclusiveMetricBuildInType.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeInclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeInclusiveMetricBuildInType.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeMetricBuildInType.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubeMetricValueType.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubePostDerivedMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubePreDerivedExclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/CubePreDerivedInclusiveMetric.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/cache/CubeCache.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/cache/CubeCaches.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/cache/CubeSimpleCache.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/CubeDataMarker.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/CubeZDataMarker.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeMemoryRowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeRORowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeROZRowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeRow.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeRowsManager.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeRowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeRowsSuppliers.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeSwapRowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeWORowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/data/rows/CubeWOZRowsSupplier.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeDenseIndex.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeIndex.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeIndexHeader.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeIndexManager.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeIndexMarker.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeIndexes.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/index/CubeSparseIndex.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/matrix/CubeAdvMatrix.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/matrix/CubeRowWiseMatrix.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeAllInMemoryPreloadStrategy.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeAllInMemoryStrategy.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeBasicStrategy.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeLastNRowsStrategy.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeManualStrategy.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/strategies/CubeStrategies.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeCharValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeComplexValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeDoubleValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeHistogramValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeMaxDoubleValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeMinDoubleValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeNDoublesValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubePreallocator.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeRateValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeScaleFuncValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeSignedLongValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeSignedShortValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeSignedValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeStatLevel1Value.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeStatLevel2Value.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeStatLevel3Value.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeStatLevel4Value.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeStringValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeTauAtomicValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeUnsignedLongValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeUnsignedShortValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeUnsignedValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeValue.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/CubeValues.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/trafo/single_value/CubeNOPTrafo.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/trafo/single_value/CubeSingleValueTrafo.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/trafo/single_value/CubeSwapBytesTrafo.h \
+	$(srcdir)/../src/cube/include/dimensions/metric/value/trafo/single_value/CubeTrafos.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeLocation.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeLocationGroup.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeMachine.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeNode.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeProcess.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeSysres.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeSystemTreeNode.h \
+	$(srcdir)/../src/cube/include/dimensions/system/CubeThread.h \
+	$(srcdir)/../src/cube/include/network/CubeCallpathSubtreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeCallpathTreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeClientCallbackData.h \
+	$(srcdir)/../src/cube/include/network/CubeClientConnection.h \
+	$(srcdir)/../src/cube/include/network/CubeClientServerVersionRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeConnection.h \
+	$(srcdir)/../src/cube/include/network/CubeDefineMetricRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeDisconnectRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeFlatTreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeMetricSubtreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeMetricTreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeNegotiateProtocolRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeNetworkRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeOpenCubeRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeProtocol.h \
+	$(srcdir)/../src/cube/include/network/CubeSaveCubeRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeSerializable.h \
+	$(srcdir)/../src/cube/include/network/CubeSerializablesFactory.h \
+	$(srcdir)/../src/cube/include/network/CubeServerCallbackData.h \
+	$(srcdir)/../src/cube/include/network/CubeServerConnection.h \
+	$(srcdir)/../src/cube/include/network/CubeSocket.h \
+	$(srcdir)/../src/cube/include/network/CubeSystemTreeValuesRequest.h \
+	$(srcdir)/../src/cube/include/network/CubeUrl.h \
+	$(srcdir)/../src/cube/include/network/cube_network_types.h \
+	$(srcdir)/../src/cube/include/service/CubeAbstractFactory.h \
+	$(srcdir)/../src/cube/include/service/CubeAggregator.h \
+	$(srcdir)/../src/cube/include/service/CubeAlgorithm.h \
+	$(srcdir)/../src/cube/include/service/CubeCountedPtr.h \
+	$(srcdir)/../src/cube/include/service/CubeDeepSearchEnumerator.h \
+	$(srcdir)/../src/cube/include/service/CubeEnumerators.h \
+	$(srcdir)/../src/cube/include/service/CubeError.h \
+	$(srcdir)/../src/cube/include/service/CubeIDdeliverer.h \
+	$(srcdir)/../src/cube/include/service/CubeIdIndexMap.h \
+	$(srcdir)/../src/cube/include/service/CubeIstream.h \
+	$(srcdir)/../src/cube/include/service/CubeObjectsEnumerator.h \
+	$(srcdir)/../src/cube/include/service/CubeOperationProgress.h \
+	$(srcdir)/../src/cube/include/service/CubeOperator.h \
+	$(srcdir)/../src/cube/include/service/CubePlatformsCompat.h \
+	$(srcdir)/../src/cube/include/service/CubeSelections.h \
+	$(srcdir)/../src/cube/include/service/CubeServices.h \
+	$(srcdir)/../src/cube/include/service/CubeTypes.h \
+	$(srcdir)/../src/cube/include/service/CubeWideSearchEnumerator.h \
+	$(srcdir)/../src/cube/include/service/CubeZfstream.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/CubeFileFinder.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/layout/CubeFileBaseLayout.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/layout/CubeFileEmbeddedLayout.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/layout/CubeLayoutDetector.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/layout/CubeLayouts.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/layout/CubeVirtualLayout.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/readers/CubeSimpleReader.h \
+	$(srcdir)/../src/cube/include/service/cubelayout/readers/CubeTarReader.h \
+	$(srcdir)/../src/cube/include/syntax/Cube4Parser.h \
+	$(srcdir)/../src/cube/include/syntax/Cube4Scanner.h \
+	$(srcdir)/../src/cube/include/syntax/CubeDriver.h \
+	$(srcdir)/../src/cube/include/syntax/CubeParseContext.h \
+	$(srcdir)/../src/cube/include/syntax/FlexLexer.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0Driver.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0MemoryInitializer.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0MemoryManager.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0ParseContext.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0Parser.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL0Scanner.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1Driver.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1MemoryInitializer.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1MemoryManager.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1ParseContext.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1Parser.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL1Scanner.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL2LocalMemoryManager.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL2MemoryInitializer.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePL2MemoryManager.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePLDriver.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePLMemoryInitializer.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/CubePLMemoryManager.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/CubeEvaluators.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/CubeGeneralEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeAndEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeBiggerEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeBinaryEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeDivideEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeEqualEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeHalfBiggerEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeHalfSmallerEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeMinusEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeMultEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeNotEqualEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeOrEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubePlusEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubePowerEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeRegexEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeSmallerEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeStringEqualityEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/binary/CubeXorEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeCalcFlavorModificators.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeConstantEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeDefinedVariableEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeDirectMetricEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeNullaryEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeSizeOfVariableEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeStringConstantEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/CubeStringEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeAssignmentEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeExtendedIfEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeFullIfEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeMetricSetEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeShortIfEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeVariableEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/nullary/statements/CubeWhileEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeEncapsulation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeEnvEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeLowerCaseEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeMetricGetEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeNegativeEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeNotEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeUnaryEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/CubeUpperCaseEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/lambda_calcul/CubeLambdaCalculEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeACosEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeASinEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeATanEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeAbsEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCeilEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeCosEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeExpEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeFloorEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeLnEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeNegEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubePosEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeRandomEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSgnEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSinEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeSqrtEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument/CubeTanEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMaxEvaluation.h \
+	$(srcdir)/../src/cube/include/syntax/cubepl/evaluators/unary/functions/two_arguments/CubeMinEvaluation.h \
+	$(srcdir)/../src/cube/include/topologies/CubeCartesian.h 
+
+
+EXTRA_DIST += \
+    $(SRC_ROOT)src/cube/src/syntax/Cube4Parser.yy \
+    $(SRC_ROOT)src/cube/src/syntax/Cube4Scanner.ll \
+    $(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0Parser.yy \
+    $(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL0Scanner.ll \
+    $(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1Parser.yy \
+    $(SRC_ROOT)src/cube/src/syntax/cubepl/CubePL1Scanner.ll \
+    $(srcdir)/../src/cube/include/syntax/cubepl/location.hh \
+    $(srcdir)/../src/cube/include/syntax/cubepl/position.hh \
+    $(srcdir)/../src/cube/include/syntax/cubepl/stack.hh \
+    $(srcdir)/../src/cube/include/syntax/location.hh \
+    $(srcdir)/../src/cube/include/syntax/position.hh \
+    $(srcdir)/../src/cube/include/syntax/stack.hh 
+
+
+CUBE4_INC_PATH = \
+	 -I$(INC_ROOT)src/cube/include/ \
+	 -I$(INC_ROOT)src/cube/include/derivated \
+	 -I$(INC_ROOT)src/cube/include/dimensions \
+	 -I$(INC_ROOT)src/cube/include/dimensions/calltree \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/cache \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/data \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/data/rows \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/index \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/matrix \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/strategies \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/value \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/value/trafo \
+	 -I$(INC_ROOT)src/cube/include/dimensions/metric/value/trafo/single_value \
+	 -I$(INC_ROOT)src/cube/include/dimensions/system \
+	 -I$(INC_ROOT)src/cube/include/network \
+	 -I$(INC_ROOT)src/cube/include/service/cubelayout \
+	 -I$(INC_ROOT)src/cube/include/service/cubelayout/layout \
+	 -I$(INC_ROOT)src/cube/include/service/cubelayout/readers \
+	 -I$(INC_ROOT)src/cube/include/syntax \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/binary \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/nullary/statements \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/lambda_calcul \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/single_argument \
+	 -I$(INC_ROOT)src/cube/include/syntax/cubepl/evaluators/unary/functions/two_arguments \
+	 -I$(INC_ROOT)src/cube/include/topologies \
+         -I$(INC_ROOT)src/cube/include/service
+
+
+
+libcube4_la_CXXFLAGS = $(OPENMP_CXXFLAGS) \
+                       $(COMPRESSION) \
+                       $(FRONTEND_LIBZ_HEADERS) \
+		       $(CXXFLAGS_FOR_BUILD) \
+                       $(IO_BUFFERSIZE_MACRO)
+
+libcube4_la_LIBADD = $(FRONTEND_LIBZ_LIBS) \
+		      libutils.la  \
+		      libcube.tools.remapper.la \
+		      libcube.tools.common.la \
+		      libcube.tools.library.la \
+		      libcube.tools.tau2cube.la
+		      
+libcube4_la_LDFLAGS = $(FRONTEND_LIBZ_LDFLAGS) -version-info @LIBRARY_INTERFACE_VERSION@
+
+if ENABLE_MAKEFILE_RULES_FOR_REGENERATION
+$(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.cpp : $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.yy
+	$(YACC) -v -d -o $@  $^
+	@sed -e 's:PARSER_HEADER_H:CUBEPL1_PARSER_HEADER_H:' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.hpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/include/syntax/cubepl/CubePL1Parser.h
+	@rm $(srcdir)/../src/cube/tmp
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.hpp
+	@sed -e 's:CubePL1Parser.hpp:CubePL1Parser.h:' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.cpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Parser.cpp
+	@rm $(srcdir)/../src/cube/tmp
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/location.hh $(srcdir)/../src/cube/include/syntax/cubepl/location.hh
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/position.hh $(srcdir)/../src/cube/include/syntax/cubepl/position.hh
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/stack.hh $(srcdir)/../src/cube/include/syntax/cubepl/stack.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/location.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/position.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/stack.hh
+
+$(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Scanner.cpp : $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Scanner.ll
+	$(LEX) -f  -o $@ $^
+	@sed -e 's:#include <FlexLexer.h>:#include "FlexLexer.h":' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Scanner.cpp | sed  -e 's:^.*isatty.*$$::' > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/cubepl/CubePL1Scanner.cpp
+	@rm $(srcdir)/../src/cube/tmp
+
+
+$(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.cpp : $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.yy
+	$(YACC) -v -d -o $@  $^
+	@sed -e 's:PARSER_HEADER_H:CUBEPL0_PARSER_HEADER_H:' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.hpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/include/syntax/cubepl/CubePL0Parser.h
+	@rm $(srcdir)/../src/cube/tmp
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.hpp
+	@sed -e 's:CubePL0Parser.hpp:CubePL0Parser.h:' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.cpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Parser.cpp
+	@rm $(srcdir)/../src/cube/tmp
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/location.hh $(srcdir)/../src/cube/include/syntax/cubepl/location.hh
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/position.hh $(srcdir)/../src/cube/include/syntax/cubepl/position.hh
+	@cp -f $(srcdir)/../src/cube/src/syntax/cubepl/stack.hh $(srcdir)/../src/cube/include/syntax/cubepl/stack.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/location.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/position.hh
+	@rm $(srcdir)/../src/cube/src/syntax/cubepl/stack.hh
+
+$(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Scanner.cpp : $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Scanner.ll
+	$(LEX) -f  -o $@ $^
+	@sed -e 's:#include <FlexLexer.h>:#include "FlexLexer.h":' $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Scanner.cpp | sed -e 's:^.*isatty.*$$::' > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/cubepl/CubePL0Scanner.cpp
+	@rm $(srcdir)/../src/cube/tmp
+
+
+
+$(srcdir)/../src/cube/src/syntax/Cube4Parser.cpp : $(srcdir)/../src/cube/src/syntax/Cube4Parser.yy
+	$(YACC) -d -o $@  $^
+	@sed -e 's:PARSER_HEADER_H:PARSER4_HEADER_H:' $(srcdir)/../src/cube/src/syntax/Cube4Parser.hpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/include/syntax/Cube4Parser.h
+	@rm $(srcdir)/../src/cube/tmp
+	@rm $(srcdir)/../src/cube/src/syntax/Cube4Parser.hpp
+	@sed -e 's:Cube4Parser.hpp:Cube4Parser.h:' $(srcdir)/../src/cube/src/syntax/Cube4Parser.cpp > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/Cube4Parser.cpp
+	@rm $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/src/syntax/location.hh $(srcdir)/..//src/cube/include/syntax/location.hh
+	@cp $(srcdir)/../src/cube/src/syntax/position.hh $(srcdir)/..//src/cube/include/syntax/position.hh
+	@cp $(srcdir)/../src/cube/src/syntax/stack.hh $(srcdir)/../src/cube/include/syntax/stack.hh
+	@rm $(srcdir)/../src/cube/src/syntax/location.hh
+	@rm $(srcdir)/../src/cube/src/syntax/position.hh
+	@rm $(srcdir)/../src/cube/src/syntax/stack.hh
+
+
+$(srcdir)/../src/cube/src/syntax/Cube4Scanner.cpp : $(srcdir)/../src/cube/src/syntax/Cube4Scanner.ll
+	$(LEX) -f -o $@ $^
+	@sed -e 's:#include <FlexLexer.h>:#include "FlexLexer.h":' $(srcdir)/../src/cube/src/syntax/Cube4Scanner.cpp | sed -e 's:^.*isatty.*$$::' > $(srcdir)/../src/cube/tmp
+	@cp $(srcdir)/../src/cube/tmp $(srcdir)/../src/cube/src/syntax/Cube4Scanner.cpp
+	@rm $(srcdir)/../src/cube/tmp
+
+endif
+
+##endif

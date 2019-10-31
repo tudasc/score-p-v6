@@ -1,0 +1,32 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 2016                                                     ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2014                                                     ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  Copyright (c) 2014                                                     ##
+##  RWTH Aachen University, JARA-HPC                                       ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+if ENABLE_CUBE_NETWORKING
+
+bin_PROGRAMS += cube_server
+
+cube_server_SOURCES = \
+   $(srcdir)/../src/tools/tools/007b.Server/cube4_server.cpp  
+   
+cube_server_LDADD = libcube4.la libcube.tools.library.la   $(FRONTEND_LIBZ_LD) $(OPENMP_CXXFLAGS) 
+
+cube_server_CPPFLAGS = \
+	$(OPENMP_CXXFLAGS) $(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC)  -I$(CUBE4_TOOLS_LIBRARY_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION) -DCUBE_NETWORK_DEBUG
+	
+endif

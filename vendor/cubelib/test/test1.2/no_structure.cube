@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cube version="3.0">
+  <attr key="CUBE_CT_AGGR" value="SUM"/>
+  <attr key="description" value="a simple example, to use, do: ./test &lt;abc&gt;"/>
+  <attr key="experiment time" value="September 27th, 2006"/>
+  <attr key="topics" value="Buddhism, Taoism &amp; &amp; &amp;Confucianism"/>
+  <doc>
+    <mirrors>
+      <murl>http://www.fz- juelich.de/jsc/kojak/search.cgi&amp;&amp;&amp;&amp;amp;&amp;lt;name=Amitabha</murl>
+      <murl>http://icl.cs.utk.edu/projectsfiles/kojak/software/kojak/</murl>
+    </mirrors>
+  </doc>
+  <metrics>
+  </metrics>
+  <program>
+  </program>
+  <system>
+  </system>
+</cube>

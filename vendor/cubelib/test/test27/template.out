@@ -1,0 +1,12 @@
+INFO::Start operation "MERGE" with 0-th cube...
+INFO::Merging metric dimension... done.
+INFO::Merging program dimension... done.
+INFO::Merging system dimension... done.
+INFO::Merging topologies... done.
+INFO::Start operation "MERGE" with 1-th cube...
+INFO::Merging metric dimension... done.
+INFO::Merging program dimension... done.
+INFO::Merging system dimension... done.
+INFO::Merging topologies... done.
+INFO::Merge operation... done.
+Equality basic@time:incl:*.* ... 180 / 180[32m OK[39m

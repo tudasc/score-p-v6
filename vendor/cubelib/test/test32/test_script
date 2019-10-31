@@ -1,0 +1,60 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TRUNK_BIN=../trunk/build-backend/cube_dump
+NEW_BIN=build-backend/cube_dump
+#use the data from documentation
+TEST_DATA=`ls doc/dox-gui/figures/data/exp*.cube.gz`
+TEST_DATA+=" "
+TEST_DATA+=`ls doc/dox-gui/figures/data/*9.cube.gz`
+FORMATS="csv2 R"
+OPTIONS=(" " "-t aggr" "-r" "-r -t aggr")
+#send - bin,additional parameters, source,output
+function test {
+	echo $2
+	echo $3
+	echo $5
+	echo $1 -m all $2 -s $3 $4 -o $5
+	`$1 -m all $2 -s $3 $4 -o $5`
+}
+
+#echo $TEST_DATA
+read -a array <<< $TEST_DATA
+#read -a array_types <<< $FORMATS
+#IFS=', ' read -a array_options <<< "$OPTIONS"
+#echo ${OPTIONS[0]}
+
+for element in "${array[@]}"
+do
+	for option in "${OPTIONS[@]}"
+	do 
+			if [ -n "$option" ]; then
+				printf -v fileoutCSV "%s_csv2" `basename $element`
+				printf -v fileoutR "%s_R" `basename $element`
+			else
+				printf -v fileoutCSV "%s_%s_csv2" `basename $element` $option
+				printf -v fileoutR "%s_%s_R" `basename $element` $option
+			fi
+			test "$NEW_BIN" "$option" "csv2" "$element" "$fileoutCSV"
+			test "$NEW_BIN" "$option" "R" "$element" "$fileoutR"
+			echo $element `Rscript R_compare_outputs --args $fileoutR $fileoutCSV`
+			
+			#test $NEW_BIN "-t aggr " "csv2" $element "$element_csv2_"
+			exit
+	done
+done

@@ -1,0 +1,74 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE_INFO1="$TEMPLATE_DIR/infoview1.out"
+TEMPLATE_INFO2="$TEMPLATE_DIR/infoview2.out"
+TEMPLATE_INFO3="$TEMPLATE_DIR/infoview3.out"
+TEMPLATE_INFO4="$TEMPLATE_DIR/infoview4.out"
+               
+
+EXT_CUBE_LOCATION="@CUBE_TEST_FILE_LOCATION@"
+if test "x$EXT_CUBE_LOCATION" == "x"; then
+CUBEFILE=example3.cubex
+else
+CUBEFILE=$EXT_CUBE_LOCATION/example3.cubex
+fi
+
+
+echo "##########################################################################"
+echo "# Run test 20 : Check the tool \"cube_info\" "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+cd tests
+echo "=====> Print out information about metric time..."
+../cube_info -m time $CUBEFILE > _info1
+result1=$?
+echo "=====> Compare result with saved template using diff..."
+diff _info1 $TEMPLATE_INFO1 &> test20.0.diff
+result2=$?
+
+echo "=====> Print out information about metric visits..."
+../cube_info -m visits $CUBEFILE > _info2
+result3=$?
+echo "=====> Compare result with saved template using diff..."
+diff _info2 $TEMPLATE_INFO2 &> test20.1.diff
+result4=$?
+
+echo "=====> Print out information about metric bytes_sent"
+../cube_info -m bytes_sent $CUBEFILE > _info3
+result5=$?
+echo "=====> Compare result with saved template using diff..."
+diff _info3 $TEMPLATE_INFO3 &> test20.3.diff
+result6=$?
+
+echo "=====> Print out information about metric bytes_rcvd"
+../cube_info -m bytes_rcvd $CUBEFILE > _info4
+result7=$?
+echo "=====> Compare result with saved template using diff..."
+diff _info4 $TEMPLATE_INFO4 &> test20.4.diff
+result8=$?
+
+
+cd ..
+if [[ $result -ne 0 || $result2 -ne 0 || $result3 -ne 0 || $result4 -ne 0 || $result5 -ne 0 || $result6 -ne 0 || $result7 -ne 0 || $result8 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above and tests/test20.[1|2|3].diff for more details." 
+exit -1
+fi

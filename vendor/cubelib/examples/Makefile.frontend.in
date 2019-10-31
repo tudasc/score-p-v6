@@ -1,0 +1,75 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2018                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+#------------------------------------------------------------------------------
+# General Settings
+#------------------------------------------------------------------------------
+
+CUBE_DIR = @prefix@
+prefix=@prefix@
+CUBE_CONFIG = $(CUBE_DIR)/bin/cubelib-config
+CPPFLAGS = $(shell $(CUBE_CONFIG) --cflags)
+CPPLDFLAGS := $(shell $(CUBE_CONFIG) --ldflags)   $(shell $(CUBE_CONFIG) --libs)
+
+
+
+# INTEL COMPILER 
+CXX = @CXX@
+MPICXX = @MPICXX@
+
+
+
+.SUFFIXES: .c .o .cpp .c.exe .cpp.exe .c.o .cpp.o .java .java.class .mpi.c .mpi.cpp .mpi.c.exe .mpi.cpp.exe
+.PHONY: all  clean
+
+
+# Object files
+OBJS =  
+TARGET =
+#ifeq ($(ISCUBE), "yes")
+# OBJS += cube_example.cpp.o 
+TARGET+= 	cube_example.cpp.exe \
+                cube_values_example.cpp.exe
+
+
+
+%.cpp.o : @datadir@/doc/@PACKAGE@/example/%.cpp
+	$(CXX) -c $< -o $@ $(CPPFLAGS)
+
+%.cpp.exe : %.cpp.o
+	$(CXX)  $< -o $@ $(CPPLDFLAGS)
+
+
+
+
+#------------------------------------------------------------------------------
+# Rules
+#------------------------------------------------------------------------------
+
+all: $(TARGET) 
+	@echo "=============================================================="
+	@echo "'make run' - will run all frontend examples one after other."
+	@echo "=============================================================="
+
+
+run: nompi_script_run 
+
+nompi_script_run:
+	@for japp in $(TARGET); do \
+	./$$japp; \
+	done
+

@@ -1,0 +1,217 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2014-2015,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011, 2013, 2016,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011, 2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       Makefile.mpi.inc.am
+
+
+## Serial C
+
+check_PROGRAMS          += jacobi_serial_c
+jacobi_serial_c_sources  = $(SRC_ROOT)test/jacobi/serial/C/jacobi.c  \
+                           $(SRC_ROOT)test/jacobi/serial/C/jacobi.h  \
+                           $(SRC_ROOT)test/jacobi/serial/C/main.c
+
+jacobi_serial_c_SOURCES  = $(jacobi_serial_c_sources)
+jacobi_serial_c_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_serial_c_LDADD    = $(serial_libadd)
+jacobi_serial_c_LDFLAGS  = $(serial_ldflags)
+
+check_PROGRAMS                         += jacobi_serial_c_uninstrumented
+jacobi_serial_c_uninstrumented_SOURCES  = $(jacobi_serial_c_sources)
+jacobi_serial_c_uninstrumented_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_serial_c_uninstrumented_LDADD    = -lm
+
+TESTS_SERIAL += jacobi_serial_c
+
+## OpenMP C
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS       += jacobi_omp_c
+jacobi_omp_c_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/C/jacobi.mod.c       \
+                        $(SRC_ROOT)test/jacobi/OpenMP/C/jacobi.c.opari.inc \
+                        $(SRC_ROOT)test/jacobi/OpenMP/C/jacobi.h           \
+                        $(SRC_ROOT)test/jacobi/OpenMP/C/main.mod.c         \
+                        $(SRC_ROOT)test/jacobi/OpenMP/C/main.c.opari.inc   \
+                        $(SRC_ROOT)test/jacobi/OpenMP/C/pomp.c
+jacobi_omp_c_CFLAGS   = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+jacobi_omp_c_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+jacobi_omp_c_LDADD    = $(omp_libadd)
+jacobi_omp_c_LDFLAGS  = $(omp_ldflags)
+
+# for some unknown reason we need an extra -I for the SUN compiler in
+# OpenMP and hybrid mode.
+if SCOREP_COMPILER_SUN
+jacobi_omp_c_CPPFLAGS += -I$(INC_ROOT)test/jacobi/OpenMP/C
+endif
+
+check_PROGRAMS                     += jacobi_omp_c_uninstrumented
+jacobi_omp_c_uninstrumented_SOURCES = $(SRC_ROOT)test/jacobi/OpenMP/C/jacobi.c \
+                                      $(SRC_ROOT)test/jacobi/OpenMP/C/jacobi.h \
+                                      $(SRC_ROOT)test/jacobi/OpenMP/C/main.c
+jacobi_omp_c_uninstrumented_CFLAGS  = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+jacobi_omp_c_uninstrumented_LDADD   = -lm
+
+TESTS_OMP += jacobi_omp_c
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+## Serial C++
+
+check_PROGRAMS            += jacobi_serial_cxx
+jacobi_serial_cxx_sources  = $(SRC_ROOT)test/jacobi/serial/C++/jacobi.cpp  \
+                             $(SRC_ROOT)test/jacobi/serial/C++/jacobi.h    \
+                             $(SRC_ROOT)test/jacobi/serial/C++/main.cpp
+jacobi_serial_cxx_SOURCES  = $(jacobi_serial_cxx_sources)
+jacobi_serial_cxx_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_serial_cxx_LDADD    = $(serial_libadd)
+jacobi_serial_cxx_LDFLAGS  = $(serial_ldflags)
+
+check_PROGRAMS                           += jacobi_serial_cxx_uninstrumented
+jacobi_serial_cxx_uninstrumented_SOURCES  = $(jacobi_serial_cxx_sources)
+jacobi_serial_cxx_uninstrumented_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_serial_cxx_uninstrumented_LDADD    = -lm
+
+TESTS_SERIAL += jacobi_serial_cxx
+
+## OpenMP C++
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS         += jacobi_omp_cxx
+jacobi_omp_cxx_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/C++/jacobi.mod.cpp       \
+                          $(SRC_ROOT)test/jacobi/OpenMP/C++/jacobi.cpp.opari.inc \
+                          $(SRC_ROOT)test/jacobi/OpenMP/C++/jacobi.h             \
+                          $(SRC_ROOT)test/jacobi/OpenMP/C++/main.mod.cpp         \
+                          $(SRC_ROOT)test/jacobi/OpenMP/C++/main.cpp.opari.inc   \
+                          $(SRC_ROOT)test/jacobi/OpenMP/C++/pomp.c
+jacobi_omp_cxx_CXXFLAGS = $(AM_CXXFLAGS) $(OPENMP_CXXFLAGS)
+jacobi_omp_cxx_CFLAGS   = $(AM_CFLAGS)   $(OPENMP_CFLAGS)
+jacobi_omp_cxx_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+jacobi_omp_cxx_LDADD    = $(omp_libadd)
+jacobi_omp_cxx_LDFLAGS  = $(omp_ldflags)
+
+check_PROGRAMS                        += jacobi_omp_cxx_uninstrumented
+jacobi_omp_cxx_uninstrumented_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/C++/jacobi.cpp \
+                                         $(SRC_ROOT)test/jacobi/OpenMP/C++/jacobi.h   \
+                                         $(SRC_ROOT)test/jacobi/OpenMP/C++/main.cpp
+jacobi_omp_cxx_uninstrumented_CXXFLAGS = $(OPENMP_CXXFLAGS)
+jacobi_omp_cxx_uninstrumented_LDADD    = -lm
+
+TESTS_OMP += jacobi_omp_cxx
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+## Serial Fortran
+if FORTRAN_SUPPORT_ALLOCATABLE
+
+# Specify fortran dependencies manually
+variabledef.mod: VariableDef.$(OBJEXT)
+jacobi_serial_f90-jacobi.$(OBJEXT): variabledef.mod
+jacobi_serial_f90-main.$(OBJEXT): variabledef.mod
+
+check_PROGRAMS            += jacobi_serial_f90
+jacobi_serial_f90_sources  = $(SRC_ROOT)test/jacobi/serial/Fortran/jacobi.F90      \
+                             $(SRC_ROOT)test/jacobi/serial/Fortran/main.F90        \
+                             $(SRC_ROOT)test/jacobi/serial/Fortran/VariableDef.f90
+
+jacobi_serial_f90_SOURCES  = $(jacobi_serial_f90_sources)
+jacobi_serial_f90_CPPFLAGS =
+jacobi_serial_f90_LDADD    = $(serial_libadd)
+jacobi_serial_f90_LDFLAGS  = $(serial_ldflags)
+
+check_PROGRAMS                           += jacobi_serial_f90_uninstrumented
+jacobi_serial_f90_uninstrumented_SOURCES  = $(jacobi_serial_f90_sources)
+jacobi_serial_f90_uninstrumented_CPPFLAGS = -I.
+jacobi_serial_f90_uninstrumented_LDADD    = -lm
+
+TESTS_SERIAL += jacobi_serial_f90
+
+
+## OpenMP Fortran
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+if ! SCOREP_COMPILER_CRAY
+# The cray fortran compiler bails out on #line directives so we just
+# deactivate the tests with opari2-preinstrumented fortran sources.
+
+# Specify fortran dependencies manually
+jacobi_omp_f90-jacobi.$(OBJEXT): variabledef.mod
+jacobi_omp_f90-main.$(OBJEXT): variabledef.mod
+
+check_LTLIBRARIES             += libjacobi_pomp_f90.la
+libjacobi_pomp_f90_la_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/Fortran/pomp.c
+libjacobi_pomp_f90_la_CPPFLAGS = $(AM_CPPFLAGS)
+
+check_PROGRAMS         += jacobi_omp_f90
+jacobi_omp_f90_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/Fortran/VariableDef.f90      \
+                          $(SRC_ROOT)test/jacobi/OpenMP/Fortran/jacobi.mod.F90       \
+                          $(SRC_ROOT)test/jacobi/OpenMP/Fortran/jacobi.F90.opari.inc \
+                          $(SRC_ROOT)test/jacobi/OpenMP/Fortran/main.mod.F90         \
+                          $(SRC_ROOT)test/jacobi/OpenMP/Fortran/main.F90.opari.inc
+jacobi_omp_f90_FCFLAGS  = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+# Do not compile Fortran files with AM_CPPFLAGS, it fails with XL compilers.
+jacobi_omp_f90_CPPFLAGS = @OPARI2_CPPFLAGS@ -I$(INC_ROOT)test/jacobi/OpenMP/Fortran
+jacobi_omp_f90_LDADD    = $(omp_libadd) libjacobi_pomp_f90.la
+jacobi_omp_f90_LDFLAGS  = $(omp_ldflags)
+
+check_PROGRAMS                        += jacobi_omp_f90_uninstrumented
+jacobi_omp_f90_uninstrumented_SOURCES  = $(SRC_ROOT)test/jacobi/OpenMP/Fortran/VariableDef.f90 \
+                                         $(SRC_ROOT)test/jacobi/OpenMP/Fortran/jacobi.F90      \
+                                         $(SRC_ROOT)test/jacobi/OpenMP/Fortran/main.F90
+jacobi_omp_f90_uninstrumented_LDFLAGS  = $(OPENMP_CXXFLAGS)
+jacobi_omp_f90_uninstrumented_FCFLAGS  = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+# Do not compile Fortran files with AM_CPPFLAGS, it fails with XL compilers.
+jacobi_omp_f90_uninstrumented_CPPFLAGS =
+jacobi_omp_f90_uninstrumented_LDADD    = -lm
+
+TESTS_OMP += jacobi_omp_f90
+
+endif ! SCOREP_COMPILER_CRAY
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+endif FORTRAN_SUPPORT_ALLOCATABLE
+
+CLEANFILES += variabledef.mod jacobimod.mod

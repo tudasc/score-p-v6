@@ -1,0 +1,228 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2015,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011, 2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011, 2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       Makefile.mpi.inc.am
+
+
+## MPI C
+
+if HAVE_MPI_SUPPORT
+
+check_PROGRAMS       += jacobi_mpi_c
+jacobi_mpi_c_sources  = $(SRC_ROOT)test/jacobi/MPI/C/jacobi.c  \
+                        $(SRC_ROOT)test/jacobi/MPI/C/jacobi.h  \
+                        $(SRC_ROOT)test/jacobi/MPI/C/main.c
+jacobi_mpi_c_SOURCES  = $(jacobi_mpi_c_sources)
+jacobi_mpi_c_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_mpi_c_LDADD    = $(mpi_libadd)
+jacobi_mpi_c_LDFLAGS  = $(mpi_ldflags)
+
+check_PROGRAMS                      += jacobi_mpi_c_uninstrumented
+jacobi_mpi_c_uninstrumented_SOURCES  = $(jacobi_mpi_c_sources)
+jacobi_mpi_c_uninstrumented_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_mpi_c_uninstrumented_LDADD    = -lm
+
+TESTS_MPI += jacobi_mpi_c
+
+## MPI + OpenMP C
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS           += jacobi_mpi_omp_c
+jacobi_mpi_omp_c_SOURCES  = $(SRC_ROOT)test/jacobi/hybrid/C/jacobi.mod.c       \
+                            $(SRC_ROOT)test/jacobi/hybrid/C/jacobi.c.opari.inc \
+                            $(SRC_ROOT)test/jacobi/hybrid/C/jacobi.h           \
+                            $(SRC_ROOT)test/jacobi/hybrid/C/main.mod.c         \
+                            $(SRC_ROOT)test/jacobi/hybrid/C/main.c.opari.inc   \
+                            $(SRC_ROOT)test/jacobi/hybrid/C/pomp.c
+jacobi_mpi_omp_c_CFLAGS   = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+jacobi_mpi_omp_c_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+jacobi_mpi_omp_c_LDADD    = $(mpi_omp_libadd)
+jacobi_mpi_omp_c_LDFLAGS  = $(mpi_omp_ldflags)
+
+# for some unknown reason we need an extra -I for the SUN compiler in
+# OpenMP and hybrid mode.
+if SCOREP_COMPILER_SUN
+jacobi_mpi_omp_c_CPPFLAGS += -I$(INC_ROOT)test/jacobi/hybrid/C
+endif SCOREP_COMPILER_SUN
+
+check_PROGRAMS                         += jacobi_mpi_omp_c_uninstrumented
+jacobi_mpi_omp_c_uninstrumented_SOURCES = $(SRC_ROOT)test/jacobi/hybrid/C/jacobi.c \
+                                          $(SRC_ROOT)test/jacobi/hybrid/C/jacobi.h \
+                                          $(SRC_ROOT)test/jacobi/hybrid/C/main.c
+jacobi_mpi_omp_c_uninstrumented_CFLAGS  = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+jacobi_mpi_omp_c_uninstrumented_LDADD   = -lm
+
+TESTS_MPI_OMP += jacobi_mpi_omp_c
+
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+## MPI C++
+
+check_PROGRAMS         += jacobi_mpi_cxx
+jacobi_mpi_cxx_sources  = $(SRC_ROOT)test/jacobi/MPI/C++/jacobi.cpp  \
+                          $(SRC_ROOT)test/jacobi/MPI/C++/jacobi.h    \
+                          $(SRC_ROOT)test/jacobi/MPI/C++/main.cpp
+jacobi_mpi_cxx_SOURCES  = $(jacobi_mpi_cxx_sources)
+jacobi_mpi_cxx_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_mpi_cxx_LDADD    = $(mpi_libadd)
+jacobi_mpi_cxx_LDFLAGS  = $(mpi_ldflags)
+
+check_PROGRAMS                        += jacobi_mpi_cxx_uninstrumented
+jacobi_mpi_cxx_uninstrumented_SOURCES  = $(jacobi_mpi_cxx_sources)
+jacobi_mpi_cxx_uninstrumented_CPPFLAGS = $(AM_CPPFLAGS)
+jacobi_mpi_cxx_uninstrumented_LDADD    = -lm
+
+TESTS_MPI += jacobi_mpi_cxx
+
+## MPI + OpenMP C++
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS             += jacobi_mpi_omp_cxx
+jacobi_mpi_omp_cxx_SOURCES  = $(SRC_ROOT)test/jacobi/hybrid/C++/jacobi.mod.cpp       \
+                              $(SRC_ROOT)test/jacobi/hybrid/C++/jacobi.cpp.opari.inc \
+                              $(SRC_ROOT)test/jacobi/hybrid/C++/jacobi.h             \
+                              $(SRC_ROOT)test/jacobi/hybrid/C++/main.mod.cpp         \
+                              $(SRC_ROOT)test/jacobi/hybrid/C++/main.cpp.opari.inc   \
+                              $(SRC_ROOT)test/jacobi/hybrid/C++/pomp.c
+jacobi_mpi_omp_cxx_CXXFLAGS = $(AM_CXXFLAGS) $(OPENMP_CXXFLAGS)
+jacobi_mpi_omp_cxx_CFLAGS   = $(AM_CFLAGS)   $(OPENMP_CFLAGS)
+jacobi_mpi_omp_cxx_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+jacobi_mpi_omp_cxx_LDADD    = $(mpi_omp_libadd)
+jacobi_mpi_omp_cxx_LDFLAGS  = $(mpi_omp_ldflags)
+
+check_PROGRAMS                            += jacobi_mpi_omp_cxx_uninstrumented
+jacobi_mpi_omp_cxx_uninstrumented_SOURCES   = $(SRC_ROOT)test/jacobi/hybrid/C++/jacobi.cpp \
+                                             $(SRC_ROOT)test/jacobi/hybrid/C++/jacobi.h   \
+                                             $(SRC_ROOT)test/jacobi/hybrid/C++/main.cpp
+jacobi_mpi_omp_cxx_uninstrumented_CXXFLAGS  = $(AM_CXXFLAGS) $(OPENMP_CXXFLAGS)
+jacobi_mpi_omp_cxx_uninstrumented_LDADD     = -lm
+
+TESTS_MPI_OMP += jacobi_mpi_omp_cxx
+
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+## MPI Fortran
+
+if HAVE_MPIFC
+if FORTRAN_SUPPORT_ALLOCATABLE
+
+# Specify fortran dependencies manually
+variabledef.mod: VariableDef.$(OBJEXT)
+jacobi_mpi_f90-jacobi.$(OBJEXT): variabledef.mod
+jacobi_mpi_f90-main.$(OBJEXT): variabledef.mod
+
+check_PROGRAMS         += jacobi_mpi_f90
+jacobi_mpi_f90_sources  = $(SRC_ROOT)test/jacobi/MPI/Fortran/VariableDef.f90 \
+                          $(SRC_ROOT)test/jacobi/MPI/Fortran/jacobi.F90      \
+                          $(SRC_ROOT)test/jacobi/MPI/Fortran/main.F90
+jacobi_mpi_f90_SOURCES  = $(jacobi_mpi_f90_sources)
+jacobi_mpi_f90_CPPFLAGS =
+jacobi_mpi_f90_LDADD    = $(mpi_libadd)
+jacobi_mpi_f90_LDFLAGS  = $(mpi_ldflags)
+
+check_PROGRAMS                        += jacobi_mpi_f90_uninstrumented
+jacobi_mpi_f90_uninstrumented_SOURCES  = $(jacobi_mpi_f90_sources)
+# if the CPP flags are not specified  AM_CPPFLAGS are used by default which
+# cause an error on Jump.
+jacobi_mpi_f90_uninstrumented_CPPFLAGS =
+jacobi_mpi_f90_uninstrumented_LDADD    = -lm
+
+TESTS_MPI += jacobi_mpi_f90
+
+## MPI + OpenMP Fortran
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+if ! SCOREP_COMPILER_CRAY
+# The cray fortran compiler bails out on #line directives so we just
+# deactivate the tests with opari2-preinstrumented fortran sources.
+
+# Specify fortran dependencies manually
+jacobi_mpi_omp_f90-jacobi.$(OBJEXT): variabledef.mod
+jacobi_mpi_omp_f90-main.$(OBJEXT): variabledef.mod
+
+check_LTLIBRARIES                 += libjacobi_mpi_pomp_f90.la
+libjacobi_mpi_pomp_f90_la_SOURCES  = $(SRC_ROOT)test/jacobi/hybrid/Fortran/pomp.c
+libjacobi_mpi_pomp_f90_la_CPPFLAGS = $(AM_CPPFLAGS)
+
+check_PROGRAMS             += jacobi_mpi_omp_f90
+jacobi_mpi_omp_f90_SOURCES  = $(SRC_ROOT)test/jacobi/hybrid/Fortran/VariableDef.f90      \
+                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/jacobi.mod.F90       \
+                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/jacobi.F90.opari.inc \
+                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/main.mod.F90         \
+                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/main.F90.opari.inc
+jacobi_mpi_omp_f90_FCFLAGS  = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+jacobi_mpi_omp_f90_CFLAGS   = $(AM_CFLAGS)  $(OPENMP_CFLAGS)
+jacobi_mpi_omp_f90_CPPFLAGS = $(OPENMP_CXXFLAGS) \
+                              @OPARI2_CPPFLAGS@ \
+                              -I$(INC_ROOT)test/jacobi/hybrid/Fortran
+jacobi_mpi_omp_f90_LDADD    = $(mpi_omp_libadd) libjacobi_mpi_pomp_f90.la
+jacobi_mpi_omp_f90_LDFLAGS  = $(OPENMP_CXXFLAGS)
+jacobi_mpi_omp_f90_LDFLAGS += $(mpi_omp_ldflags)
+
+check_PROGRAMS                             += jacobi_mpi_omp_f90_uninstrumented
+jacobi_mpi_omp_f90_uninstrumented_SOURCES   = $(SRC_ROOT)test/jacobi/hybrid/Fortran/VariableDef.f90 \
+                                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/jacobi.F90      \
+                                              $(SRC_ROOT)test/jacobi/hybrid/Fortran/main.F90
+jacobi_mpi_omp_f90_uninstrumented_LDFLAGS   = $(OPENMP_CXXFLAGS)
+jacobi_mpi_omp_f90_uninstrumented_FCFLAGS   = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+jacobi_mpi_omp_f90_uninstrumented_CPPFLAGS  = $(OPENMP_CXXFLAGS)
+jacobi_mpi_omp_f90_uninstrumented_LDADD     = -lm
+
+TESTS_MPI_OMP += jacobi_mpi_omp_f90
+
+endif !SCOREP_COMPILER_CRAY
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+endif FORTRAN_SUPPORT_ALLOCATABLE
+
+endif HAVE_MPIFC
+
+endif HAVE_MPI_SUPPORT
+
+CLEANFILES += variabledef.mod jacobimod.mod

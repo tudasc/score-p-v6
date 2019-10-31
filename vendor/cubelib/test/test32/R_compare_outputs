@@ -1,0 +1,32 @@
+r_file = commandArgs(trailingOnly=T)[2];
+csv2_file = commandArgs(trailingOnly=T)[3];
+#load R output file
+ne = new.env()
+file_r <- load(r_file,env=ne);
+#load CSV2 file and convert to numerics
+file_csv2 <- as.matrix(read.csv2(csv2_file,sep=",",check.names=F));
+new_csv <- matrix(as.numeric(unlist(file_csv2)),nrow=nrow(file_csv2));
+cols <- colnames(file_csv2);
+
+#iterate over columns
+flag <- T
+for(n in 1:length(cols)) { 
+	if(cols[n] != "Cnode ID" && cols[n] != "Thread ID" && cols[n] != "Region ID") { 
+		{if(cols[n] != "Subroutines") Rmatrix <- get(cols[n],envir=ne) else Rmatrix <- get(paste(cols[n-1],cols[n],sep="_"),envir=ne)}; 
+		CSVmatrix <- matrix(new_csv[,n],nrow=nrow(Rmatrix),byrow=T);  
+		if(!isTRUE(all.equal(Rmatrix,CSVmatrix, tolerance=1e-4))){ 
+			 
+			cat("R_compare_outputs: R and CSV matrices are not equal\n")
+			cat("R matrix: \n")
+			print( get(cols[n], envir=ne) )
+			cat("CSV matrix: \n")
+			print(CSVmatrix)
+			{if(cols[n] != "Subroutines") flag <- cols[n] else flag <- paste(cols[n-1],cols[n],sep="_")};
+			cat("Comparison failed in column", flag)
+			break
+		} 
+	} 
+}
+
+#test
+cat(flag)

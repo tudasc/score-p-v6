@@ -1,0 +1,988 @@
+------------------- Released version 6.0 -----------------------------
+
+Major features:
+
+- Support for recording I/O activities: Calls to POSIX I/O and MPI-I/O
+  are wrapped and meta data about individual I/O operations is
+  recorded. Whereas MPI-I/O events are recorded by default, POSIX I/O
+  recording needs to be activated using the instrumenter option
+  --io=posix.
+
+Features and improvements:
+
+- Created separate enable group for request handling functions in MPI.
+  MPI functions dealing with the completion of non-blocking requests
+  (i.e., the Test/Wait family of calls) are no longer part of the P2P
+  enable group and moved to a separate enable group, which is enabled
+  or disabled automatically by the Score-P runtime system.
+- Adapted remapper specification to reflect that Test/Wait functionality
+  is no longer specific to point-to-point communication.
+- Added support for the Clang compiler suite. Select via
+  `--with-nocross-compiler-suite=clang`. Additionally experimental
+  support for macOS based systems was added, but needs to be enabled
+  with `--enable-experimental-platform` explicitly.
+- Bulding with the PGI compiler suite now selects the 'pgfortran'
+  compiler for F77 and FC. Added support for the PGI/LLVM variant.
+- Added support for tracking MPI-3 one-sided communication.
+- The previously unused environment variable
+  `SCOREP_MPI_MAX_ACCESS_EPOCHS` was renamed to `SCOREP_MPI_MAX_EPOCHS`
+  and is now used in tracking MPI one-sided communication.
+- Changed the presentation of parameter-based profiling. Instead of
+  nested call tree nodes under the source code region, create multiple
+  nodes for the region on the same level and attach Cube-Parameters to
+  them. In this context, the API of libscorep-estimator (used for
+  scoring profiles, e.g., in scorep-score) changed. Consider this API
+  'experimental'.
+
+Bugfixes:
+
+- For OPARI2-instrumented codes that use OpenMP criticals the mapping
+  to Score-P critical objects was erroneous. As a consequence,
+  lock-contention analysis for these criticals unfortunatly was
+  erroneous too.
+
+------------------- Released version 5.0 -----------------------------
+
+Major features:
+
+- Orphan thread support: Score-P now records events from POSIX threads
+  that were not instrumented, e.g., threads created from `std::thread`,
+  Intel TBB, Intel Cilk Plus, or any other runtime which is based on
+  POSIX threads. Previously, events from such threads caused a
+  'TPD == 0' measurement abort. Note that if your link-line does not
+  need a POSIX thread option like -pthread, you need to use the
+  Score-P option `--thread=pthread` to activate this feature.
+  This feature also includes support for POSIX threads that are
+  running longer than main. For these threads, Score-P will exit all
+  active regions and end the thread (from the measurement point of
+  view).
+- Added support for cartesian topologies.
+  Supported topology types:
+  1) MPI cartesian topologies via MPI_Cart_create.
+  2) Platform/Hardware specific topologies:
+     - IBM Blue Gene/Q
+     - K Computer
+  3) Process x Threads topology: Generic 2D topology,
+     currently only for CPU threads.
+  4) User topologies via user instrumentation API.
+  By default all available topology types will be recorded. They can
+  selectively be disabled based on type through environment variables,
+  see `scorep-info config-vars`. Viable topology results require a
+  distinct thread binding.
+
+Features and improvements:
+
+- Score-P now generates a dynamic `MANIFEST.md` file for each
+  experiment and copies files, like the filter or selective
+  configuration files, to the experiment directory.
+- In profiling mode, add the file `<DATADIR>/scorep/scorep.spec` to
+  the `profile.cubex` container, thus making the profile output more
+  self-contained.
+- On thread creation, request internal memory on the fly instead of in
+  advance. Depending on the measurement configuration this will save
+  some memory.
+- As Open MPI provides since version 3.0 a C++ compiler wrapper for
+  SHMEM, Score-P will also provide a instrumentation wrapper
+  `scorep-oshcxx` in this case.
+- Values in config variables of type Set can now be negated by
+  preceeding it with '~', e.g., 'SCOREP_MPI_ENABLE_GROUPS=default,~cg'.
+- Functions excluded from instrumentation by the GCC plug-in, because
+  they were declared as inline, can now be instrumented by providing
+  an instrumentation filter to 'scorep' where the function is matched
+  by an explicit 'INCLUDE' rule, which is not the match-all '*' one.
+  Functions excluded from instrumentation can be listed by adding
+  `--verbose=2` to the `scorep` command-line.
+- Changes to the experimental `scorep-preload-init` script:
+  - Also preloads the Score-P constructor to be able to early
+    initialize the measurement.
+  - Issues a warning for options which are not suitable for
+    uninstrumented applications.
+- 'MPI_Comm_idup' is now supported and does not abort the measurement
+  anymore.
+- Added support for the high bandwidth memory interface (hbw_malloc)
+  of the memkind library, allowing memory tracking for the Intel KNL
+  MCDRAM with Score-P.
+- All Fortran wrappers support now 64-bit character length arguments
+  with GCC 8.
+- Multiple improvements in the `scorep` instrumenter command to better
+  interact with build systems:
+  - All warnings and errors are prefixed with '[Score-P] ', for better
+    identification.
+  - All output goes to stderr, to not interfere when catching output
+    from the compiler/linker in process substitutions.
+  - When no source files could be identified, the command is executed
+    as is.
+- Since Score-P version 2.x, measurement initialization is done before
+  entering 'main' using compiler-provided constructor functions, if
+  available. As a consequence, MPI- or SHMEM-only instrumented
+  programs lacked the artificial 'PARALLEL' region that was used to
+  enclose all following regions. Instead of the 'PARALLEL' region
+  Score-P now generates program-begin and program-end events that
+  enclose the entire application. If program arguments are given,
+  these are recorded as well. In tracing mode program-begin/end are
+  mapped to ProgramBegin/End event records; in profiling mode this
+  feature is modeled as enter/exit of an additional region with the
+  name of the executable, if available.
+
+Bugfixes:
+
+- Instrumentation of Fortran OpenMP programs that use untied tasks
+  failed with undefined references. Fixed.
+- So far, programs that `pthread_exit()` the main thread crashed based
+  on the requirement that the program's main thread is responsible for
+  the measurement finalization. This requirement was removed and was
+  accompanied by multiple improvements of threads lasting longer than
+  main.
+- Restored the ability to run with `SCOREP_TOTAL_MEMORY=4G`.
+- Instrumentation failed for codes that include system headers via
+  local headers of the same name. This is fixed for compilers that
+  support the '-iquote' option (most of the compilers do, PGI
+  doesn't). Note that this bugfix is overruled if scorep's '--pdt'
+  option is used.
+- Fix memory recording of C++14 applications, because Score-P did not
+  wrapped the `delete`/`delete[]` operators with size argument.
+- Fix possible overflow of send/recv bytes in MPI_Bcast, MPI_Sendrecv,
+  and MPI_Sendrecv_replace.
+- In selecting MPI groups to be recorded (SCOREP_MPI_ENABLE_GROUPS),
+  fix handling of MPI subgroups.
+
+------------------- Released version 4.1 -----------------------------
+
+Bugfixes:
+
+- scorep-score: fixed potentially wrong output of SCOREP_TOTAL_MEMORY
+  which was caused by an uninitialized variable.
+- Improve robustness of wrapping memory-related function calls
+  during link-time.
+- Fixed PGI compiler adapter to prevent the corruption of register
+  values in some cases.
+- Fixed calculation of memory statistics in out-of-memory condition.
+- Honor --libdir and --dis|enable-shared|static when building and
+  installing libscorep_estimator.
+
+------------------- Released version 4.0 -----------------------------
+
+Major features:
+
+- User Library Wrapping: Using scorep-libwrap-init, you can now
+  automatically generate library wrappers supplying only the
+  headers and library files of the target library.
+  You then install the wrapper into SCOREP_LIBWRAP_PATH and use it
+  with the new instrumenter flag --libwrap=<wrapper>.
+  For this only linking with Score-P is necessary, except when
+  the library is called from threads, then the threading paradigm
+  has to be instrumented as well.
+
+Features and improvements:
+
+- The utility "scorep-score" is provided now as a library application
+  to allow using its functionality in third-party software. Obtain
+  compile flags via
+  "scorep-config --target score --cflags|--ldflags|--libs".
+- Improve detection and compiler selection for SGI MPT
+  implementations.
+- Provide the Substrate Plugin interface, which enables plugins to
+  consume Score-P runtime events for recording, analysis, and
+  optimization purposes.
+- Added the option SCOREP_FORCE_CFG_FILES, which enables users to
+  force the creation of the experiment directory even if there are no
+  active substrates that write any output. Defaults to true.
+- Provided the option to use sequence definitions for the system tree.
+  They provide a constant size system tree description. The trade-off
+  is the loss of individual names and properties for locations,
+  location groups and system tree nodes. Currently supported only for
+  MPI.
+- Added possibilities to aggregate the locations within a thread to
+  reduce the report size. The aggregation can be enabled via the
+  SCORE_PROFILING_FORMAT environment variable. The new formats
+  THREAD_SUM, THREAD_TUPLE, KEY_THREADS, and CLUSTER_THREADS are
+  available.
+- Replace the two threading variants --thread=omp:pomp_tpd and
+  --thread=omp:ancestry by only one: --thread=omp. The possible
+  options are detected at configure time. If both are available,
+  the ancestry variant will be used by default.
+- As compressing OTF2 traces was not supported by any OTF2 release in
+  the past and probably wont be in the foreseeable future either, the
+  support for this feature in Score-P was removed.
+- Score-P no longer ships with the Cube GUI. Cube was componentized
+  and Score-P just includes Cube's library components that are
+  necessary for measurements and scoring. The configure option
+  --with-cube was replace by --with-cubew and --with-cubelib. They
+  need to be provided a PATH to cubew-config and cubelib-config,
+  respectively, if not already in PATH. The Cube GUI is separately
+  available from http://www.scalasca.org.
+- An experimental script named `scorep-preload-init` is provided
+  which helps to setting up a measurement done through the `LD_PRELOAD`
+  mechanism.  Score-P needs to be built with shared libraries to
+  enable this feature and not all instrumentations are supported
+  though.
+
+Bugfixes:
+
+- Improve the extraction of topology information from the Slurm
+  topology/tree plugin to create the system tree. There were cases
+  where the Slurm topology information wasn't correctly distributed to
+  the individual compute nodes. This resulted in a system tree with a
+  single node parenting all processes instead of several nodes
+  parenting subsets of processes.
+- Recording of synchrounous metrics (SCOREP_METRIC_SYNC), i.e.,
+  per-process metrics or metrics provided by a 'sync' plugin, resulted
+  in wrong values in profiling mode. Fixed.
+- Added a time-based string to temporary results files of the
+  preprocessing step during instrumentation. This should avoid name
+  clashes if the same source file is concurrently processed twice during
+  the build process.
+- The support for a modularized OPARI2, introduced in Score-P 2.0,
+  attributed wrong names for the inner regions of the OpenMP
+  constructs critical, ordered, section, single, and task. This is
+  fixed now.
+
+------------------- Released version 3.1 -----------------------------
+
+Features and improvements:
+
+- The induced penalty to access thread-local storage variables was
+  considerably reduced for some compilers, notable for the Intel
+  compilers.
+- If both OpenMP instrumentation options, omp:tpd and omp:ancestry,
+  are supported, use omp:ancestry as default. This works around a
+  problem found with recent Intel compilers (e.g., 17.0.0) and the
+  omp:tpd option.
+- The GCC compiler instrumentation plug-in now instruments functions
+  that will not return in the usual way, like, e.g., a Pthread
+  start_routine that calls pthread_exit.
+
+Bugfixes:
+
+- Fix compilation error during instrumentation, if the command line
+  contains a header file.
+- Fix loosing parameter call-paths by avoiding multiple definitions of
+  the same parameters.
+- Fix that memory allocation measurements are disabled if the
+  user explicitly specifies --memory.
+- Fix conflict of function wrapping with IPA on BlueGene systems.
+- Do not preprocess assembler files anymore.
+- Fix race condition in parallel make (make -j). Note that parallel
+  'make check' still exhibits race conditions due to Fortran
+  dependency issues.
+- Fix segmentation fault in the profile when memory operations
+  and metric counters are recorded at the same time.
+- Improve detection of ARM and Cray platforms.
+- Allow for shell variables in configure options. Options like
+  '--includedir=\${prefix}/include' caused configure to fail.
+
+------------------- Released version 3.0 -----------------------------
+
+Note: In this version, we switch from a 'major.minor.bugfix'
+versioning scheme to a 'major.bugfix' scheme. New user-relevant
+features will be introduced by increasing the major number. Bugfix
+releases will not add new user-relevant features but might contain,
+in addition to bugfixes, Score-P-internal improvements.
+
+Major features:
+
+- Support for instrumentation of OpenACC codes based on the profiling
+  interface specified in OpenACC 2.5.
+
+Features and improvements:
+
+- Extract topology information from the Slurm topology/tree plugin to
+  create the system tree.  This feature is available in Slurm since
+  version 2.1 (around 09/2009) and documented since 01/2014.  Please
+  refer to the Slurm documentation how to enable this feature:
+    http://slurm.schedmd.com/topology.html
+- Change PGI C++ compiler settings (selected via
+  --with-nocross-compiler-suite=pgi) from pgCC to pgc++. PGI removed
+  pgCC in version 16.1. If your installation still provides pgCC and
+  you want to use it, please add CXX=pgCC to your configure line.
+
+Bugfixes:
+
+- Prevent sampling/unwinding when Intel MPI is used. This combination,
+  even when sampling is not active, may mysteriously alter the
+  application output just by linking libunwind.
+- Fixed possible underestimation of the trace size and memory footprint
+  in scorep-score due to counting timestamps only for enter/leave
+  records.
+- Fixed function signatures of SHMEM API functions that changed in
+  Open MPI 2.0.
+
+------------------- Released version 2.0.2 ---------------------------
+
+Bugfixes:
+
+- The preprocessing of source files before they will be instrumented
+  with OPARI2 was broken.  This is fixed.
+- Prevent potential division by zero error during calculation of tsc
+  timer frequency.
+- Compiler-specific CXXFLAGS might break the 'build-score' configure
+  as CXX use to build 'scorep-score' might differ from CXX used to
+  build the Score-P libraries. CXXFLAGS in build-score are now
+  ignored. To set build-score related CXXFLAGS, use
+  CXXFLAGS_FOR_BUILD_SCORE.
+- Fix bug in configuration of SHMEM support triggered by change in
+  shmem.fh header of Open MPI 1.10.2.
+- Fix PAPI configure check when additional libraries are needed to
+  successfully link to PAPI. This was a regression introduced with
+  version 2.0.
+- Fix typos in remapping specification file which caused the
+  point-to-point and collective bytes transferred metrics to always
+  be zero.
+- Build-system hardening.
+- The configure check for libunwind now also works if libunwind
+  depends on liblzma.
+- Documentation improvements.
+- Fixed memory leaks in sampling and CUDA mode.
+
+------------------- Released version 2.0.1 ---------------------------
+
+Bugfixes:
+
+- Prevent the memory adapter from initializing the measurement system
+  as this leads to program crashes if it happens too early, e.g., on
+  Blue Gene systems. If memory instrumentation is the only means of
+  instrumentation, the measurement system is initialized via the
+  feature 'compiler constructor'. If this feature isn't available
+  (search for 'compiler constructor: yes' in 'scorep-info
+  config-summary'), you need to add e.g., user instrumentation to
+  initialize the measurement system.
+
+------------------- Released version 2.0 -----------------------------
+
+Major features:
+
+- Score-P supports a new data collecting mode based on sampling.
+  Sampling can be used in conjunction with the usual instrumentation
+  of parallel paradigms.  Therefore it combines the lower overhead of
+  statistical sampling and the accuracy of instrumentation.  Both
+  call-path profiling and event tracing are supported.  As this is
+  rather a major change in the Score-P internals and also for the user
+  experience we appreciate any feedback but need to declare the
+  sampling support as experimental in this first release.
+- Support for OPARI2 2.0 was integrated.  OPARI2 is now more flexible
+  to enable support for other pragma/directive based paradigms.
+- Support for MPI-3.1 functions (except 'MPI_Comm_idup').  Most new
+  functions currently provide plain enter/exit wrappers.
+- Support for tracking memory allocations was added to Score-P.  This
+  includes C/C++, MPI, and SHMEM API calls.  The instrumentation is
+  done by default, though must be enabled at measurement time
+  explicitly.
+
+Features and improvements:
+- When using compiler instrumentation with GNU (not the gcc-plugin but
+  the '-finstrument-functions' variant), Cray, or Fujitsu compilers,
+  one can provide a file containing symbols that will trigger
+  measurement events when the corresponding function is called.  These
+  symbols are subject to filtering.  Providing symbols this way is
+  useful when obtaining symbols during measurement via 'nm' or
+  'libbfd' is not an option, e.g, on Blue Gene systems.  The symbol
+  file needs to be specified in the environment variable
+  'SCOREP_NM_SYMBOLS'.  The accepted format is as in
+  'nm -l <executable>'.
+- Transparent changes to the event-dispatching.  Currently events are
+  consumed by either the profiling or tracing substrate (or both).
+- The timer selection was moved from configure time to measurement
+  time.  During configure we detect all available timers and provide
+  the environment variable 'SCOREP_TIMER' to select one.  The timer
+  defaults to a low-overhead time stamp counter, if available.  Note
+  that we assume all processes to use the same timer and time stamp
+  counter timers to run at the same frequency.
+- Building the entire Score-P package on Blue Gene/Q systems using GNU
+  compilers is now supported.  The installation currently needs some
+  extra steps, please see 'share/bg-gnu/README' for details.  The
+  installation on older Blue Gene systems, though not tested, might
+  work as well.
+- Source-to-source instrumentation via PDT on Blue Gene systems was
+  re-enabled for PDT versions newer than 3.18.
+- Score-P takes advantage from compilers to initialize the measurement
+  system automatically before triggering any event.  This also ensures
+  that the interrupt sources for sampling are registered as early as
+  possible and in the case when no compiler instrumentation is
+  available.
+- Score-P uses now the '-Minstrument=functions' flag for PGI compiler
+  instrumentation (64-bit targets only).  The '-Mprof=func' flag is no
+  longer supported by PGI compiler version 16.  To our knowledge,
+  '-Minstrument=functions' is available at least since PGI compiler
+  version 11.  However, older PGI compiler versions may not support
+  '-Minstrument=functions' and are not supported by Score-P anymore.
+- A synchronization callback was added to the metric plugin API.  A
+  metric plugin can register a synchronization callback which is
+  called every time Score-P starts clock synchronization.  The
+  synchronization callback contains one argument specifying the point
+  in time in more detail.  At the moment we distinguish
+  synchronization at initialization, during measurement run, and at
+  finalization.  As a result, the synchronization callback allows
+  metric plugins to detect start and end points of measurement
+  intervals.
+- The manual user instrumentation for Fortran 90 now performs region
+  initialization checks based on handle values instead of comparing
+  names.  This reduces overhead.  It does not apply when using PGI
+  compilers though.
+- Support tracing of applications with more than 500000 tasks.
+
+User tools and API improvements and changes:
+
+- A Score-P installation provides new instrumentation wrappers which
+  simplify the application instrumentation of autotools and CMake
+  based projects.  Please consult the usage instruction of the
+  'scorep-wrapper' command.
+- The option '--pomp' does not take any options any more.
+- Specific options for OPARI2 are passed via the
+  '--opari=<parameter-list>' option.
+- To control instrumentation of OpenMP the options '--openmp' and
+  '--noopenmp' have been added. Note that for compilations using the
+  OpenMP compiler-flag, instrumentation is enabled by default.
+  However, when manually disabling instrumentation via
+  '--noopenmp', some instrumentation must still be carried out to
+  ensure a thread-safe execution of the measurement system.
+- POMP user instrumentation is no longer automatically activated
+  together with OpenMP instrumentation.  The '--pomp' flag has to be
+  explicitly specified with the 'scorep' command.
+- On Cray systems, compiler instrumentation does not add '-G2' option
+  anymore because '-G2' disables some optimizations.
+- The instrumenter now warns the user if the provided instrumentation
+  filter wont be used by the active instrumentations.
+- The option '--disable-preprocessing' was added to the instrumenter.
+  It tells the instrumenter to skip all preprocessing related
+  activities.  Useful e.g, if the input files are already
+  preprocessed.
+
+Bugfixes:
+
+- Fixed possible mistreatment of a profile node as being in an untied
+  task.
+- Fixed bug in obtaining executable names longer than 512 characters
+  when using the GNU compiler adapter (applies also to Cray and
+  Fujitsu compilers).
+- The GCC compiler instrumentation plug-in was non-functional for
+  GCC 5 because of an unnoticed API change.  Additionally, the custom
+  demangling of Fortran module functions is working again.
+- The GCC instrumentation plug-in does not instrument the `main`
+  function in Fortran programs anymore as the main entry point for the
+  user is `MAIN__`.
+- Names assigned to MPI communicators by calls to 'MPI_Comm_set_name'
+  are now also tracked, even if the corresponding API calls wont be
+  recorded.
+- Fixed MPI library interposition if the link command lists explicitly
+  'libmpifort' or 'libmpigi'.
+
+------------------- Released version 1.4.2 ---------------------------
+
+Features and improvements:
+
+- The GCC plug-in can also be built on cross build machines and with
+  the GCC 5 release series.
+
+Bugfixes:
+
+ - The OpenMP flag for PGI compilers (-mp) may have a value appended.
+   In this case, the instrumenter did not detect the OpenMP paradigm
+   properly. Fixed.
+ - On Cray systems, a conflict between the -eZ and and the -eP flag
+   occurred if the instrumenter performed preprocessing before OPARI2
+   instrumentation and the command line contains -eZ. Fixed.
+ - If the user explicitly requires static Score-P libraries by
+   specifying --static on the command line, scorep-config provides
+   also full paths to the dependencies of its libraries, which might
+   cause problems if the libraries are linked with dynamic
+   libraries. Fixed.
+ - The preprocessing step of CUDA source files for the OPARI2
+   instrumentation did not add preprocessing flags to the preprocessor
+   invocation. Thus, it becomes a full compilation step. Fixed.
+ - Fix exponent in the CUDA metric definitions.
+ - Fix scorep-config bug on MIC, which always showed an 'Unsupported
+   target mic. Abort'
+ - Configure checks for PAPI on MIC failed with unresolved symbols to
+   libpfm. Fixed.
+ - Help text for --target attribute of scorep-config added
+
+------------------- Released version 1.4.1 ---------------------------
+
+Bugfixes:
+- BG/Q: use optimized MPI rank to SION file mapping (one file per I/O node)
+- Fixes in the OpenCL adapter:
+  - The Score-P instrumenter did misinterpret the OpenCL library as an
+    input file, if it was given as '-l opencl' on the command line. Fixed.
+  - Fixed segmentation fault of clReleaseEvent during Score-P OpenCL flush.
+  - Fixed wrappers of OpenCL 2.0 functions.
+  - Revised mutex locking.
+- Apply filtering also to CUDA API exit events.
+- The Score-P instrumenter did misinterpret the Pthread library as an input
+  file, if it was given as '-l pthread' on the command line. Fixed.
+- The collapse node post-processing in the profile happened for the master
+  location and lead to errors if a collapse node appeared on anther location.
+  Fixed.
+- Fixed detection of building a shared library on Cray in the instrumenter.
+- Fixed failed OpenMP detection on K if the -Kopenmp flag was combined
+  with other flags in a comma separated list.
+- Fixed erroneous calculation and presentation of task migration metrics.
+- The GCC instrumentation plug-in can now also be built if the used GCC
+  installation does not provide a `gmp.h` header.
+- Fixed missing DESTDIR support for installing `scorep-config` delegate on
+  Xeon Phi.
+- Instrumented C/Fortran OpenMP programs on Fujitsu systems showed
+  race conditions. Furthermore, C++ applications failed at
+  initialization time. This was due to a bug in the Fujitsu compiler
+  and OpenMP runtime. Fujitsu provided a workaround that fixed this
+  issues.
+- Calls to functions, instrumented by the GCC plug-in, after the finalization
+  of the measurement, aborted the application. Fixed.
+- In shared Score-P builds using recent Intel MPI a 'MPIR_Thread: TLS
+  definition ... mismatches non-TLS definition ...' error was
+  encountered. Fixed.
+- The OpenSHMEM measurement adapter records request-lock instead of
+  acquire-lock events. Fixed.
+- Instrumentation of applications compiled with PGI compilers and Open
+  MPI 1.8 failed with an 'undefined reference to pgf90_compiled'.
+  Fixed by adding the '-pgf90libs' option when using MPI with PGI
+  compilers.
+
+------------------- Released version 1.4 -----------------------------
+
+Major features:
+
+- If the used OTF2 version supports SIONlib, then it is now possible to
+  write also traces with SIONlib that include an arbitrary number of
+  threads, asynchronous metric plugins, and accelerator (CUDA/OpenCL/...)
+  streams.
+- Basic support for OpenCL instrumentation.
+- For GCC versions 4.5 till 4.9 a new function instrumentation is available
+  via the plug-in interface of the compiler. This new function instrumentation
+  greatly improves the measurement performance. It also provides compile-time
+  instrumentation filtering using the same filter file format as the run-time
+  filtering.
+  On some systems the GCC plug-in dev package needs to be installed, in
+  order to provide the necessary header files.
+- Score-P now ships with the entire Cube package included. I.e., a
+  Cube installation is no longer a hard requirement when building
+  Score-P from a tarball (this requirement was introduced with Score-P
+  1.2 and was needed to build scorep-score, a tool to score profile
+  experiments to prepare a filter for subsequent trace experiments). A
+  Cube installation will be favored if cube-config is in PATH (as with
+  OTF2 and OPARI2 installations). To use the internal Cube even if a
+  cube-config is in PATH, specify --without-cube on the configure
+  command-line. To prevent building the Cube GUI, add --without-gui to
+  the configure command-line.
+
+Features and improvements:
+
+- Support for pthread_exit and pthread_cancel was added.
+- Added support for task migration in the profiling system.
+- Basic support for Fujitsu FX100 systems added.
+- Added support for Intel Xeon Phi systems (native mode only)
+- Score-P now requires at least OTF2 1.5.
+- Added new user instrumentation macros (e.g.,
+  SCOREP_USER_REGION_BY_NAME_BEGIN( name, type ) and
+  SCOREP_USER_REGION_BY_NAME_END( name )). These macros can annotate
+  user regions without the need to take care about the handle struct.
+
+User tools and API improvements and changes:
+
+- Due to the added task migration support, the default for the invocation
+  of OPARI2 in the instrumenter was changed. Until now, the instrumenter
+  let OPARI2 make all tasks tied and print a warning if an untied
+  task was encountered. The new default is that the untied tasks
+  are left untied and no warning is printed.
+- The task related data storage mechanism was changed. The profiling
+  backend does not use a hash table to associate a task id with a
+  data structure anymore, but gets a pointer from the task management
+  in the measurement core. Thus, the environment variable
+  SCOREP_PROFILING_TASK_TABLE_SIZE to specify the size of the hash table
+  disappeared.
+- Added the environment variable SCOREP_PROFILING_TASK_EXCHANGE_NUM to
+  specify how ofter the profiling system returns reallocated memory objects
+  that have migrated to another thread.
+- Support for cobi was removed.
+- SCOREP_User_RegionBegin / SCOREP_User_RegionInit accept NULL as
+  parameter value for lastFileName and lastFileHandle. This simplifies the
+  calls to these functions when used directly without the provided macros.
+- scorep-score got a new option: -m allows to display mangled region names.
+  Furthermore, the filter evaluation in scorep-score can also use mangled
+  names, too.
+
+Bugfixes:
+
+- In some cases, not all regions are exited at measurement finalization
+  time. Fixed.
+- Using PGI compiler instrumentation in conjunction with tasks could
+  lead wrong region handles in region exits. Fixed.
+- Fix building of MPI wrapper if compiler issues unrelated warnings at
+  configure time.
+- The SCOREP_USER_METRIC_UINT64 macro used signed values. Fixed.
+- Add conflict in the instrumenter between --thread=pthread and
+  --mutex=pthread.
+- Fixed errors with libmpigf during linking of the instrumented application.
+- Fixes wrong acquisition order in pthread_cond_timedwait by modifying
+  the nesting level (analog pthread_cond_wait)
+- Fixes that internal CUDA driver calls were recorded
+- Fixes a potential deadlock in CUDA adapter for multithreaded CUDA
+- Fortran OpenMP applications instrumented with OPARI2 and
+  preprocessing report wrong file names ending in '.input.F' for POMP2
+  regions. Fixed except for Oracle/Studio and Cray compiler.
+
+------------------- Released version 1.3 -----------------------------
+
+Major features:
+
+- Basic support for the K Computer and Fujitsu FX10 systems added. The
+  Tofu network topology will be supported in a subsequent release.
+  Note that some C++ OpenMP programs fail during measurement
+  initialization for unknown reasons.
+- Add support for instrumenting programs which use SHMEM library calls
+  for one-sided communication. Score-P currently supports the SHMEM
+  implementations of Cray, Open MPI, OpenSHMEM, and SGI.
+- Basic support for POSIX thread instrumentation. Supported POSIX
+  thread routines are pthread_create, pthread_join,
+  pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock,
+  pthread_mutex_trylock, pthread_mutex_unlock, pthread_cond_init,
+  pthread_cond_destroy, pthread_cond_signal, pthread_cond_broadcast,
+  pthread_cond_wait, and pthread_cond_timedwait. Following thread
+  management functions are currently not supported and will abort the
+  program: pthread_exit and pthread_cancel. The usage of
+  pthread_detach will cause the program to fail if the detached thread
+  is still running after the end of main. These limitations will be
+  addressed in an upcoming version of Score-P. Note that you need to
+  instrument every thread creation.
+
+Features and improvements:
+
+- Use Process Manager Interface (PMI) to get fine-granular information
+  about the system topology on Cray machines.
+- Implemented the possibility to write CUBE profiles with the tuple
+  values containing sum, minimum, maximum, number of samples, sum of
+  squares.
+- The new SIONlib integration of OTF2 extends the support of writing
+  SION traces to all multi-process paradigms, not only MPI. Though
+  only pure multi-process measurements are supported for now. No
+  threads, no CUDA, no non-CPU metrics. Score-P itself does not depend
+  on SIONlib any longer, only OTF2 does now. The configure option
+  '--with-sionlib' (formerly '--with-sionconfig') is passed to OTF2.
+  As part of this integration the measurement configuration variable
+  'SCOREP_TRACING_NLOCATIONS_PER_SION_FILE' was renamed to
+  'SCOREP_TRACING_MAX_PROCS_PER_SION_FILE' to clarify that Score-P can
+  only distribute whole processes into a multi-file SION trace.
+- Improved initialization of adapters which results in a reduced
+  number of libraries needed to be linked into the application.
+- Extended the TAU adapter to allow input of location properties,
+  which are location specific meta data presented as key/value pair.
+- The option --thread=<paradigm>[:<variant>] gives users the
+  possibility to choose the threading model and to fine-tune certain
+  aspects. Currently OpenMP and POSIX threads are supported with
+  either --thread=omp or --thread=pthread. For OpenMP we provide the
+  two variants --thread=omp:pomp_tpd (default) and
+  --thread=omp:ancestry. The former tells OPARI2 to insert code for
+  thread tracking where the latter uses the ancestry functions in
+  OpenMP 3.0 and later to accomplish the same task.
+
+User tools and API improvements and changes:
+
+- Improved automatic MPI detection in the instrumenter (helpful on
+  Cray, as cc/CC/ftn is the compile command for both MPI and non-MPI).
+- Changed paradigm selection in the instrumenter to match the
+  selection options in the scorep-config tool. Thus, introduced
+  --mpp=<paradigm> and --thread=<paradigm> flags for the instrumenter
+  to select the multi-process paradigm and the threading paradigm. The
+  old options --mpi, --nompi, --openmp, --noopenmp are marked as
+  deprecated and are no longer documented.
+- Added handling for special characters, like space, in file names and
+  path names. However, there are still some limitation when using
+  special characters: The PDT parser cannot deal with these characters
+  and, thus, fails if PDT instrumentation is enabled and special
+  characters appear. Furthermore, compilation fails when double quotes
+  appear in source file names and preprocessing is enabled.
+- Unified naming of macros in the user adapter. In C/C++ the macros to
+  define global region handles (SCOREP_GLOBAL_REGION_DEFINE and
+  SCOREP_GLOBAL_REGION_EXTERNAL) and in Fortran the parameter macros
+  (SCOREP_PARAMETER_DEFINE, SCOREP_PARAMETER_INT64,
+  SCOREP_PARAMETER_UINT64, SCOREP_PARAMETER_STRING) got the prefix
+  SCOREP_USER instead of only SCOREP.
+- Added selection for mutex locking, allowing to use the parameter
+  --mutex=<locking> to switch between known locking mechanisms within
+  the measurement system (omp,pthread,pthread:spinlock,pthread:wrap).
+- Improved event size estimation in scorep-score using otf2-estimator.
+- Install Cube remap specification file and provide its location via
+  the scorep-config tool.
+- The scorep-info tool can now show known and open issues regarding
+  the measurement with Score-P. It is highly advised to consult this
+  list before reporting problems.
+
+CUDA support improvements and changes:
+
+- Added support for CUDA 5.5 and CUDA 6.0: The CUPTI activity buffer
+  handling has changed. The SCOREP_CUDA_BUFFER_CHUNK environment
+  variable has therefore been introduced (see user documentation). The
+  default size for SCOREP_CUDA_BUFFER was changed to '1M'.
+- New options for SCOREP_CUDA_ENABLE:
+  'references'   : track references between CUDA host and device
+                   activities in the OTF2 trace
+  'flushatexit'  : forces pending CUDA activities to be flushed at program
+                   exit (avoids records to be dropped in OpenACC programs)
+  'kernel_serial': serialize recording of (potentially concurrent) kernels
+- Obsolete options for SCOREP_CUDA_ENABLE:
+  'concurrent'  : recording of (potentially concurrent) kernels is the
+                  default
+  'stream_reuse': feature has been removed
+  'device_reuse': feature has been removed
+
+- Added support for runtime filtering of CUDA device and host
+  activities.
+
+Bugfixes:
+
+- When using the Intel compiler, functions from shared libraries now
+  appear in the measurement output. Previously we inspected the symbol
+  table of the executable and evaluated the filtering on all functions
+  in the executable. Thus, compiler instrumented functions from shared
+  libraries were automatically filtered, when using the Intel
+  compiler. Now, the filters are evaluated when the functions appear
+  the first time.
+- Fix handling of Intel compiler options starting with "-o".
+- The pgCC compiler version 13.9 and newer preinclude omp.h if OpenMP
+  is enabled. This leads to multiply defined symbols if the source
+  file is preprocessed before compilation. Prevent the preinclusion
+  for the compilation of preprocessed files if an appropriate compiler
+  option exists (exists since pgCC version 14.1).
+- Fix a deadlock on AIX, if MPI_Abort was called.
+- If a system provides only shared OpenMP runtime libraries and a
+  compiler does not add rpath information but relies on
+  LD_LIBRARY_PATH, the Score-P instrumenter fails execution. Fixed.
+- Fix missing flags in OPARI2 call to disable OpenMP instrumentation,
+  if the user selected POMP instrumentation for a serial program
+  without specifying that the program is serial.
+- Prepend link calls to the Intel compiler by setting VT_LIB_DIR and
+  VT_LIBS to avoid remarks.
+- Changed enumeration of threads in the profile from a global
+  enumeration to an enumeration from 0 to N-1 on each process.
+- Use "-G2" if the Cray compiler instrumentation is used.
+  The previous "-g" flag disabled all optimizations.
+- Fix creation of experiment directory if the monitored application
+  make use of 'chdir' operation.
+- The Score-P instrumenter tool moved compiler selection flags for the
+  MPI compiler wrapper to a different location in the command
+  line. Fixed.
+- Fixed broken instrumentation if the applications link step
+  explicitly links libc.
+- Fixed wrong acquisition order attribute passed to acquire lock
+  events from OpenMP critical sections.
+
+------------------- Released version 1.2.3 ---------------------------
+
+- Fixed a failed assertion that occurs if selective recording was
+  enabled in profiling mode.
+- Fixed wrong path names in the instrumenter, when Score-P was
+  configured with the --bindir flag.
+- Install scorep-score in the correct directory, if Score-P was
+  configured with the --bindir flag.
+- Reduce per-event measurement overhead by improving Score-P's assert
+  and error handling.
+- Adapt configure to recent Cray installations.
+- Score-P measurements provided with a SCOREP_EXPERIMENT_DIRECTORY,
+  say foo, used to overwrite an existing foo even if this foo is not a
+  directory. Will now abort with a meaningful message.
+- Metric plugin component: handling of multiple metrics improved.
+- Don't remove source files during make distclean in an in-place
+  build.
+- Fix failing detection of nvcc in case it was called with a path.
+- The measurement configuration (stored in the file `scorep.cfg') is
+  now also preserved in the experiment directory in case of an failed
+  measurement.
+- Added compiler instrumentation flags also to the ldflags to fix
+  missing instrumentation if high optimization levels recompile parts
+  of the code.
+- Changed the region names of OPARI2 instrumented named criticals.
+  If a name for the critical region is provided, the enclosing region
+  will have the name '!$omp critical <name>' and the structured block
+  '!$omp critical sblock'. Replace <name> by the given name.
+
+------------------- Released version 1.2.2 ---------------------------
+
+- The Fortran Cray compiler instrumentation did not create an exit
+  event. Thus, we add an exit on Score-P finalization.
+- Removed remark of the Intel compiler during instrumentation that
+  VT_ROOT is not set, if preprocessing was used.
+- MPI parallel measurements with just one process were fixed.
+- Fixed a race condition during initialization of the
+  TRACE_BUFFER_FLUSH region, that could lead to incomplete profiles if
+  a user runs a hybrid (MPI + OpenMP) application and enables
+  profiling and tracing at the same time.
+- Fix error message when scorep-config is called without arguments in
+  a non-mpi installation.
+- In scorep-config's rpath options, omit paths searched by ldconfig,
+  even if Score-P was installed there, in order to comply to packaging
+  guidelines of some Linux distributions.
+- Fixed broken MPI detection in the instrumenter if the MPI compiler
+  wrapper is specified with the full path.
+- If Score-P is build with static and dynamic libraries, the selection
+  of using static or dynamic libraries was improved. Using -Bstatic or
+  -Bshared had some side effects and was sometimes unreliable.
+- On Cray system, change libtools default to prefer static linking of
+  external libraries.
+- Suppress failed assertion messages when initializing compiler
+  instrumentation with Intel compilers without libbfd. The measurement
+  completes even if these messages exist.
+- Added options to scorep-config and the scorep instrumenter to
+  enable/disable online access support.
+- Fixed broken --includedir configure option that installed Score-P
+  headers in a wrong directory.
+- Fix SCOREP_RECORDING_IS_ON(isOn) user macro; in Fortran codes, isOn
+  was not set to false when instrumented with --nouser.
+- Fixed instrumentation compilation error that occurred if
+  --opari="--disable=atomic" was specified without OpenMP compilation
+  flags.
+- Improvements in obtaining region information via libbfd.
+- Improved configure checks to determine values of MPI
+  constants. Previous tests failed on AIX.
+- Improvements of measurement reconfiguration in Online Access mode.
+- Honor --without-mpi when --with-custom-compilers is given at
+  configure time.
+- Several smaller fixes.
+
+------------------- Released version 1.2.1 ---------------------------
+
+- Allow configuration without support for the MPI programming model by
+  specifying --without-mpi on the configure line.
+- Abort during instrumentation with a meaningful error message if
+  a user requests MPI but the Score-P installation does not support MPI
+- On Blue Gene/Q, detect PAMI library at configure time. The location
+  and names of the PAMI files changes during a system upgrade. Search
+  all known directories and library names.
+- Improve --with-custom-compilers, customization files are now
+  recognized also in the build directory (see INSTALL).
+- On SGI MPT systems, or more generally on systems that don't use
+  compiler wrappers for building MPI programs, improve the automatic
+  detection of the MPI programming paradigm during instrumentation.
+- Abort with an error message during instrumentation if the user wants
+  to build a shared library with static Score-P libraries.
+- Abort if the user specified a filter file which cannot be opened.
+- Improved the auto-detection in the instrumenter for MPI libraries. This
+  should fix some failures with MPI programs that do not use a compiler
+  wrapper, e.g., when using SGI MPT.
+- Fixed that the instrumenter fails to detect whether an application
+  uses OpenMP with the XL compiler if the user specifies more than one
+  option to '-qsmp="
+- Abort configuration when the user specified --without-cube on the
+  commandline as cube is a required component.
+
+------------------- Released version 1.2 -----------------------------
+
+- Simplified MPI compiler detection, passing '--with-mpi' to configure
+  is usually not necessary if your MPI compiler is in PATH.
+- Support for Cray systems. PrgEnv-(cray|gnu|intel|pgi) are supported
+  in static mode (static is the default). Please note that OpenMP
+  instrumentation is currently broken for PrgEnv-cray.
+- Compilation units getting processed by OPARI2 are now being
+  preprocessed by the C/C++ preprocessor. This way it is possible to
+  instrument OpenMP directives in header files. It also solves
+  instrumentation problems cause by OpenMP pragmas within preprocessor
+  defines. Preprocessing is the default but can be deactivated using
+  --nopreprocess. When using PDT instrumentation, preprocessing is
+  deactivated.
+- To reduce the memory demands of dynamic regions in profiling mode,
+  this version provides a lossy compression mechanism called
+  'clustering'; similar subtrees of a dynamic region are clustered
+  into one. This feature is enabled by default. There are three new
+  environment variables for customization, please see the documentation
+  for details.
+- The new keyword 'MANGLED' was added to the filter file format to
+  deal with cases where the displayed name and mangled name are
+  different. The keyword 'FORTRAN' was removed.
+- External metric sources can be utilized via a a plug-in mechanism.
+  This feature is controlled via the SCOREP_METRIC_PLUGIN environment
+  variable. Please see the documentation for details and an example.
+- The CUDA adapter got refactored and extended to provide much more
+  useful metrics. There are several new values to the environment
+  variable SCOREP_CUDA_ENABLE. Please see the documentation for
+  details.
+- The machine name used in the profile and trace output is now
+  configurable at built-time with the --with-machine-name flag or at
+  run-time with the SCOREP_MACHINE_NAME measurement configuration
+  variable.
+- Full support to track the incurred OpenMP thread teams and utilizing
+  the new generic threading records of OTF2.
+- The Score-P internals were significantly refactored in order to
+  increase flexibility to adapt to new programming paradigms and event
+  sources.
+- Please note that the feature 'selective tracing' was renamed to
+  'selective recording' as it also applies to profiling.
+- Please note that CUBE is a hard requirement when build Score-P from
+  a tarball. This is due to the fact that we want to provide the user
+  with 'scorep-score', that cannot be build without the CUBE reader
+  library available.
+
+------------------- Released version 1.1 -----------------------------
+
+- Rewind, a new event-trace recording mode for long-running
+  experiments, triggered by user-instrumentation macros. Writes
+  semantics information in OTF2 anchor file as rewind might affect
+  analysis.
+- ARM support (detection + compiler adapter).
+- Metric service improvements. Support for per-process metrics and
+  per-system-tree-class metrics.
+- Support for OpenMP-task profiling and tracing alongside with
+  improvements of the POMP adapter.
+- Component separation: Score-P can now use pre-installed OTF2,
+  OPARI2, and CUBE packages instead of the internal ones.
+  - Removed dependency to external repository that was used by
+    Score-P, OTF2, and OPARI2 in order to prevent version conflicts.
+- Support for CUDA profiling and tracing.
+- Easier experiment configuration via scorep-info which provides a
+  list of all measurement configuration variables.
+- scorep-info also provides the improved configure-summary of the
+  installation.
+- Scoring of profile experiments via scorep-score (if configured with
+  external CUBE) to prepare a filter for subsequent trace experiment.
+- Documentation improvements.
+- Numerous configure improvements. Let external libraries use
+  generic configure options (tbc). Fixed portability issues.
+- Numerous instrumenter improvements. All possible combinations of
+  options supported.
+- MPI profiling improvements.
+- OpenMP nesting supported although little tested.
+- Several compiler-dependent OpenMP-related bugfixes.
+
+------------------- Released version 1.0.2 ---------------------------
+
+- Several instrumentation fixes:
+  - Improvements for PDT Fortran instrumentation.
+  - Improvements for C++ user instrumentation.
+  - Return real failure if instrumentation is erroneous. Failures may
+    went undetected previously.
+  - Allow for out-of-place builds.
+  - Provide correct parameter to SCOREP_USER_REGION_ENTER macro.
+
+- Provide correct timestamp to OmpTaskCreate events.
+
+- Fix invalid order of arguments provided to MpiCollectiveEnd events.
+
+- Fix bug in parameter profiling.
+
+- Enable SIONlib support, currently just for MPI applications.
+
+- Various fixes for the generated OpenMP region names:
+  - Inner and outer blocks got different names.
+  - Regions with the ordered clause got a special name.
+  - All region names got it '@file:lno' appended, to make them
+    distinguishable.
+
+------------------- Released version 1.0.1 ---------------------------
+
+- Renaming of the configure related variable LD_FLAGS_FOR_BUILD to
+  LDFLAGS_FOR_BUILD for consistency.
+
+- Renaming of installed tool and options for consistency, i.e.
+  changing underscores to dashes. Also, the --(no)openmp_support
+  option changed to --(no)openmp.
+
+- Improved linking on AIX systems.
+
+- Robustness improvements when instrumenting with PDT.
+
+- On x86 platforms, be more cautious using the tsc counter. If
+  /proc/cpuinfo reports constant_tsc but not nonstop_tsc, then it is
+  likely that the counter is unreliable.
+
+- Improved configure summary.
+
+- configure will not fail if -q or --silent is passed.
+
+------------------- Released version 1.0 -----------------------------

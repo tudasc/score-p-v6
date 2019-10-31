@@ -1,0 +1,107 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2014-2015, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011, 2013, 2018,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011, 2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       Makefile.inc.am
+
+
+if HAVE_OPENMP_SUPPORT
+
+check_PROGRAMS += omp_tasks_uninstrumented
+
+omp_tasks_uninstrumented_SOURCES  = $(SRC_ROOT)test/omp_tasks/omp_tasks.c
+omp_tasks_uninstrumented_CFLAGS   = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+
+if SCOREP_HAVE_FC
+
+check_PROGRAMS += omp_tasks_untied_uninstrumented
+
+omp_tasks_untied_uninstrumented_SOURCES  = $(SRC_ROOT)test/omp_tasks/omp_tasks_untied.f90
+omp_tasks_untied_uninstrumented_FCFLAGS   = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+
+endif SCOREP_HAVE_FC
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS += omp_tasks
+
+omp_tasks_SOURCES  = $(SRC_ROOT)test/omp_tasks/omp_tasks.mod.c       \
+                     $(SRC_ROOT)test/omp_tasks/omp_tasks.c.opari.inc \
+                     $(SRC_ROOT)test/omp_tasks/omp_tasks.pomp.c
+omp_tasks_CFLAGS   = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+omp_tasks_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+omp_tasks_LDADD    = $(omp_libadd)
+omp_tasks_LDFLAGS  = $(omp_ldflags)
+
+if SCOREP_COMPILER_GNU
+
+if SCOREP_HAVE_FC
+
+# Just use GNU here, makes name mangling easier (see omp_tasks_untied.pomp.c).
+check_PROGRAMS += omp_tasks_untied
+
+omp_tasks_untied_SOURCES  = $(SRC_ROOT)test/omp_tasks/omp_tasks_untied.mod.f90       \
+                            $(SRC_ROOT)test/omp_tasks/omp_tasks_untied.f90.opari.inc \
+                            $(SRC_ROOT)test/omp_tasks/omp_tasks_untied.pomp.c
+omp_tasks_untied_FCFLAGS  = $(AM_FCFLAGS) $(OPENMP_FCFLAGS)
+omp_tasks_untied_CPPFLAGS = $(AM_CPPFLAGS) @OPARI2_CPPFLAGS@
+omp_tasks_untied_LDADD    = $(omp_libadd)
+omp_tasks_untied_LDFLAGS  = $(omp_ldflags)
+
+endif SCOREP_HAVE_FC
+
+endif SCOREP_COMPILER_GNU
+
+TESTS_OMP += $(srcdir)/../test/omp_tasks/run_omp_tasks_tracing.sh
+
+TESTS_OMP += $(srcdir)/../test/omp_tasks/run_omp_tasks_profiling.sh
+
+if !SCOREP_COMPILER_PGI
+TESTS_OMP += ./../test/omp_tasks/run_fibonacci_test.sh
+endif !SCOREP_COMPILER_PGI
+if !SCOREP_COMPILER_PGI
+TESTS_OMP += ./../test/omp_tasks/run_single_loop_test.sh
+endif !SCOREP_COMPILER_PGI
+
+CLEAN_LOCAL += clean-local-omp-tasks-experiments
+clean-local-omp-tasks-experiments:
+	@rm -rf scorep_fibonacci_*
+	@rm -rf scorep_single_loop_*
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+EXTRA_DIST +=  $(SRC_ROOT)test/omp_tasks/run_omp_tasks_tracing.sh \
+               $(SRC_ROOT)test/omp_tasks/run_omp_tasks_profiling.sh \
+               $(SRC_ROOT)test/omp_tasks/run_fibonacci_test.sh.in \
+               $(SRC_ROOT)test/omp_tasks/task_fibonacci.c \
+               $(SRC_ROOT)test/omp_tasks/run_single_loop_test.sh.in \
+               $(SRC_ROOT)test/omp_tasks/task_single_loop.c

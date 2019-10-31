@@ -1,0 +1,99 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2015,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011, 2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011, 2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       test/measurement/config/Makefile.inc.am
+
+
+check_PROGRAMS += test_scorep_config_bool \
+                  test_scorep_config_string \
+                  test_scorep_config_number \
+                  test_scorep_config_size \
+                  test_scorep_config_bitset \
+                  test_scorep_config_optionset
+
+test_scorep_config_cppflags = $(AM_CPPFLAGS) \
+                              -I$(INC_DIR_COMMON_CUTEST) \
+                              -I$(INC_ROOT)src/measurement \
+                              -I$(INC_ROOT)src/measurement/include \
+                              -I$(PUBLIC_INC_DIR) \
+                              $(UTILS_CPPFLAGS)
+test_scorep_config_ldadd    = $(serial_libadd)
+test_scorep_config_ldflags  = $(serial_ldflags)
+
+test_scorep_config_bool_SOURCES  = $(SRC_ROOT)test/measurement/config/bool.c \
+                                   $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_bool_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_bool_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_bool_LDFLAGS  = $(test_scorep_config_ldflags)
+
+test_scorep_config_number_SOURCES  = $(SRC_ROOT)test/measurement/config/number.c \
+                                     $(SRC_ROOT)test/measurement/config/error_callback.c \
+                                     $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_number_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_number_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_number_LDFLAGS  = $(test_scorep_config_ldflags)
+
+test_scorep_config_size_SOURCES  = $(SRC_ROOT)test/measurement/config/size.c \
+                                   $(SRC_ROOT)test/measurement/config/error_callback.c \
+                                   $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_size_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_size_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_size_LDFLAGS  = $(test_scorep_config_ldflags)
+
+test_scorep_config_string_SOURCES  = $(SRC_ROOT)test/measurement/config/string.c \
+                                     $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_string_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_string_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_string_LDFLAGS  = $(test_scorep_config_ldflags)
+
+test_scorep_config_bitset_SOURCES  = $(SRC_ROOT)test/measurement/config/bitset.c \
+                                     $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_bitset_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_bitset_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_bitset_LDFLAGS  = $(test_scorep_config_ldflags)
+
+test_scorep_config_optionset_SOURCES  = $(SRC_ROOT)test/measurement/config/optionset.c \
+                                        $(SRC_ROOT)vendor/common/cutest/CuTest.c
+test_scorep_config_optionset_CPPFLAGS = $(test_scorep_config_cppflags)
+test_scorep_config_optionset_LDADD    = $(test_scorep_config_ldadd)
+test_scorep_config_optionset_LDFLAGS  = $(test_scorep_config_ldflags)
+
+TESTS_SERIAL += test_scorep_config_bool \
+                test_scorep_config_string \
+                test_scorep_config_bitset \
+                test_scorep_config_optionset \
+                $(srcdir)/../test/measurement/config/test_scorep_config_number.sh \
+                $(srcdir)/../test/measurement/config/test_scorep_config_size.sh
+
+EXTRA_DIST += $(SRC_ROOT)test/measurement/config/test-framework.sh \
+              $(SRC_ROOT)test/measurement/config/error_callback.h \
+              $(SRC_ROOT)test/measurement/config/test_scorep_config_number.sh \
+              $(SRC_ROOT)test/measurement/config/test_scorep_config_size.sh

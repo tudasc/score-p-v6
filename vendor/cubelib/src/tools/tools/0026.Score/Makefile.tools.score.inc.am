@@ -1,0 +1,29 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2017                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+bin_PROGRAMS += cube_score
+cube_score_SOURCES = \
+   $(srcdir)/../src/tools/tools/0026.Score/cube4_score.cpp
+
+cube_score_LDADD = libcube4.la libcube.tools.library.la libcube.tools.common.la $(OPENMP_CXXFLAGS) $(FRONTEND_LIBZ_LD)
+cube_score_CPPFLAGS = \
+	$(OPENMP_CXXFLAGS) $(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) -I$(CUBE4_TOOLS_LIBRARY_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION) \
+	$(AM_CPPFLAGS) \
+	$(AM_CXXFLAGS) \
+	$(CXXFLAGS) \
+	$(CXXFLAGS_FOR_BUILD)

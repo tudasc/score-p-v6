@@ -1,0 +1,33 @@
+Usage: cubelib-config [OPTION]... COMMAND
+
+Commands:
+  --cflags     prints additional compiler flags. They already contain
+               the include flags
+  --cppflags   prints the include flags for the Cube Library headers
+  --libs       prints the required libraries for linking
+  --ldflags    prints the required linker flags
+  --cc         prints the C compiler name
+  --cxx        prints the C++ compiler name
+  --include    prints the directory of the Cube Library headers
+  --features <FEATURE-CATEGORY>
+               prints available features selected by <FEATURE-CATEGORY>.
+               Available feature categories:
+                * substrates
+                * compressions
+                * targets
+  --help       prints this usage information
+
+  --version    prints the version number of the Cube Writer package and
+  --cubelib-revision
+               prints the revision number of the Cube Writer package
+  --common-revision
+               prints the revision number of the common package
+  --interface-version
+               prints the interface version number
+  --config-summary
+               prints the summary of the Cube Library configuration
+Options:
+  --target <TARGET>
+               displays the requested information for the given <TARGET>.
+               On non-cross compiling systems, the 'backend' target is ignored.
+

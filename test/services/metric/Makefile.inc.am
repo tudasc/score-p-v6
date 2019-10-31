@@ -1,0 +1,128 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2013,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2013,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2013, 2015,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2013,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2013, 2018,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2013,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## Serial
+
+check_PROGRAMS                       += jacobi_serial_c_metric_test
+jacobi_serial_c_metric_test_SOURCES   = $(SRC_ROOT)test/services/metric/data/jacobi/serial/C/jacobi.c  \
+                                        $(SRC_ROOT)test/services/metric/data/jacobi/serial/C/jacobi.h  \
+                                        $(SRC_ROOT)test/services/metric/data/jacobi/serial/C/main.c
+jacobi_serial_c_metric_test_CPPFLAGS  = \
+    $(AM_CPPFLAGS) \
+    -I$(INC_ROOT)include \
+    -DSCOREP_USER_ENABLE
+jacobi_serial_c_metric_test_LDADD     = $(serial_libadd)
+
+
+if !SCOREP_COMPILER_SUN
+if HAVE_GETRUSAGE
+TESTS_SERIAL += ./../test/services/metric/run_rusage_serial_metric_test.sh
+endif
+
+if HAVE_PAPI
+TESTS_SERIAL += ./../test/services/metric/run_papi_serial_metric_test.sh
+endif
+jacobi_serial_c_metric_test_LDFLAGS   = $(serial_ldflags)
+endif
+
+## OpenMP
+
+if HAVE_OPENMP_SUPPORT
+
+if HAVE_SCOREP_OMP_TPD
+
+check_PROGRAMS                   += jacobi_omp_c_metric_test
+jacobi_omp_c_metric_test_SOURCES  = $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/jacobi.mod.c       \
+                                    $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/jacobi.c.opari.inc \
+                                    $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/jacobi.h           \
+                                    $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/main.mod.c         \
+                                    $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/main.c.opari.inc   \
+                                    $(SRC_ROOT)test/services/metric/data/jacobi/OpenMP/C/pomp.c
+jacobi_omp_c_metric_test_CFLAGS   = $(AM_CFLAGS) $(OPENMP_CFLAGS)
+jacobi_omp_c_metric_test_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    @OPARI2_CPPFLAGS@ \
+    -I$(PUBLIC_INC_DIR) \
+    -DSCOREP_USER_ENABLE
+
+# for some unknown reason we need an extra -I for the SUN compiler in
+# OpenMP and hybrid mode.
+if SCOREP_COMPILER_SUN
+jacobi_omp_c_metric_test_CPPFLAGS += -I$(INC_ROOT)test/jacobi/OpenMP/C
+endif
+
+jacobi_omp_c_metric_test_LDADD    = $(omp_libadd)
+
+if !SCOREP_COMPILER_SUN
+if HAVE_GETRUSAGE
+TESTS_OMP  += ./../test/services/metric/run_rusage_openmp_metric_test.sh \
+              ./../test/services/metric/run_rusage_openmp_per_process_metric_test.sh
+CLEAN_LOCAL += clean-local-metric-openmp-rusage-experiments
+clean-local-metric-openmp-rusage-experiments:
+	@rm -rf scorep-openmp-rusage-*
+endif HAVE_GETRUSAGE
+
+if HAVE_PAPI
+TESTS_OMP  += ./../test/services/metric/run_papi_openmp_metric_test.sh \
+              ./../test/services/metric/run_papi_openmp_per_process_metric_test.sh
+CLEAN_LOCAL += clean-local-metric-openmp-papi-experiments
+clean-local-metric-openmp-papi-experiments:
+	@rm -rf scorep-openmp-papi-*
+endif HAVE_PAPI
+
+jacobi_omp_c_metric_test_LDFLAGS  = $(omp_ldflags)
+
+endif !SCOREP_COMPILER_SUN
+
+endif HAVE_SCOREP_OMP_TPD
+
+endif HAVE_OPENMP_SUPPORT
+
+EXTRA_DIST += $(SRC_ROOT)test/services/metric/run_rusage_serial_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_serial_rusage_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_serial_rusage_metric_events.out \
+              $(SRC_ROOT)test/services/metric/run_papi_serial_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_serial_papi_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_serial_papi_metric_events.out \
+              $(SRC_ROOT)test/services/metric/run_rusage_openmp_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_rusage_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_rusage_metric_events.out \
+              $(SRC_ROOT)test/services/metric/run_rusage_openmp_per_process_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_rusage_per_process_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_rusage_per_process_metric_events_1.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_rusage_per_process_metric_events_2.out \
+              $(SRC_ROOT)test/services/metric/run_papi_openmp_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_papi_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_papi_metric_events.out \
+              $(SRC_ROOT)test/services/metric/run_papi_openmp_per_process_metric_test.sh.in \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_papi_per_process_metric_definitions.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_papi_per_process_metric_events_1.out \
+              $(SRC_ROOT)test/services/metric/data/jacobi_c_openmp_papi_per_process_metric_events_2.out

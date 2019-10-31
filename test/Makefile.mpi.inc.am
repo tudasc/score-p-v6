@@ -1,0 +1,89 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2014-2015, 2017-2018,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2014-2015, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file test/Makefile.mpi.inc.am
+
+# ------------------------------------------------------------------------------
+
+# Below, helper libs and variables from before multilib aera, needed
+# for 'make check' targets only. Used to be the four monolithic
+# libraries. Might vanish in future.
+
+# Usage: if your test requires one of the monolithic libs, use
+# $(<paradigm>_libadd) and $(<paradigm>_ldflags) for your
+# <target>_LDADD and <target>_LDFLAGS. <paradigm> is out of serial,
+# omp, mpi, and mpi_omp. serial and omp are defined in
+# test/Makefile.inc.am.
+
+external_ldflags = \
+    @OTF2_LDFLAGS@        \
+    @LIBBFD_LDFLAGS@      \
+    @SCOREP_PAPI_LDFLAGS@ \
+    @CUDA_LDFLAGS@        \
+    @OPENCL_LDFLAGS@
+
+if HAVE_GNU_LINKER
+if BUILD_SHARED_LIBRARIES
+external_ldflags += -Wl,--no-as-needed
+endif BUILD_SHARED_LIBRARIES
+endif HAVE_GNU_LINKER
+
+if SCOREP_COMPILER_PGI
+# see 'Linking issues with PGI compilers and Open MPI 1.8' #951
+external_ldflags += -pgf90libs
+endif SCOREP_COMPILER_PGI
+
+if HAVE_COMPILER_INSTRUMENTATION
+external_ldflags += $(SCOREP_COMPILER_INSTRUMENTATION_LDFLAGS)
+endif HAVE_COMPILER_INSTRUMENTATION
+
+## MPI -------------------------------------------------------------------------
+
+if HAVE_MPI_SUPPORT
+
+BACKEND_CHECK_TARGETS += \
+    $(LIB_DIR_SCOREP)libscorep_mpi_event.la \
+    $(LIB_DIR_SCOREP)libscorep_subsystems_mpi_la-scorep_monolithic_subsystems.lo \
+    $(LIB_DIR_SCOREP)libscorep_mpi_mgmt.la
+
+mpi_libadd = \
+    $(LIB_DIR_SCOREP)libscorep_subsystems_mpi_la-scorep_monolithic_subsystems.lo \
+    $(LIB_DIR_SCOREP)libscorep_mpi_event.la \
+    $(LIB_DIR_SCOREP)libscorep_mpi_mgmt.la \
+    $(LIB_DIR_SCOREP)libscorep_measurement.la
+mpi_ldflags = $(external_ldflags) $(LINKMODE_FLAGS)
+
+## Hybrid ----------------------------------------------------------------------
+
+if HAVE_OPENMP_SUPPORT
+if HAVE_SCOREP_OMP_TPD
+
+BACKEND_CHECK_TARGETS += \
+    $(LIB_DIR_SCOREP)libscorep_mpi_omp_event.la \
+    $(LIB_DIR_SCOREP)libscorep_subsystems_mpi_omp_la-scorep_monolithic_subsystems.lo \
+    $(LIB_DIR_SCOREP)libscorep_mpi_omp_mgmt.la
+
+mpi_omp_libadd = \
+    $(LIB_DIR_SCOREP)libscorep_subsystems_mpi_omp_la-scorep_monolithic_subsystems.lo \
+    $(LIB_DIR_SCOREP)libscorep_mpi_omp_event.la \
+    $(LIB_DIR_SCOREP)libscorep_mpi_omp_mgmt.la \
+    $(LIB_DIR_SCOREP)libscorep_measurement.la
+mpi_omp_ldflags = $(external_ldflags) $(LINKMODE_FLAGS)
+
+endif HAVE_SCOREP_OMP_TPD
+endif HAVE_OPENMP_SUPPORT
+
+endif HAVE_MPI_SUPPORT

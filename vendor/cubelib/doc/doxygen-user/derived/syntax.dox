@@ -1,0 +1,677 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2018                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2013                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+/** @page cubeplsyntax Syntax of CubePL 
+@section detailedsyntax Syntax step by step
+This chapter introduced the CubePL syntax of the most common programming structures. 
+
+@subsection expression Expressions
+@subsubsection constantexpression Constants
+
+Any constant expression is an \texttt{expression}.
+eg. 123.0, "someString"
+
+@subsubsection arithmeticalexpression Arithmetical Expressions
+Common mathematical notation of an arithmetical expression is valid in CubePL. 
+Any arithmetical expression is an \texttt{expression}.
+eg. 123.0 + 23.6, sin(23)
+
+@subsubsection booleanexpression Boolean Expressions
+Common literal notation of a boolean expression is valid in CubePL. 
+Any boolean expression is an \texttt{expression}.
+
+@code
+[expression] or|and|xor [expression]
+@endcode
+or
+@code
+not [expression] 
+@endcode
+
+Any \texttt{expression} can be a term of a boolean expression. Non zero value is observed as \texttt{TRUE}, zero value is \texttt{FALSE}.
+
+@subsubsection callexpression Function call expressions
+Function calls have the following syntax: 
+@code
+name ( [expression ] )
+@endcode
+
+@subsection lambdafunction Lambda function (In-place function definition)
+
+To define a function in-place, one uses the following syntax:
+@code
+{
+  [statement];
+  [statement];
+  ...
+  return [expression];
+}
+@endcode
+
+In-place definition of a function is an \texttt{expression}. It means, it can appear everywhere, where one can use an \texttt{expression}.
+
+@subsection controlstructures Control structures
+Control structures like \textit{if-else} or \textit{while} are \texttt{statements}.
+
+@subsubsection ifcondition Condition IF-ELSE
+One can execute series of statements under a condition using the short form of the \texttt{if} statement:
+@code
+ if ( condition )
+ {
+  [statement];
+  [statement];
+  ...
+ }
+@endcode
+or full form with \texttt{else} :
+@code
+ if ( condition )
+ {
+  [statement];
+  [statement];
+  ...
+ } 
+ else
+{
+  [statement];
+  [statement];
+  ...
+ }
+@endcode
+
+\texttt{condition} is a boolean \texttt{expression}
+
+@subsubsection loop Loop WHILE
+One can execute a series of statements as long as a condition is true using the \texttt{while} statement:
+@code
+ while ( condition )
+ {
+  [statement];
+  [statement];
+  ...
+ }
+@endcode
+
+Sequence of statements will be executed till condition is not fulfilled, max 1000000000 times. 
+
+
+@subsection variables Variables
+CubePL allows to work with memory, by using variables. All variables are multi-typed:
+<ul>
+<li>
+In string context value of a  numeric variable is presented in string format. </li>
+<li>
+In numerical context a string variable is converted to its numerical representation, if possible. Otherwise it is 0.
+</li>
+</ul>
+
+All variables are arrays. Indexless access to the variable assummes mutually index value 0. 
+
+@subsubsection userdefinedvariables User defined Variables
+The user can define a variable using the syntax:
+@code
+${ name } = [expression];
+@endcode
+or 
+@code
+${ name }[index] = [expression];
+@endcode
+Currently its name is a fixed string of characters. In later versions of CubePL it will allow any \texttt{expression}.
+
+Example of a string context : 
+@code
+${name} seq "STRING"
+@endcode
+Example of a numeric context : 
+@code
+${name} >= 0.34
+@endcode
+Example of an array access to the variable : 
+@code
+${name}[ ${i} ] >= 0.34
+@endcode
+Access to the variable is an \texttt{expression}.
+
+Index for the access to the value is also an \texttt{expression}.
+
+
+
+@subsubsection predefinedvariables Predefined Variables
+Cube provides a set of predefined variables for every calculation, which values are independend.
+Following predefined variables do contain the general information about the cube:
+<table>
+<tr>
+  <td> <b> Predefined variable </b> </td><td> <b>Explanation</b></td>
+</tr>
+<tr> <td> 
+    cube::\#mirrors </td><td> Number of mirrors in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#metrics </td><td>Number of metrics in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#root::metrics </td><td>Number of root metrics in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#regions </td><td>Number of regions in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#callpaths </td><td>Number of call paths in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#root::callpaths </td><td>Number of root call paths</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locations </td><td>Number of locations in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locations::void </td><td>Number of void locations in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locations::nonvoid </td><td>Number of nonvoid locations in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locationgroups </td><td>Number of location groups in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locationgroups::void </td><td>Number of void location groups in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#locationgroups::nonvoid </td><td>Number of nonvoid location groups in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#stns </td><td>Number of system tree nodes in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::\#rootstns </td><td>Number of root system tree nodes in cube file</td>
+</tr>
+<tr>
+  <td>  
+    cube::filename </td><td>Name of the cube file</td>
+</tr>
+</table>
+
+CubePL engine defines a set of variables, which do depend on an index, their "id".
+Using call \texttt{sizeof(...)} one can run over them and inspect within CubePL expression.
+
+<table> 
+<tr>
+  <td>  
+    cube::metric::unit::name </td><td>Unique name of the metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::disp::name </td><td>Display name of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::url </td><td>URL of the documentation of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::description </td><td>Description of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::dtype </td><td>Data type of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::uom </td><td>Unit of measurement of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::expression </td><td>CubePL expression of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::initexpression </td><td>CubePL initialisation expression of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::parentd::id </td><td>ID of the parent of the  metric</td>
+</tr>
+<tr>
+  <td>  
+    cube::metric::\#children </td><td>Number of children in the  metric</td>
+</tr>
+</table>
+<table> 
+<tr>
+  <td>  
+
+    cube::callpath::mod </td><td>Module of the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::callpath::line </td><td>File line of the  call path </td>
+</tr>
+<tr>
+  <td>  
+    cube::calleeid </td><td>ID of the callee region</td>
+</tr>
+<tr>
+  <td>  
+    cube::callpath::\#children </td><td>Number of children in the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::callpath::parent::id </td><td>ID of the parent callpath</td>
+</tr>
+</table>
+<table> 
+<tr>
+  <td>  
+    cube::region::name </td><td>Name of the region  </td>
+</tr>
+<tr>
+  <td>  
+    cube::region::mangled::name </td><td>Mangled name of the region  </td>
+</tr>
+<tr>
+  <td>  
+    cube::region::paradigm </td><td>Name of the paradigm of the region  </td>
+</tr>
+<tr>
+  <td>  
+    cube::region::role </td><td>Name of the role the region is playing within the paradigm </td>
+</tr>
+<tr>
+  <td>  
+    cube::region::url </td><td>URL with the description of the region of the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::region::description </td><td>Description of the region of the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::region::mod </td><td>Module of the region of the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::region::begin::line </td><td>Begin line of the region of the  call path</td>
+</tr>
+<tr>
+  <td>  
+    cube::region::end::line </td><td>End line of the region of the  call path</td>
+</tr>
+</table>
+
+<table> 
+<tr>
+  <td>  
+    cube::stn::name </td><td>Name of the system tree node 
+    </td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::class </td><td>Class of the system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::description </td><td>Description of the system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::#children </td><td>Number of children (other system tree nodes) of the system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::#locationgroups </td><td>Number of location groups of the system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::parent::id </td><td>ID (among all system tree nodes) of the parent of the system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::stn::parent::sysid </td><td>ID (global) of the parent of the system tree node</td>
+</tr>
+</table>
+
+<table> 
+<tr>
+  <td>  
+    cube::locationgroup::name </td><td>Name of the location group 
+    </td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::rank </td><td>Rank of the location group</td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::type </td><td>Type of the location group</td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::void </td><td>Is the this location group void?</td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::#locations </td><td>Number of locations of the location group</td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::parent::id </td><td>ID (amoung all system tree nodes) of the parent system tree node</td>
+</tr>
+<tr>
+  <td>  
+    cube::locationgroup::parent::sysid </td><td>ID (global) of the parent system tree node</td>
+</tr>
+</table>
+
+<table> 
+<tr>
+  <td>  
+    cube::location::name </td><td>Name of the location 
+    </td>
+</tr>
+<tr>
+  <td>  
+    cube::location::rank </td><td>Rank of the location</td>
+</tr>
+<tr>
+  <td>  
+    cube::location::type </td><td>Type of the location</td>
+</tr>
+<tr>
+  <td>  
+    cube::location::void </td><td>Is the this location void?</td>
+</tr>
+<tr>
+  <td>  
+    cube::location::parent::id </td><td>ID (among all location groups) of the parent location group</td>
+</tr>
+<tr>
+  <td>  
+    cube::location::parent::sysid </td><td>ID (global) of the parent location group</td>
+</tr>
+</table>
+
+CubePL engine sets a series of context sensetive variables, which value depends on the paramaters, for which 
+the derived metric is being calculated. Their value can be used to refer to the values of context insensitive variables 
+described above:
+<table> 
+<tr>
+  <td>  
+    calculation::metric::id </td><td>ID of the metric, being calculated 
+    </td>
+</tr>
+<tr>
+  <td>  
+    calculation::callpath::id </td><td>ID of the callpath, for what is the metric being calculated</td>
+</tr>
+<tr>
+  <td>  
+    calculation::callpath::state </td><td>State of the callpath (inclusive=0, exclusive=1, same=2), for what is the metric being calculated</td>
+</tr>
+<tr>
+  <td>  
+    calculation::callpath::#elements </td><td>Number of selected callpath, for which is metric being calculated. Usually bigger than 1 only for postderived metrics</td>
+</tr>
+<tr>
+  <td>  
+    calculation::region::id </td><td>ID of the region, for what is the metric being calculated</td>
+</tr>
+<tr>
+  <td>  
+    calculation::region::#elements </td><td>Number of selected regions, for which is metric being calculated. Usually bigger than 1 only for postderived metrics</td>
+</tr>
+<tr>
+  <td>  
+    calculation::sysres::id </td><td>ID (local within system resource type) if the sysem resource, for what is the metric being calculated </td>
+</tr>
+<tr>
+  <td>  
+    calculation::sysres::sysid </td><td>ID (global) if the sysem resource, for what is the metric being calculated </td>
+</tr>
+<tr>
+  <td>  
+    calculation::sysres::kind</td><td>Type of the system element:                   
+                      <ul>
+                      <li> \texttt{0 = unknown}</li>
+                      <li> \texttt{5 = system tree node}</li>
+                      <li> \texttt{6 = location group}</li>
+                      <li> \texttt{7 = location}</li>
+                    </ul></td>
+</tr>
+<tr>
+  <td>  
+    calculation::sysres::#elements </td><td>Number of selected system tree elements, for which is metric being calculated. Usually bigger than 1 only for postderived metrics</td>
+</tr>
+</table>
+
+
+@subsection metricreferences Different ways to refer an another metric 
+@subsubsection metricreference Context sensitive reference to another metric
+
+To use values of another metric in the same calculation context, one uses syntax:
+@code
+metric::[uniq_name]( modificator, modificator )
+@endcode
+or
+@code
+metric::[uniq_name]( modificator)
+@endcode
+or
+@code
+metric::[uniq_name]()
+@endcode
+
+There are three version of this call: 
+<ol>
+    <li>with two arguments (call path and system);</li>
+    <li>with one argument (call path);</li>
+    <li>with no argument(an arguments takes as '*').</li>
+</ol>
+    
+\texttt{modificator} specifies flavor of the calculation: \texttt{i} - inclusive, \textit{e} - exclusive, * - same like in calculation context.
+
+
+Metric reference is an \texttt{expression}.
+
+@subsubsection metricfixedreference Context insensitive reference to another metric
+
+To use values of another metric in the some fixed calculation context (e.g. aggregated over threads), one uses syntax:
+@code
+metric::fixed::[uniq_name]( modificator, modificator )
+@endcode
+or
+@code
+metric::fixed::[uniq_name]( modificator)
+@endcode
+or
+@code
+metric::fixed::[uniq_name]()
+@endcode
+
+There are three version of this call: 
+<ol>
+    <li>with two arguments (call path and system);</li>
+    <li>with one argument (call path);</li>
+    <li>with no argument(an arguments takes as '*').</li>
+</ol>
+    
+\texttt{modificator} specifies flavor of the calculation: \texttt{i} - inclusive, \textit{e} - exclusive, * - same like in calculation context.
+
+
+Metric reference is an \texttt{expression}.
+
+@subsubsection metriccallreference Direct reference to another metric
+
+To use values of another metric with an specific call path id and system resource id (!), one uses syntax:
+@code
+metric::call::[uniq_name]( callpath id, modificator, sysres id, modificator )
+@endcode
+or
+@code
+metric::call::[uniq_name]( callpath id, modificator )
+@endcode
+
+There are two version of this call: 
+<ol>
+    <li>with four arguments (call path and system); - Only callculation of an 
+    inclusive or exclusive value is performed</li>
+    <li>with one argument (call path); - Aggragation over system tree is 
+     performed additionally to the calculation of the inclisive or exclusive value for the calltree id</li>
+</ol>
+    
+\texttt{modificator} specifies flavor of the calculation: \texttt{i} - inclusive, \textit{e} - exclusive.
+
+
+Metric reference is an \texttt{expression}.
+
+Note that "sysres id" is a global identificator and can be refered using ${calculation::sysres::id}.
+
+
+
+@subsubsection ghostmetric Definition of an encapsulated calculation within CubePL expression using metrics of Cube.
+
+One special mechanis of CubePL processing engine allows some level of calculation separation. 
+A derived metric can be created within another CubePL expression. Such "ghost" metric gets its name and properties and exists inside
+of the cube object as a casual metric. Only difference to the casual metric is in the fact that ghost metric is not visible in GUI and tools and is not 
+stored inside of the metric tree of the cube file.
+
+One can refer such metric as a casual metric using metric references (see \secref{metricreference} , \secref{metricfixedreference} and \secref{metriccallreference}). 
+
+Example for definition of such metric :
+@code
+  cube::metric::nvisitors(e)
+  <<
+  { 
+    ${return}=0;
+    if ( ${cube::locationgroup::void}[${calculation::sysres::id}]  != 1)
+    {
+      if (metric::visits()>0 )
+      {
+	${return} = 1;
+      };
+    };
+    return ${return};
+  }
+  >>;	 
+  ${visitors} = metric::fixed::nvisitors(e);
+
+@endcode
+
+where 
+@code 
+  cube::metric::prederived::nvisitors(e)
+@endcode
+gives a type (prederives, exclusive) and unique name (nvisitors) of this metric. Unique name is used then later to refer to this metric via 
+@code
+  ${visitors} = metric::fixed::nvisitors(e);
+@endcode
+
+There are kinds of metrics, which can be defined on such manner:
+<ol>
+<li>\texttt{ cube::metric::prederived::name(e)} - An exclusive prederived metric with the name \texttt{name};</li>
+<li>\texttt{ cube::metric::prederived::name(i)} - An inclusive prederived metric with the name \texttt{name};</li>
+<li>\texttt{ cube::metric::postderived::name}   - A  postderived metric with the name \texttt{name}.</li>
+</ol>
+
+
+Notice that once the metric with some unique name created it exists whole lifetime of the cube object. 
+Therefore one can refer to some somewhere previously defined ghost metric from any following it 
+CubePL expressions.
+
+Ghost Metric definition  is a \texttt{statement}.
+
+
+
+@subsubsection initmetric Definition of an initialization expression for ghost metrics within CubePL expression.
+
+One can specify within of a CubePL expression an initialisation phase for previously created ghost metric.
+For that purpose one uses expression \texttt{cube::init::metric::[name]}. Notice that named metric should be know by the moment 
+of compilation of the CubePL expression. 
+
+Example for definition of such metric :
+@code
+  cube::init::metric::init::nvisitors
+  <<
+  { 
+    global(nvisitors);
+  }
+  >>;    
+
+@endcode
+
+where 
+@code 
+  cube::init::metric::nvisitors
+@endcode
+uses an unique name (nvisitors) of the metric. 
+
+Definition of the initialisation phase of a metric is a \texttt{statement}.
+
+
+
+
+@subsubsection initmetric Definition of an aggregation (operator "+" )expression for ghost metrics within CubePL expression.
+
+One can specify within of a CubePL expression an aggregation operator "+" or "-" for previously created ghost metric.
+For that purpose one uses expression \texttt{cube::metric::plus::[name]} or \texttt{cube::metric::minus::[name]}. Notice that named metric should be know by the moment of compilation of the CubePL expression. 
+
+Example for definition of such metric :
+@code
+  cube::init::metric::plus::nvisitors
+  <<
+  max( arg1, arg2) 
+  >>;    
+@endcode
+
+or 
+
+@code
+  cube::init::metric::minus::nvisitors
+  <<
+  min( arg1, arg2) 
+  >>;    
+@endcode
+
+where 
+@code 
+  cube::init::metric:plus::nvisitors
+@endcode
+or 
+@code 
+  cube::init::metric:minus::nvisitors
+@endcode
+uses an unique name (nvisitors) of the metric. 
+
+Definition of the initialisation phase of a metric is a \texttt{statement}.
+
+
+
+@section grammar Grammar of CubePL
+Here will be  a full grammar of CubePL expressions (later).
+*/
+

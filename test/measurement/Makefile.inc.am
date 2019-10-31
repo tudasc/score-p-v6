@@ -1,0 +1,111 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2012,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2012,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2013,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2012,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2012,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2012,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+
+## file       Makefile.inc.am
+
+
+check_PROGRAMS += self_contained_scorep_subsystem_c          \
+                  self_contained_scorep_config_c             \
+                  self_contained_scorep_definitions_c        \
+                  self_contained_scorep_events_c             \
+                  self_contained_scorep_memory_c             \
+                  self_contained_scorep_public_types_c       \
+                  self_contained_scorep_runtime_management_c \
+                  self_contained_scorep_location_c           \
+                  self_contained_scorep_types_c              \
+                  definitions_test_c                         \
+                  string_duplicates_c
+
+self_contained_cppflags = \
+    $(AM_CPPFLAGS) \
+    -I$(INC_ROOT)src/measurement/include \
+    $(UTILS_CPPFLAGS) \
+    -I$(PUBLIC_INC_DIR)
+
+self_contained_scorep_subsystem_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_subsystem.c
+self_contained_scorep_subsystem_c_CPPFLAGS = $(self_contained_cppflags)
+
+self_contained_scorep_config_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_config.c
+self_contained_scorep_config_c_CPPFLAGS = $(self_contained_cppflags)
+
+self_contained_scorep_definitions_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_definitions.c
+self_contained_scorep_definitions_c_CPPFLAGS = $(self_contained_cppflags) -I$(INC_DIR_DEFINITIONS)
+
+self_contained_scorep_events_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_events.c
+self_contained_scorep_events_c_CPPFLAGS = $(self_contained_cppflags) -I$(INC_DIR_DEFINITIONS)
+
+self_contained_scorep_memory_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_memory.c
+self_contained_scorep_memory_c_CPPFLAGS = $(self_contained_cppflags) -I$(INC_DIR_DEFINITIONS)
+
+self_contained_scorep_public_types_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_public_types.c
+self_contained_scorep_public_types_c_CPPFLAGS = $(self_contained_cppflags)
+
+self_contained_scorep_runtime_management_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_runtime_management.c
+self_contained_scorep_runtime_management_c_CPPFLAGS = $(self_contained_cppflags) -I$(INC_DIR_DEFINITIONS)
+
+self_contained_scorep_location_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_location.c
+self_contained_scorep_location_c_CPPFLAGS = $(self_contained_cppflags) -I$(INC_DIR_DEFINITIONS)
+
+self_contained_scorep_types_c_SOURCES = $(SRC_ROOT)test/measurement/self_contained_scorep_types.c
+self_contained_scorep_types_c_CPPFLAGS = $(self_contained_cppflags)
+
+definitions_test_c_SOURCES  = $(SRC_ROOT)test/measurement/definitions_test.c \
+                              $(SRC_ROOT)vendor/common/cutest/CuTest.c
+definitions_test_c_CPPFLAGS = $(AM_CPPFLAGS) \
+                              -I$(INC_DIR_COMMON_CUTEST) \
+                              -I$(INC_ROOT)src/measurement \
+                              -I$(INC_ROOT)src/measurement/include \
+                              -I$(PUBLIC_INC_DIR) \
+                              $(UTILS_CPPFLAGS) \
+                              -I$(INC_DIR_COMMON_HASH) \
+                              -I$(INC_DIR_DEFINITIONS)
+definitions_test_c_LDADD = $(serial_libadd)
+definitions_test_c_LDFLAGS  = $(serial_ldflags)
+
+TESTS_SERIAL += definitions_test_c
+
+string_duplicates_c_SOURCES  = $(SRC_ROOT)test/measurement/string_duplicates.c \
+                               $(SRC_ROOT)vendor/common/cutest/CuTest.c
+string_duplicates_c_CPPFLAGS = $(AM_CPPFLAGS) \
+                               -I$(INC_DIR_COMMON_CUTEST) \
+                               -I$(INC_ROOT)src/measurement \
+                               -I$(INC_ROOT)src/measurement/include \
+                               -I$(INC_ROOT)src/measurement/substrates/include \
+                               -I$(PUBLIC_INC_DIR) \
+                               $(UTILS_CPPFLAGS) \
+                               -I$(INC_DIR_COMMON_HASH) \
+                               -I$(INC_DIR_DEFINITIONS)
+string_duplicates_c_LDADD = $(serial_libadd) \
+     libscorep_measurement.la
+string_duplicates_c_LDFLAGS  = $(serial_ldflags)
+
+TESTS_SERIAL += string_duplicates_c

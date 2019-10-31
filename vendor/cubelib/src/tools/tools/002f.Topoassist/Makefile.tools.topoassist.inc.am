@@ -1,0 +1,37 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+bin_PROGRAMS += cube_topoassist
+cube_topoassist_SOURCES = \
+   $(srcdir)/../src/tools/tools/002f.Topoassist/cube4_topoassist.cpp \
+   $(srcdir)/../src/tools/tools/002f.Topoassist/cube_topoassist.h \
+   $(srcdir)/../src/tools/tools/002f.Topoassist/Question.cpp \
+   $(srcdir)/../src/tools/tools/002f.Topoassist/Question.h
+
+   
+
+cube_topoassist_LDADD = libcube4.la libcube.tools.library.la   $(FRONTEND_LIBZ_LD) 
+cube_topoassist_CPPFLAGS = \
+	$(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION) \
+	$(AM_CPPFLAGS) \
+	$(AM_CXXFLAGS) \
+	$(CXXFLAGS) \
+	$(CXXFLAGS_FOR_BUILD)
+
+cube_topoassist_LDFLAGS = $(OPENMP_CXXFLAGS)
+

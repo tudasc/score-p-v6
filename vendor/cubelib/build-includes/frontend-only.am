@@ -1,0 +1,68 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+
+include ../examples/Makefile.cube.examples.inc.am
+include ../src/cube/Makefile.cube.inc.am
+
+include ../vendor/common/build-config/Makefile.tests.am
+
+include ../vendor/gtest/Makefile.inc.am
+include ../vendor/gmock/Makefile.inc.am
+include ../src/cube/test/network/Makefile.inc.am
+include ../src/cube/test/service/Makefile.inc.am
+
+include ../src/tools/common_src/Makefile.tools.common.inc.am
+include ../src/tools/tools/0001.library/Makefile.tools.library.inc.am
+include ../src/tools/tools/0002.Config/Makefile.tools.config.inc.am
+include ../src/tools/tools/0010.Exclusify/Makefile.tools.exclusify.inc.am
+include ../src/tools/tools/0011.Inclusify/Makefile.tools.inclusify.inc.am
+include ../src/tools/tools/0012.Cube4To3/Makefile.tools.cube4to3.inc.am
+include ../src/tools/tools/0013.Cube3To4/Makefile.tools.cube3to4.inc.am
+include ../src/tools/tools/0020.Clean/Makefile.tools.clean.inc.am
+include ../src/tools/tools/0021.Cmp/Makefile.tools.cmp.inc.am
+include ../src/tools/tools/0022.Cut/Makefile.tools.cut.inc.am
+include ../src/tools/tools/0023.Diff/Makefile.tools.diff.inc.am
+include ../src/tools/tools/0024.Mean/Makefile.tools.mean.inc.am
+include ../src/tools/tools/0025.Merge/Makefile.tools.merge.inc.am
+include ../src/tools/tools/0026.Score/Makefile.tools.score.inc.am
+include ../src/tools/tools/0027.Stat/Makefile.tools.stat.inc.am
+include ../src/tools/tools/0028.CallTree/Makefile.tools.calltree.inc.am
+include ../src/tools/tools/0029.Canonize/Makefile.tools.canonize.inc.am
+include ../src/tools/tools/002a.Info/Makefile.tools.info.inc.am
+include ../src/tools/tools/002b.NodeView/Makefile.tools.nodeview.inc.am
+include ../src/tools/tools/002c.Rank/Makefile.tools.rank.inc.am
+include ../src/tools/tools/002d.RegionInfo/Makefile.tools.regioninfo.inc.am
+include ../src/tools/tools/002e.Sanity/Makefile.tools.sanity.inc.am
+include ../src/tools/tools/002f.Topoassist/Makefile.tools.topoassist.inc.am
+include ../src/tools/tools/002i.Part/Makefile.tools.part.inc.am
+include ../src/tools/tools/002j.IsEmpty/Makefile.tools.isempty.inc.am
+include ../src/tools/tools/002k.Dump/Makefile.tools.dump.inc.am
+include ../src/tools/tools/002m.Derive/Makefile.tools.derive.inc.am
+include ../src/tools/tools/002n.CommonCalltree/Makefile.tools.commoncalltree.inc.am
+include ../src/tools/tools/0031.ReMap2/Makefile.tools.remap2.inc.am
+include ../src/tools/tools/0040.Tau2Cube/Makefile.tools.tau2cube4.inc.am
+include ../src/tools/tools/0050.Test/Makefile.tools.test.inc.am
+include ../src/tools/tools/007b.Server/Makefile.tools.server.inc.am 
+
+include ../test/Makefile.tests-frontend.inc.am
+include ../vendor/common/src/utils/cstr/Makefile.inc.am
+include ../vendor/common/src/utils/exception/Makefile.inc.am
+include ../vendor/common/src/utils/io/Makefile.inc.am
+include ../vendor/common/src/utils/Makefile.inc.am
+

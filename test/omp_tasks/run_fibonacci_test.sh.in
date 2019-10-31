@@ -1,0 +1,151 @@
+#!/bin/bash
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2013, 2015, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license. See the COPYING file in the package base
+## directory for details.
+##
+
+## file       run_fibonacci_test.sh
+
+cleanup ()
+{
+  rm -f  task_fibonacci.pomp_init.c \
+         task_fibonacci.opari.c \
+         task_fibonacci.c.opari.inc \
+         task_fibonacci.c \
+         fib_main \
+         fib_pomp \
+         fib_full
+  rm -rf scorep-measurement-tmp
+}
+trap cleanup EXIT
+
+echo "==================="
+echo $PWD
+echo "==================="
+
+# Setup
+cp  @abs_srcdir@/task_fibonacci.c task_fibonacci.c
+@SCOREP_COMPILER_SUN_FALSE@extra_flag=""
+@SCOREP_COMPILER_SUN_TRUE@extra_flag="--nocompiler --user"
+result_dir_base="scorep_fibonacci_"
+export @SYS_LIB_SEARCH_PATH_VAR@=$PWD/@LT_OBJDIR@${@SYS_LIB_SEARCH_PATH_VAR@:+:${@SYS_LIB_SEARCH_PATH_VAR@}}
+
+# provide a reasonable default input for running the applications
+if [ ! x$1 = x ]; then
+  FIB_NUM=$1
+fi
+
+if [ x$FIB_NUM = x ]; then
+   FIB_NUM=20
+fi
+
+
+# build with only main instrumented
+#./scorep --user \
+#         --noopari \
+#         --nocompiler \
+#         ${V:+--verbose} \
+#         --build-check \
+#         @CC@ -I. -o fib_main task_fibonacci.c @OPENMP_CFLAGS@
+#
+#export @SYS_LIB_SEARCH_PATH_VAR@=@SCOREP_PAPI_LIBDIR@${@SYS_LIB_SEARCH_PATH_VAR@:+:${@SYS_LIB_SEARCH_PATH_VAR@}}
+#if [ ! -e fib_main ]; then
+#    exit 1
+#fi
+
+# build with main and pomp instrumentation
+./scorep --user \
+         --nocompiler \
+         ${V:+--verbose} \
+         --build-check \
+         @CC@ -I. -o fib_pomp task_fibonacci.c @OPENMP_CFLAGS@
+
+if [ ! -e fib_pomp ]; then
+    echo "Failed test with main and pomp instrumentation"
+    exit 1
+fi
+
+# build with compiler and pomp instrumentation
+./scorep $extra_flag \
+         ${V:+--verbose} \
+         --build-check \
+         @CC@ -I. -o fib_full task_fibonacci.c @OPENMP_CFLAGS@
+
+if [ ! -e fib_full ]; then
+    echo "Failed test with compiler and pomp instrumentation"
+    exit 1
+fi
+
+# execute main test
+#SCOREP_EXPERIMENT_DIRECTORY=${result_dir_base}main \
+#    SCOREP_ENABLE_PROFILING=true \
+#    SCOREP_ENABLE_TRACING=false \
+#    ./fib_main $FIB_NUM
+#
+#if [ $? -ne 0 ]; then
+#    exit 1
+#fi
+
+# execute pomp test
+SCOREP_EXPERIMENT_DIRECTORY=${result_dir_base}pomp \
+    SCOREP_ENABLE_PROFILING=true \
+    SCOREP_ENABLE_TRACING=false \
+    SCOREP_TOTAL_MEMORY=32M \
+    ./fib_pomp $FIB_NUM
+
+if [ $? -ne 0 ]; then
+    echo "Failed execution of pomp test"
+    exit 1
+fi
+
+# execute pomp test with tupel format
+SCOREP_EXPERIMENT_DIRECTORY=${result_dir_base}pomp_tuple \
+    SCOREP_ENABLE_PROFILING=true \
+    SCOREP_ENABLE_TRACING=false \
+    SCOREP_PROFILING_FORMAT=CUBE_TUPLE \
+    SCOREP_TOTAL_MEMORY=32M \
+    ./fib_pomp $FIB_NUM
+
+if [ $? -ne 0 ]; then
+    echo "Failed pomp test with tupel format"
+    exit 1
+fi
+
+# execute full test
+SCOREP_EXPERIMENT_DIRECTORY=${result_dir_base}full \
+    SCOREP_ENABLE_PROFILING=true \
+    SCOREP_ENABLE_TRACING=false \
+    SCOREP_TOTAL_MEMORY=32M \
+    ./fib_full $FIB_NUM
+
+if [ $? -ne 0 ]; then
+    echo "Failed full test"
+    exit 1
+fi
+
+exit 0

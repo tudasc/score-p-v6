@@ -1,0 +1,167 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2017                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2013                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+/** @page reference Reference of CubePL
+
+
+@section listofsupportedfunctions Supported calls in CubePL
+Here is the table of currently supported calls in CubePL:
+<table>
+<tr>
+  <td> <b> Operation </b> </td><td> <b>Explanation</b></td>
+</tr>
+<tr>
+  <td> 123.34 </td><td>a numerical constant </td>
+</tr>
+<tr>
+  <td> "STRING" </td><td>a string constant</td>
+</tr>
+<tr>
+  <td> -x </td><td>negative value of x</td>
+</tr>
+<tr>
+  <td> () </td><td>grouping (priority)</td>
+</tr>
+<tr>
+  <td>| | </td><td>absolute value</td>
+</tr>
+<tr>
+  <td> + - / * </td><td>arithmetical operations</td>
+</tr>
+<tr>
+  <td> A^x </td><td>A in power of x</td>
+</tr>
+<tr>
+  <td> > < >= <= != ==  </td><td> numerical comparison</td>
+</tr>
+
+<tr>
+  <td> and or xor not  </td><td> boolean operations</td>
+</tr>
+<tr>
+  <td> eq  </td><td>string comparison</td>
+</tr>
+<tr>
+  <td> seq  </td><td>case insensitive string comparison</td>
+</tr>
+<tr>
+  <td>  =~ /expression/ </td><td>matching of regular \textit{expression}</td>
+</tr>
+<tr>
+  <td>  sin(x) cos(x) asin(x) acos(x) tan(x) cot(x) atan(x) acot(x) </td><td>trigonometrical functions</td>
+</tr>
+<tr>
+  <td>  ln(x) </td><td>natural logarithm of x</td>
+</tr>
+<tr>
+  <td>  exp(x) </td><td>natural exponent of x</td>
+</tr>
+<tr>
+  <td>  sqrt(x) </td><td>square root value of x</td>
+</tr>
+<tr>
+  <td> random(x)  </td><td>random number from 0 to x</td>
+</tr>
+<tr>
+  <td> pos(x)  </td><td> returns x, if x>, or 0</td>
+</tr>
+<tr>
+  <td> neg(x)  </td><td> returns x, if x<0, or 0</td>
+</tr>
+<tr>
+  <td> sgn(x)  </td><td> returns -1, if x<0, 0 if x is 0 and 1 is x>0 </td>
+</tr>
+<tr>
+  <td> abs(x)  </td><td> returns absolut value </td>
+</tr>
+<tr>
+  <td> ceil(x)  </td><td> returns smallest integer value, which is bigger than x </td>
+</tr>
+<tr>
+  <td> floor(x)  </td><td> returns biggest integer value, which is smaller than x </td>
+</tr>
+<tr>
+  <td> min(x,y)  </td><td> returns smaller value of x and y </td>
+</tr>
+<tr>
+  <td> max(x,y)  </td><td> returns bigger value of x and y </td>
+</tr>
+<tr>
+  <td> uppercase(x)  </td><td> returns uppercase version of x</td>
+</tr>
+<tr>
+  <td> lowercase(x)  </td><td> returns lowercase version of x</td>
+</tr>
+<tr>
+  <td> env("x")  </td><td> returns a value of the environment variable x</td>
+</tr>
+</table>
+<table> 
+<tr>
+  <td> local(var) </td><td> Declares (to compile time) a variable  \textit{var} as local. It cannot be redeclared later</td>
+</tr>
+<tr>
+  <td> global(var) </td><td> Declares (to compile time) a variable  \textit{var} as global. It cannot be redeclared later</td>
+</tr>
+<tr>
+  <td> ${var} </td><td> 0th element of the variable with name \textit{var}</td>
+</tr>
+<tr>
+  <td> ${var}[x] </td><td> x-th element of the variable with name \textit{var}</td>
+</tr>
+<tr>
+  <td> sizeof(var) </td><td> number of elements in the variable \textit{var}</td>
+</tr>
+<tr>
+  <td> defined(var) </td><td> returns true (1), if the variable \textit{var} is defined, otherwise it returns false (0)</td>
+</tr>
+<tr>
+  <td> metric::[uniq_name](i|e|*, i|e|*) </td><td> context sensetive value of metric \textit{uniq_name}
+  </td>
+</tr>
+<tr>
+  <td> metric::context::[uniq_name](i|e|*, i|e|*) </td><td> context sensetive value of metric \textit{uniq_name}
+  </td>
+</tr>
+<tr>
+  <td> metric::fixed::[uniq_name](i|e|*, i|e|*) </td><td> context independend value of metric \textit{uniq_name}
+  </td>
+</tr>
+<tr>
+  <td> metric::call::[uniq_name](c_id, i|e|*, s_id, i|e|*) </td><td> value of metric \textit{uniq_name} for the call path with id <i>c_id</i> and system resource with an id <i>s_id</i>
+  </td>
+</tr>
+<tr>
+  <td> cube::metric::set::[uniq_name]("X", "Y") </td><td>sets a property X of a metric \textit{uniq_name} to value Y. Corrently supported are only "value" with value "VOID" or else
+  </td>
+</tr>
+<tr>
+  <td> cube::metric::get::[uniq_name]("X") </td><td>returns a property X of a metric \textit{uniq_name}. Corrently supported are 
+<ol>
+<li> \textit{unique name} - returns unique name of a metric \textit{uniq_name} </li>
+<li> \textit{display name} - returns display name of a metric \textit{uniq_name} </li>
+<li> \textit{uom} - returns unit of measurement of a metric \textit{uniq_name} </li>
+<li> \textit{dtype} - returns data type of a metric \textit{uniq_name} as a string </li>
+<li> \textit{url} - returns url of online help for the metric \textit{uniq_name} </li>
+<li> \textit{description} - returns description of a  metric \textit{uniq_name} </li>
+<li> \textit{value} - returns property "value" for the metric \textit{uniq_name}. Its value "VOID" deactivates metric and it returns always a zero. </li>
+</ol>
+  </td>
+</tr>
+</table>
+
+*/
+

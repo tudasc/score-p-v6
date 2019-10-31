@@ -1,0 +1,3169 @@
+/* ../src/config-backend-shmem.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Name of the sub-build. */
+#undef AFS_PACKAGE_BUILD
+
+/* Symbol name of the sub-build in upper case. */
+#undef AFS_PACKAGE_BUILD_NAME
+
+/* Symbol name of the sub-build in lower case. */
+#undef AFS_PACKAGE_BUILD_name
+
+/* The package name usable as a symbol in upper case. */
+#undef AFS_PACKAGE_NAME
+
+/* Relative path to the top-level source directory. */
+#undef AFS_PACKAGE_SRCDIR
+
+/* The package name usable as a symbol in lower case. */
+#undef AFS_PACKAGE_name
+
+/* Try to use colorful output for tests. */
+#undef CUTEST_USE_COLOR
+
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef F77_DUMMY_MAIN
+
+/* Define to a macro mangling the given C identifier (in lower and upper
+   case), which must not contain underscores, for linking with Fortran. */
+#undef F77_FUNC
+
+/* As F77_FUNC, but for C identifiers containing underscores. */
+#undef F77_FUNC_
+
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef F77_NO_MINUS_C_MINUS_O
+
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef FC_DUMMY_MAIN
+
+/* Define if F77 and FC dummy `main' functions are identical. */
+#undef FC_DUMMY_MAIN_EQ_F77
+
+/* Define to a macro mangling the given C identifier (in lower and upper
+   case), which must not contain underscores, for linking with Fortran. */
+#undef FC_FUNC
+
+/* As FC_FUNC, but for C identifiers containing underscores. */
+#undef FC_FUNC_
+
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef FC_NO_MINUS_C_MINUS_O
+
+/* Makes C variable alignment consistent with Fortran */
+#undef FORTRAN_ALIGNED
+
+/* Name of var after mangled by the Fortran compiler. */
+#undef FORTRAN_MANGLED
+
+/* Define to 1 if you have the <bfd.h> header file. */
+#undef HAVE_BFD_H
+
+/* Define if shmem_collect* cannot handle 0 nelems. */
+#undef HAVE_BROKEN_SHMEM_COLLECT
+
+/* Can link a close function */
+#undef HAVE_CLOSE
+
+/* Define to 1 if you have the <CL/cl.h> header file. */
+#undef HAVE_CL_CL_H
+
+/* Defined if compiler instrumentation is available. */
+#undef HAVE_COMPILER_INSTRUMENTATION
+
+/* Define if the compiler instrumentation needs the symbol table. */
+#undef HAVE_COMPILER_INSTRUMENTATION_NEEDS_SYMBOL_TABLE
+
+/* Define to 1 if you have the <cuda.h> header file. */
+#undef HAVE_CUDA_H
+
+/* Define to 1 if you have the <cuda_runtime_api.h> header file. */
+#undef HAVE_CUDA_RUNTIME_API_H
+
+/* Defined if cuda is available. */
+#undef HAVE_CUDA_SUPPORT
+
+/* Defined if CUDA version is greater or equal 6.0. */
+#undef HAVE_CUDA_VERSION_GREATER_EQUAL_60
+
+/* Defined if CUPTI activity asynchronous buffer handling is available. */
+#undef HAVE_CUPTI_ASYNC_SUPPORT
+
+/* Define to 1 if you have the <cupti.h> header file. */
+#undef HAVE_CUPTI_H
+
+/* Define to 1 if you have the declaration of `close', and to 0 if you don't.
+   */
+#undef HAVE_DECL_CLOSE
+
+/* Define to 1 if you have the declaration of `fileno', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FILENO
+
+/* Define to 1 if you have the declaration of `fseeko', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FSEEKO
+
+/* Define to 1 if you have the declaration of `fseeko64', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FSEEKO64
+
+/* Define to 1 if you have the declaration of `getcwd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETCWD
+
+/* Define to 1 if you have the declaration of `gethostid', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTID
+
+/* Define to 1 if you have the declaration of `gethostname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTNAME
+
+/* Define to 1 if you have the declaration of `PERF_COUNT_HW_REF_CPU_CYCLES',
+   and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_REF_CPU_CYCLES
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_HW_STALLED_CYCLES_BACKEND', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_STALLED_CYCLES_BACKEND
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_HW_STALLED_CYCLES_FRONTEND', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_SW_ALIGNMENT_FAULTS', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_SW_ALIGNMENT_FAULTS
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_SW_EMULATION_FAULTS', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_SW_EMULATION_FAULTS
+
+/* Define to 1 if you have the declaration of `read', and to 0 if you don't.
+   */
+#undef HAVE_DECL_READ
+
+/* Define to 1 if you have the declaration of `realpath', and to 0 if you
+   don't. */
+#undef HAVE_DECL_REALPATH
+
+/* Define to 1 if you have the declaration of `RTLD_LAZY', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_LAZY
+
+/* Define to 1 if you have the declaration of `RTLD_LOCAL', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_LOCAL
+
+/* Define to 1 if you have the declaration of `RTLD_NOW', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_NOW
+
+/* Define to 1 if you have the declaration of `shmem_addr_accessible', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_ADDR_ACCESSIBLE
+
+/* Define to 1 if you have the declaration of `shmem_char_g', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_CHAR_G
+
+/* Define to 1 if you have the declaration of `shmem_clear_lock', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_CLEAR_LOCK
+
+/* Define to 1 if you have the declaration of `shmem_complexd_prod_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_COMPLEXD_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_complexd_sum_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_COMPLEXD_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_complexf_prod_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_COMPLEXF_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_complexf_sum_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_COMPLEXF_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_double_g', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_DOUBLE_G
+
+/* Define to 1 if you have the declaration of `shmem_double_max_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_DOUBLE_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_double_min_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_DOUBLE_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_double_prod_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_DOUBLE_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_double_sum_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_DOUBLE_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_finalize', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_FINALIZE
+
+/* Define to 1 if you have the declaration of `shmem_float_g', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_FLOAT_G
+
+/* Define to 1 if you have the declaration of `shmem_float_max_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_FLOAT_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_float_min_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_FLOAT_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_float_prod_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_FLOAT_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_float_sum_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_FLOAT_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_init_thread', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_INIT_THREAD
+
+/* Define to 1 if you have the declaration of `shmem_int_and_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_AND_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_g', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_INT_G
+
+/* Define to 1 if you have the declaration of `shmem_int_max_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_min_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_or_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_OR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_prod_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_INT_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_sum_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_int_wait', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_INT_WAIT
+
+/* Define to 1 if you have the declaration of `shmem_int_wait_until', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_WAIT_UNTIL
+
+/* Define to 1 if you have the declaration of `shmem_int_xor_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_INT_XOR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_g', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_G
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_get', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_GET
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_iget', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_IGET
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_iput', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_IPUT
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_max_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_min_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_prod_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_put', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_PUT
+
+/* Define to 1 if you have the declaration of `shmem_longdouble_sum_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGDOUBLE_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_and_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_AND_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_g', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_G
+
+/* Define to 1 if you have the declaration of `shmem_longlong_max_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_min_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_or_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_OR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_prod_to_all',
+   and to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_sum_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_wait', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_WAIT
+
+/* Define to 1 if you have the declaration of `shmem_longlong_wait_until', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_WAIT_UNTIL
+
+/* Define to 1 if you have the declaration of `shmem_longlong_xor_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONGLONG_XOR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_and_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_AND_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_g', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_LONG_G
+
+/* Define to 1 if you have the declaration of `shmem_long_max_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_min_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_or_to_all', and to 0
+   if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_OR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_prod_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_sum_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_long_wait', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_LONG_WAIT
+
+/* Define to 1 if you have the declaration of `shmem_long_wait_until', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_WAIT_UNTIL
+
+/* Define to 1 if you have the declaration of `shmem_long_xor_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_LONG_XOR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_ptr', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_PTR
+
+/* Define to 1 if you have the declaration of `shmem_set_lock', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_SET_LOCK
+
+/* Define to 1 if you have the declaration of `shmem_short_and_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_AND_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_g', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_SHORT_G
+
+/* Define to 1 if you have the declaration of `shmem_short_max_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_MAX_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_min_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_MIN_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_or_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_OR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_prod_to_all', and
+   to 0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_PROD_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_sum_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_SUM_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_short_wait', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_WAIT
+
+/* Define to 1 if you have the declaration of `shmem_short_wait_until', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_WAIT_UNTIL
+
+/* Define to 1 if you have the declaration of `shmem_short_xor_to_all', and to
+   0 if you don't. */
+#undef HAVE_DECL_SHMEM_SHORT_XOR_TO_ALL
+
+/* Define to 1 if you have the declaration of `shmem_test_lock', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_TEST_LOCK
+
+/* Define to 1 if you have the declaration of `shmem_wait', and to 0 if you
+   don't. */
+#undef HAVE_DECL_SHMEM_WAIT
+
+/* Define to 1 if you have the declaration of `shmem_wait_until', and to 0 if
+   you don't. */
+#undef HAVE_DECL_SHMEM_WAIT_UNTIL
+
+/* Define to 1 if you have the declaration of `unw_init_local2', and to 0 if
+   you don't. */
+#undef HAVE_DECL_UNW_INIT_LOCAL2
+
+/* Define to 1 if you have the declaration of `unw_init_local_signal', and to
+   0 if you don't. */
+#undef HAVE_DECL_UNW_INIT_LOCAL_SIGNAL
+
+/* Define if cplus_demangle is available. */
+#undef HAVE_DEMANGLE
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Defined if dlfcn.h provides RTLD_NEXT option for calls to dlsym function.
+   */
+#undef HAVE_DLFCN_RTLD_NEXT
+
+/* Defined if dynamic linking via dlfcn.h is supported. */
+#undef HAVE_DLFCN_SUPPORT
+
+/* Can link a fileno function */
+#undef HAVE_FILENO
+
+/* Can link a fseeko function */
+#undef HAVE_FSEEKO
+
+/* Can link a fseeko64 function */
+#undef HAVE_FSEEKO64
+
+/* Defined if GCC plug-in support is available. */
+#undef HAVE_GCC_PLUGIN_SUPPORT
+
+/* Can link a getcwd function */
+#undef HAVE_GETCWD
+
+/* Can link a gethostid function */
+#undef HAVE_GETHOSTID
+
+/* Can link a gethostname function */
+#undef HAVE_GETHOSTNAME
+
+/* Can link a getrlimit function */
+#undef HAVE_GETRLIMIT
+
+/* Defined if getrusage() is available. */
+#undef HAVE_GETRUSAGE
+
+/* Define to 1 if you have the <gnu/lib-names.h> header file. */
+#undef HAVE_GNU_LIB_NAMES_H
+
+/* Defined if the linker is GNU ld. */
+#undef HAVE_GNU_LINKER
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define if libbfd is available. */
+#undef HAVE_LIBBFD
+
+/* Defined if libcuda is available. */
+#undef HAVE_LIBCUDA
+
+/* Defined if libcudart is available. */
+#undef HAVE_LIBCUDART
+
+/* Defined if libcupti is available. */
+#undef HAVE_LIBCUPTI
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Defined if libOpenCL is available. */
+#undef HAVE_LIBOPENCL
+
+/* Defined if libpmi is available. */
+#undef HAVE_LIBPMI
+
+/* Defined if librca is available. */
+#undef HAVE_LIBRCA
+
+/* Defined if libunwind is available. */
+#undef HAVE_LIBUNWIND
+
+/* Define to 1 if you have the <libunwind.h> header file. */
+#undef HAVE_LIBUNWIND_H
+
+/* Define if linktime library wrapping is possible. */
+#undef HAVE_LIBWRAP_LINKTIME_SUPPORT
+
+/* Define if runtime library wrapping is possible. */
+#undef HAVE_LIBWRAP_RUNTIME_SUPPORT
+
+/* Define if library wrapping is possible at all. */
+#undef HAVE_LIBWRAP_SUPPORT
+
+/* Define to 1 if you have the <linux/perf_event.h> header file. */
+#undef HAVE_LINUX_PERF_EVENT_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define if memory tracking is supported. */
+#undef HAVE_MEMORY_SUPPORT
+
+/* Defined if metric perf support is available. */
+#undef HAVE_METRIC_PERF
+
+/* define if the compiler implements namespaces */
+#undef HAVE_NAMESPACES
+
+/* Define if nm is available. */
+#undef HAVE_NM
+
+/* Defined if openacc.h has been found and OpenACC enabled. */
+#undef HAVE_OPENACC
+
+/* Defined if openacc.h and acc_prof.h have been found and OpenACC enabled */
+#undef HAVE_OPENACC_SUPPORT
+
+/* Define to 1 if you have the <OpenCL/opencl.h> header file. */
+#undef HAVE_OPENCL_OPENCL_H
+
+/* Defined if OpenCL is available. */
+#undef HAVE_OPENCL_SUPPORT
+
+/* Defined if OpenCL API version 1.0 is supported. */
+#undef HAVE_OPENCL_VERSION_1_0_SUPPORT
+
+/* Defined if OpenCL API version 1.1 is supported. */
+#undef HAVE_OPENCL_VERSION_1_1_SUPPORT
+
+/* Defined if OpenCL API version 1.2 is supported. */
+#undef HAVE_OPENCL_VERSION_1_2_SUPPORT
+
+/* Defined if OpenCL API version 2.0 is supported. */
+#undef HAVE_OPENCL_VERSION_2_0_SUPPORT
+
+/* Defined if libpapi is available. */
+#undef HAVE_PAPI
+
+/* Set if we are building for the AIX platform */
+#undef HAVE_PLATFORM_AIX
+
+/* Set if we are building for the ALTIX platform */
+#undef HAVE_PLATFORM_ALTIX
+
+/* Set if we are building for the ARM platform */
+#undef HAVE_PLATFORM_ARM
+
+/* Set if we are building for the BG/L platform */
+#undef HAVE_PLATFORM_BGL
+
+/* Set if we are building for the BG/P platform */
+#undef HAVE_PLATFORM_BGP
+
+/* Set if we are building for the BG/Q platform */
+#undef HAVE_PLATFORM_BGQ
+
+/* Set if we are building for the Cray platform */
+#undef HAVE_PLATFORM_CRAY
+
+/* Set if we are building for the Cray XC platform */
+#undef HAVE_PLATFORM_CRAYXC
+
+/* Set if we are building for the Cray XE platform */
+#undef HAVE_PLATFORM_CRAYXE
+
+/* Set if we are building for the Cray XK platform */
+#undef HAVE_PLATFORM_CRAYXK
+
+/* Set if we are building for the Cray XT platform */
+#undef HAVE_PLATFORM_CRAYXT
+
+/* Set if we are building for the FX10 platform */
+#undef HAVE_PLATFORM_FX10
+
+/* Set if we are building for the FX100 platform */
+#undef HAVE_PLATFORM_FX100
+
+/* Set if we are building for the K platform */
+#undef HAVE_PLATFORM_K
+
+/* Set if we are building for the Linux platform */
+#undef HAVE_PLATFORM_LINUX
+
+/* Set if we are building for the macOS platform */
+#undef HAVE_PLATFORM_MAC
+
+/* Set if we are building for the Intel MIC platform */
+#undef HAVE_PLATFORM_MIC
+
+/* Set if we are building for the MinGW platform */
+#undef HAVE_PLATFORM_MINGW
+
+/* Set if we are building for the NEC SX platform */
+#undef HAVE_PLATFORM_NECSX
+
+/* Set if we are building for the Solaris platform */
+#undef HAVE_PLATFORM_SOLARIS
+
+/* Defined if PMI is available. */
+#undef HAVE_PMI
+
+/* Define to 1 if you have the <pmi.h> header file. */
+#undef HAVE_PMI_H
+
+/* Can link against popen and pclose */
+#undef HAVE_POPEN
+
+/* Defined if recording calls to POSIX asynchronous I/O is possible. */
+#undef HAVE_POSIX_AIO_SUPPORT
+
+/* Defined if recording calls to POSIX I/O is possible. */
+#undef HAVE_POSIX_IO_SUPPORT
+
+/* Define to 1 if POSIX I/O has the aio_cancel symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_CANCEL
+
+/* Define to 1 if POSIX I/O has the aio_error symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_ERROR
+
+/* Define to 1 if POSIX I/O has the aio_fsync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_FSYNC
+
+/* Define to 1 if POSIX I/O has the aio_read symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_READ
+
+/* Define to 1 if POSIX I/O has the aio_return symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_RETURN
+
+/* Define to 1 if POSIX I/O has the aio_suspend symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_SUSPEND
+
+/* Define to 1 if POSIX I/O has the aio_write symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_WRITE
+
+/* Define to 1 if POSIX I/O has the close symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CLOSE
+
+/* Define to 1 if POSIX I/O has the closedir symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CLOSEDIR
+
+/* Define to 1 if POSIX I/O has the creat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CREAT
+
+/* Define to 1 if POSIX I/O has the creat64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CREAT64
+
+/* Define to 1 if POSIX I/O has the dup symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP
+
+/* Define to 1 if POSIX I/O has the dup2 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP2
+
+/* Define to 1 if POSIX I/O has the dup3 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP3
+
+/* Define to 1 if POSIX I/O has the fclose symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FCLOSE
+
+/* Define to 1 if POSIX I/O has the fcntl symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FCNTL
+
+/* Define to 1 if POSIX I/O has the fdatasync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FDATASYNC
+
+/* Define to 1 if POSIX I/O has the fdopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FDOPEN
+
+/* Define to 1 if POSIX I/O has the fflush symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FFLUSH
+
+/* Define to 1 if POSIX I/O has the fgetc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETC
+
+/* Define to 1 if POSIX I/O has the fgetpos symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETPOS
+
+/* Define to 1 if POSIX I/O has the fgets symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETS
+
+/* Define to 1 if POSIX I/O has the flockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FLOCKFILE
+
+/* Define to 1 if POSIX I/O has the fopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FOPEN
+
+/* Define to 1 if POSIX I/O has the fopen64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FOPEN64
+
+/* Define to 1 if POSIX I/O has the fprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPRINTF
+
+/* Define to 1 if POSIX I/O has the fputc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPUTC
+
+/* Define to 1 if POSIX I/O has the fputs symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPUTS
+
+/* Define to 1 if POSIX I/O has the fread symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FREAD
+
+/* Define to 1 if POSIX I/O has the freopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FREOPEN
+
+/* Define to 1 if POSIX I/O has the fscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSCANF
+
+/* Define to 1 if POSIX I/O has the fseek symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEK
+
+/* Define to 1 if POSIX I/O has the fseeko symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEKO
+
+/* Define to 1 if POSIX I/O has the fseeko64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEKO64
+
+/* Define to 1 if POSIX I/O has the fsync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSYNC
+
+/* Define to 1 if POSIX I/O has the ftell symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTELL
+
+/* Define to 1 if POSIX I/O has the ftello symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTELLO
+
+/* Define to 1 if POSIX I/O has the ftrylockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTRYLOCKFILE
+
+/* Define to 1 if POSIX I/O has the funlockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FUNLOCKFILE
+
+/* Define to 1 if POSIX I/O has the fwrite symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FWRITE
+
+/* Define to 1 if POSIX I/O has the getchar symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_GETCHAR
+
+/* Define to 1 if POSIX I/O has the gets symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_GETS
+
+/* Define to 1 if POSIX I/O has the lio_listio symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LIO_LISTIO
+
+/* Define to 1 if POSIX I/O has the lockf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LOCKF
+
+/* Define to 1 if POSIX I/O has the lseek symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LSEEK
+
+/* Define to 1 if POSIX I/O has the lseek64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LSEEK64
+
+/* Define to 1 if POSIX I/O has the open symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPEN
+
+/* Define to 1 if POSIX I/O has the open64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPEN64
+
+/* Define to 1 if POSIX I/O has the openat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPENAT
+
+/* Define to 1 if POSIX I/O has the pread symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREAD
+
+/* Define to 1 if POSIX I/O has the pread64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREAD64
+
+/* Define to 1 if POSIX I/O has the preadv symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREADV
+
+/* Define to 1 if POSIX I/O has the printf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PRINTF
+
+/* Define to 1 if POSIX I/O has the pselect symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PSELECT
+
+/* Define to 1 if POSIX I/O has the putchar symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PUTCHAR
+
+/* Define to 1 if POSIX I/O has the puts symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PUTS
+
+/* Define to 1 if POSIX I/O has the pwrite symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITE
+
+/* Define to 1 if POSIX I/O has the pwrite64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITE64
+
+/* Define to 1 if POSIX I/O has the pwritev symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITEV
+
+/* Define to 1 if POSIX I/O has the read symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_READ
+
+/* Define to 1 if POSIX I/O has the readv symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_READV
+
+/* Define to 1 if POSIX I/O has the rewind symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_REWIND
+
+/* Define to 1 if POSIX I/O has the scanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SCANF
+
+/* Define to 1 if POSIX I/O has the select symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SELECT
+
+/* Define to 1 if POSIX I/O has the sync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SYNC
+
+/* Define to 1 if POSIX I/O has the syncfs symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SYNCFS
+
+/* Define to 1 if POSIX I/O has the ungetc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNGETC
+
+/* Define to 1 if POSIX I/O has the unlink symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNLINK
+
+/* Define to 1 if POSIX I/O has the unlinkat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNLINKAT
+
+/* Define to 1 if POSIX I/O has the vfprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VFPRINTF
+
+/* Define to 1 if POSIX I/O has the vfscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VFSCANF
+
+/* Define to 1 if POSIX I/O has the vprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VPRINTF
+
+/* Define to 1 if POSIX I/O has the vscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VSCANF
+
+/* Define to 1 if POSIX I/O has the write symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_WRITE
+
+/* Define to 1 if POSIX I/O has the writev symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_WRITEV
+
+/* Can link a read function */
+#undef HAVE_READ
+
+/* Can link a realpath function */
+#undef HAVE_REALPATH
+
+/* Defined if SCOREP_RETURN_ADDRESS() is functional. */
+#undef HAVE_RETURN_ADDRESS
+
+/* Defined if RUSAGE_THREAD is available. */
+#undef HAVE_RUSAGE_THREAD
+
+/* Defined if struct member sigaction.sa_sigaction and type siginfo_t are
+   available. */
+#undef HAVE_SAMPLING_SIGACTION
+
+/* Defined if sampling support is available. */
+#undef HAVE_SAMPLING_SUPPORT
+
+/* Define to 1 to enable additional debug output and checks. */
+#undef HAVE_SCOREP_DEBUG
+
+/* Define to 1 to disable assertions (like NDEBUG). */
+#undef HAVE_SCOREP_NO_ASSERT
+
+/* Define to 1 if OpenMP ancestry functionality is available. */
+#undef HAVE_SCOREP_OMP_ANCESTRY
+
+/* Define to 1 if OpenMP tpd functionality is available. */
+#undef HAVE_SCOREP_OMP_TPD
+
+/* If set, time measurements for Score-P's SCOREP_InitMeasurement() and
+   scorep_finalize() functions are performed. */
+#undef HAVE_SCOREP_RUNTIME_MANAGEMENT_TIMINGS
+
+/* shmem_addr_accessible is standard compliant */
+#undef HAVE_SHMEM_ADDR_ACCESSIBLE_COMPLIANT
+
+/* shmem_addr_accessible is CONST variant */
+#undef HAVE_SHMEM_ADDR_ACCESSIBLE_CONST_VARIANT
+
+/* Defined if compiler instrumentation is available. */
+#undef HAVE_SHMEM_BACKEND_COMPILER_INSTRUMENTATION
+
+/* Define if the compiler instrumentation needs the symbol table. */
+#undef HAVE_SHMEM_BACKEND_COMPILER_INSTRUMENTATION_NEEDS_SYMBOL_TABLE
+
+/* Defined if cuda is available. */
+#undef HAVE_SHMEM_BACKEND_CUDA_SUPPORT
+
+/* Defined if CUDA version is greater or equal 6.0. */
+#undef HAVE_SHMEM_BACKEND_CUDA_VERSION_GREATER_EQUAL_60
+
+/* Defined if CUPTI activity asynchronous buffer handling is available. */
+#undef HAVE_SHMEM_BACKEND_CUPTI_ASYNC_SUPPORT
+
+/* Define if cplus_demangle is available. */
+#undef HAVE_SHMEM_BACKEND_DEMANGLE
+
+/* Defined if dlfcn.h provides RTLD_NEXT option for calls to dlsym function.
+   */
+#undef HAVE_SHMEM_BACKEND_DLFCN_RTLD_NEXT
+
+/* Defined if dynamic linking via dlfcn.h is supported. */
+#undef HAVE_SHMEM_BACKEND_DLFCN_SUPPORT
+
+/* Defined if GCC plug-in support is available. */
+#undef HAVE_SHMEM_BACKEND_GCC_PLUGIN_SUPPORT
+
+/* Defined if getrusage() is available. */
+#undef HAVE_SHMEM_BACKEND_GETRUSAGE
+
+/* Defined if the linker is GNU ld. */
+#undef HAVE_SHMEM_BACKEND_GNU_LINKER
+
+/* Define if libbfd is available. */
+#undef HAVE_SHMEM_BACKEND_LIBBFD
+
+/* Define if linktime library wrapping is possible. */
+#undef HAVE_SHMEM_BACKEND_LIBWRAP_LINKTIME_SUPPORT
+
+/* Define if runtime library wrapping is possible. */
+#undef HAVE_SHMEM_BACKEND_LIBWRAP_RUNTIME_SUPPORT
+
+/* Define if library wrapping is possible at all. */
+#undef HAVE_SHMEM_BACKEND_LIBWRAP_SUPPORT
+
+/* Define if memory tracking is supported. */
+#undef HAVE_SHMEM_BACKEND_MEMORY_SUPPORT
+
+/* Defined if metric perf support is available. */
+#undef HAVE_SHMEM_BACKEND_METRIC_PERF
+
+/* Define if nm is available. */
+#undef HAVE_SHMEM_BACKEND_NM
+
+/* Defined if openacc.h has been found and OpenACC enabled. */
+#undef HAVE_SHMEM_BACKEND_OPENACC
+
+/* Defined if openacc.h and acc_prof.h have been found and OpenACC enabled */
+#undef HAVE_SHMEM_BACKEND_OPENACC_SUPPORT
+
+/* Defined if OpenCL is available. */
+#undef HAVE_SHMEM_BACKEND_OPENCL_SUPPORT
+
+/* Defined if OpenCL API version 1.0 is supported. */
+#undef HAVE_SHMEM_BACKEND_OPENCL_VERSION_1_0_SUPPORT
+
+/* Defined if OpenCL API version 1.1 is supported. */
+#undef HAVE_SHMEM_BACKEND_OPENCL_VERSION_1_1_SUPPORT
+
+/* Defined if OpenCL API version 1.2 is supported. */
+#undef HAVE_SHMEM_BACKEND_OPENCL_VERSION_1_2_SUPPORT
+
+/* Defined if OpenCL API version 2.0 is supported. */
+#undef HAVE_SHMEM_BACKEND_OPENCL_VERSION_2_0_SUPPORT
+
+/* Defined if libpapi is available. */
+#undef HAVE_SHMEM_BACKEND_PAPI
+
+/* Defined if PMI is available. */
+#undef HAVE_SHMEM_BACKEND_PMI
+
+/* Defined if recording calls to POSIX asynchronous I/O is possible. */
+#undef HAVE_SHMEM_BACKEND_POSIX_AIO_SUPPORT
+
+/* Defined if recording calls to POSIX I/O is possible. */
+#undef HAVE_SHMEM_BACKEND_POSIX_IO_SUPPORT
+
+/* Defined if sampling support is available. */
+#undef HAVE_SHMEM_BACKEND_SAMPLING_SUPPORT
+
+/* Defined if SHMEM implementation provides a profiling header file. */
+#undef HAVE_SHMEM_BACKEND_SHMEM_PROFILING_HEADER
+
+/* Defined if SHMEM implementation provides a profiling interface. */
+#undef HAVE_SHMEM_BACKEND_SHMEM_PROFILING_INTERFACE
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_SHMEM_BACKEND_THREAD_LOCAL_STORAGE
+
+/* Defined if unwinding support is available. */
+#undef HAVE_SHMEM_BACKEND_UNWINDING_SUPPORT
+
+/* shmem_char_g is standard compliant */
+#undef HAVE_SHMEM_CHAR_G_COMPLIANT
+
+/* shmem_char_g is CONST variant */
+#undef HAVE_SHMEM_CHAR_G_CONST_VARIANT
+
+/* shmem_clear_lock is standard compliant */
+#undef HAVE_SHMEM_CLEAR_LOCK_COMPLIANT
+
+/* shmem_clear_lock is VOLATILE variant */
+#undef HAVE_SHMEM_CLEAR_LOCK_VOLATILE_VARIANT
+
+/* shmem_complexd_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_COMPLEXD_PROD_TO_ALL_COMPLIANT
+
+/* shmem_complexd_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_COMPLEXD_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_complexd_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_COMPLEXD_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_complexd_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_COMPLEXD_SUM_TO_ALL_COMPLIANT
+
+/* shmem_complexd_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_COMPLEXD_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_complexd_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_COMPLEXD_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_complexf_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_COMPLEXF_PROD_TO_ALL_COMPLIANT
+
+/* shmem_complexf_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_COMPLEXF_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_complexf_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_COMPLEXF_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_complexf_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_COMPLEXF_SUM_TO_ALL_COMPLIANT
+
+/* shmem_complexf_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_COMPLEXF_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_complexf_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_COMPLEXF_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_double_g is standard compliant */
+#undef HAVE_SHMEM_DOUBLE_G_COMPLIANT
+
+/* shmem_double_g is CONST variant */
+#undef HAVE_SHMEM_DOUBLE_G_CONST_VARIANT
+
+/* shmem_double_max_to_all is standard compliant */
+#undef HAVE_SHMEM_DOUBLE_MAX_TO_ALL_COMPLIANT
+
+/* shmem_double_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_DOUBLE_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_double_max_to_all is CONST variant */
+#undef HAVE_SHMEM_DOUBLE_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_double_min_to_all is standard compliant */
+#undef HAVE_SHMEM_DOUBLE_MIN_TO_ALL_COMPLIANT
+
+/* shmem_double_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_DOUBLE_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_double_min_to_all is CONST variant */
+#undef HAVE_SHMEM_DOUBLE_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_double_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_DOUBLE_PROD_TO_ALL_COMPLIANT
+
+/* shmem_double_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_DOUBLE_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_double_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_DOUBLE_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_double_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_DOUBLE_SUM_TO_ALL_COMPLIANT
+
+/* shmem_double_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_DOUBLE_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_double_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_DOUBLE_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_finalize is standard compliant */
+#undef HAVE_SHMEM_FINALIZE_COMPLIANT
+
+/* shmem_finalize is OPENMPI variant */
+#undef HAVE_SHMEM_FINALIZE_OPENMPI_VARIANT
+
+/* shmem_float_g is standard compliant */
+#undef HAVE_SHMEM_FLOAT_G_COMPLIANT
+
+/* shmem_float_g is CONST variant */
+#undef HAVE_SHMEM_FLOAT_G_CONST_VARIANT
+
+/* shmem_float_max_to_all is standard compliant */
+#undef HAVE_SHMEM_FLOAT_MAX_TO_ALL_COMPLIANT
+
+/* shmem_float_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_FLOAT_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_float_max_to_all is CONST variant */
+#undef HAVE_SHMEM_FLOAT_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_float_min_to_all is standard compliant */
+#undef HAVE_SHMEM_FLOAT_MIN_TO_ALL_COMPLIANT
+
+/* shmem_float_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_FLOAT_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_float_min_to_all is CONST variant */
+#undef HAVE_SHMEM_FLOAT_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_float_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_FLOAT_PROD_TO_ALL_COMPLIANT
+
+/* shmem_float_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_FLOAT_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_float_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_FLOAT_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_float_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_FLOAT_SUM_TO_ALL_COMPLIANT
+
+/* shmem_float_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_FLOAT_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_float_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_FLOAT_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_init_thread is CRAY_ONE_ARG variant */
+#undef HAVE_SHMEM_INIT_THREAD_CRAY_ONE_ARG_VARIANT
+
+/* shmem_init_thread is CRAY_TWO_ARGS variant */
+#undef HAVE_SHMEM_INIT_THREAD_CRAY_TWO_ARGS_VARIANT
+
+/* shmem_int_and_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_AND_TO_ALL_COMPLIANT
+
+/* shmem_int_and_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_AND_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_and_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_AND_TO_ALL_CONST_VARIANT
+
+/* shmem_int_g is standard compliant */
+#undef HAVE_SHMEM_INT_G_COMPLIANT
+
+/* shmem_int_g is CONST variant */
+#undef HAVE_SHMEM_INT_G_CONST_VARIANT
+
+/* shmem_int_max_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_MAX_TO_ALL_COMPLIANT
+
+/* shmem_int_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_max_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_int_min_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_MIN_TO_ALL_COMPLIANT
+
+/* shmem_int_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_min_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_int_or_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_OR_TO_ALL_COMPLIANT
+
+/* shmem_int_or_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_OR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_or_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_OR_TO_ALL_CONST_VARIANT
+
+/* shmem_int_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_PROD_TO_ALL_COMPLIANT
+
+/* shmem_int_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_int_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_SUM_TO_ALL_COMPLIANT
+
+/* shmem_int_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_int_wait is standard compliant */
+#undef HAVE_SHMEM_INT_WAIT_COMPLIANT
+
+/* shmem_int_wait_until is standard compliant */
+#undef HAVE_SHMEM_INT_WAIT_UNTIL_COMPLIANT
+
+/* shmem_int_wait_until is VOLATILE variant */
+#undef HAVE_SHMEM_INT_WAIT_UNTIL_VOLATILE_VARIANT
+
+/* shmem_int_wait is VOLATILE variant */
+#undef HAVE_SHMEM_INT_WAIT_VOLATILE_VARIANT
+
+/* shmem_int_xor_to_all is standard compliant */
+#undef HAVE_SHMEM_INT_XOR_TO_ALL_COMPLIANT
+
+/* shmem_int_xor_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_INT_XOR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_int_xor_to_all is CONST variant */
+#undef HAVE_SHMEM_INT_XOR_TO_ALL_CONST_VARIANT
+
+/* shmem_longdouble_get is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_GET_COMPLIANT
+
+/* shmem_longdouble_get is CRAY variant */
+#undef HAVE_SHMEM_LONGDOUBLE_GET_CRAY_VARIANT
+
+/* shmem_longdouble_g is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_G_COMPLIANT
+
+/* shmem_longdouble_g is CONST variant */
+#undef HAVE_SHMEM_LONGDOUBLE_G_CONST_VARIANT
+
+/* shmem_longdouble_iget is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_IGET_COMPLIANT
+
+/* shmem_longdouble_iget is CRAY variant */
+#undef HAVE_SHMEM_LONGDOUBLE_IGET_CRAY_VARIANT
+
+/* shmem_longdouble_iput is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_IPUT_COMPLIANT
+
+/* shmem_longdouble_iput is CRAY variant */
+#undef HAVE_SHMEM_LONGDOUBLE_IPUT_CRAY_VARIANT
+
+/* shmem_longdouble_max_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_MAX_TO_ALL_COMPLIANT
+
+/* shmem_longdouble_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGDOUBLE_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longdouble_max_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGDOUBLE_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_longdouble_min_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_MIN_TO_ALL_COMPLIANT
+
+/* shmem_longdouble_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGDOUBLE_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longdouble_min_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGDOUBLE_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_longdouble_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_PROD_TO_ALL_COMPLIANT
+
+/* shmem_longdouble_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGDOUBLE_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longdouble_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGDOUBLE_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_longdouble_put is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_PUT_COMPLIANT
+
+/* shmem_longdouble_put is CRAY variant */
+#undef HAVE_SHMEM_LONGDOUBLE_PUT_CRAY_VARIANT
+
+/* shmem_longdouble_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGDOUBLE_SUM_TO_ALL_COMPLIANT
+
+/* shmem_longdouble_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGDOUBLE_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longdouble_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGDOUBLE_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_and_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_AND_TO_ALL_COMPLIANT
+
+/* shmem_longlong_and_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_AND_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_and_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_AND_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_g is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_G_COMPLIANT
+
+/* shmem_longlong_g is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_G_CONST_VARIANT
+
+/* shmem_longlong_max_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_MAX_TO_ALL_COMPLIANT
+
+/* shmem_longlong_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_max_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_min_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_MIN_TO_ALL_COMPLIANT
+
+/* shmem_longlong_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_min_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_or_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_OR_TO_ALL_COMPLIANT
+
+/* shmem_longlong_or_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_OR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_or_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_OR_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_PROD_TO_ALL_COMPLIANT
+
+/* shmem_longlong_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_SUM_TO_ALL_COMPLIANT
+
+/* shmem_longlong_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_longlong_wait is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_WAIT_COMPLIANT
+
+/* shmem_longlong_wait_until is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_WAIT_UNTIL_COMPLIANT
+
+/* shmem_longlong_wait_until is VOLATILE variant */
+#undef HAVE_SHMEM_LONGLONG_WAIT_UNTIL_VOLATILE_VARIANT
+
+/* shmem_longlong_wait is VOLATILE variant */
+#undef HAVE_SHMEM_LONGLONG_WAIT_VOLATILE_VARIANT
+
+/* shmem_longlong_xor_to_all is standard compliant */
+#undef HAVE_SHMEM_LONGLONG_XOR_TO_ALL_COMPLIANT
+
+/* shmem_longlong_xor_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONGLONG_XOR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_longlong_xor_to_all is CONST variant */
+#undef HAVE_SHMEM_LONGLONG_XOR_TO_ALL_CONST_VARIANT
+
+/* shmem_long_and_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_AND_TO_ALL_COMPLIANT
+
+/* shmem_long_and_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_AND_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_and_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_AND_TO_ALL_CONST_VARIANT
+
+/* shmem_long_g is standard compliant */
+#undef HAVE_SHMEM_LONG_G_COMPLIANT
+
+/* shmem_long_g is CONST variant */
+#undef HAVE_SHMEM_LONG_G_CONST_VARIANT
+
+/* shmem_long_max_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_MAX_TO_ALL_COMPLIANT
+
+/* shmem_long_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_max_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_long_min_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_MIN_TO_ALL_COMPLIANT
+
+/* shmem_long_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_min_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_long_or_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_OR_TO_ALL_COMPLIANT
+
+/* shmem_long_or_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_OR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_or_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_OR_TO_ALL_CONST_VARIANT
+
+/* shmem_long_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_PROD_TO_ALL_COMPLIANT
+
+/* shmem_long_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_long_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_SUM_TO_ALL_COMPLIANT
+
+/* shmem_long_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_long_wait is standard compliant */
+#undef HAVE_SHMEM_LONG_WAIT_COMPLIANT
+
+/* shmem_long_wait_until is standard compliant */
+#undef HAVE_SHMEM_LONG_WAIT_UNTIL_COMPLIANT
+
+/* shmem_long_wait_until is VOLATILE variant */
+#undef HAVE_SHMEM_LONG_WAIT_UNTIL_VOLATILE_VARIANT
+
+/* shmem_long_wait is VOLATILE variant */
+#undef HAVE_SHMEM_LONG_WAIT_VOLATILE_VARIANT
+
+/* shmem_long_xor_to_all is standard compliant */
+#undef HAVE_SHMEM_LONG_XOR_TO_ALL_COMPLIANT
+
+/* shmem_long_xor_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_LONG_XOR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_long_xor_to_all is CONST variant */
+#undef HAVE_SHMEM_LONG_XOR_TO_ALL_CONST_VARIANT
+
+/* Defined if SHMEM implementation provides a profiling header file. */
+#undef HAVE_SHMEM_PROFILING_HEADER
+
+/* Defined if SHMEM implementation provides a profiling interface. */
+#undef HAVE_SHMEM_PROFILING_INTERFACE
+
+/* shmem_ptr is standard compliant */
+#undef HAVE_SHMEM_PTR_COMPLIANT
+
+/* shmem_ptr is CONST variant */
+#undef HAVE_SHMEM_PTR_CONST_VARIANT
+
+/* shmem_set_lock is standard compliant */
+#undef HAVE_SHMEM_SET_LOCK_COMPLIANT
+
+/* shmem_set_lock is VOLATILE variant */
+#undef HAVE_SHMEM_SET_LOCK_VOLATILE_VARIANT
+
+/* shmem_short_and_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_AND_TO_ALL_COMPLIANT
+
+/* shmem_short_and_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_AND_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_and_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_AND_TO_ALL_CONST_VARIANT
+
+/* shmem_short_g is standard compliant */
+#undef HAVE_SHMEM_SHORT_G_COMPLIANT
+
+/* shmem_short_g is CONST variant */
+#undef HAVE_SHMEM_SHORT_G_CONST_VARIANT
+
+/* shmem_short_max_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_MAX_TO_ALL_COMPLIANT
+
+/* shmem_short_max_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_MAX_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_max_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_MAX_TO_ALL_CONST_VARIANT
+
+/* shmem_short_min_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_MIN_TO_ALL_COMPLIANT
+
+/* shmem_short_min_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_MIN_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_min_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_MIN_TO_ALL_CONST_VARIANT
+
+/* shmem_short_or_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_OR_TO_ALL_COMPLIANT
+
+/* shmem_short_or_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_OR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_or_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_OR_TO_ALL_CONST_VARIANT
+
+/* shmem_short_prod_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_PROD_TO_ALL_COMPLIANT
+
+/* shmem_short_prod_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_PROD_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_prod_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_PROD_TO_ALL_CONST_VARIANT
+
+/* shmem_short_sum_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_SUM_TO_ALL_COMPLIANT
+
+/* shmem_short_sum_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_SUM_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_sum_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_SUM_TO_ALL_CONST_VARIANT
+
+/* shmem_short_wait is standard compliant */
+#undef HAVE_SHMEM_SHORT_WAIT_COMPLIANT
+
+/* shmem_short_wait_until is standard compliant */
+#undef HAVE_SHMEM_SHORT_WAIT_UNTIL_COMPLIANT
+
+/* shmem_short_wait_until is VOLATILE variant */
+#undef HAVE_SHMEM_SHORT_WAIT_UNTIL_VOLATILE_VARIANT
+
+/* shmem_short_wait is VOLATILE variant */
+#undef HAVE_SHMEM_SHORT_WAIT_VOLATILE_VARIANT
+
+/* shmem_short_xor_to_all is standard compliant */
+#undef HAVE_SHMEM_SHORT_XOR_TO_ALL_COMPLIANT
+
+/* shmem_short_xor_to_all is CONST_SIZET variant */
+#undef HAVE_SHMEM_SHORT_XOR_TO_ALL_CONST_SIZET_VARIANT
+
+/* shmem_short_xor_to_all is CONST variant */
+#undef HAVE_SHMEM_SHORT_XOR_TO_ALL_CONST_VARIANT
+
+/* Define to 1 if SHMEM has the my_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_MY_PE
+
+/* Define to 1 if SHMEM has the num_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_NUM_PES
+
+/* Define to 1 if SHMEM has the pmy_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PMY_PE
+
+/* Define to 1 if SHMEM has the pnum_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PNUM_PES
+
+/* Define to 1 if SHMEM has the pshfree symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHFREE
+
+/* Define to 1 if SHMEM has the pshmalloc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMALLOC
+
+/* Define to 1 if SHMEM has the pshmemalign symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEMALIGN
+
+/* Define to 1 if SHMEM has the pshmem_addr_accessible symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_ADDR_ACCESSIBLE
+
+/* Define to 1 if SHMEM has the pshmem_barrier symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_BARRIER
+
+/* Define to 1 if SHMEM has the pshmem_barrier_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_BARRIER_ALL
+
+/* Define to 1 if SHMEM has the pshmem_broadcast32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_BROADCAST32
+
+/* Define to 1 if SHMEM has the pshmem_broadcast64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_BROADCAST64
+
+/* Define to 1 if SHMEM has the pshmem_char_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CHAR_G
+
+/* Define to 1 if SHMEM has the pshmem_char_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CHAR_GET
+
+/* Define to 1 if SHMEM has the pshmem_char_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CHAR_P
+
+/* Define to 1 if SHMEM has the pshmem_char_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CHAR_PUT
+
+/* Define to 1 if SHMEM has the pshmem_clear_cache_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CLEAR_CACHE_INV
+
+/* Define to 1 if SHMEM has the pshmem_clear_cache_line_inv symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CLEAR_CACHE_LINE_INV
+
+/* Define to 1 if SHMEM has the pshmem_clear_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CLEAR_EVENT
+
+/* Define to 1 if SHMEM has the pshmem_clear_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_CLEAR_LOCK
+
+/* Define to 1 if SHMEM has the pshmem_collect32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COLLECT32
+
+/* Define to 1 if SHMEM has the pshmem_collect64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COLLECT64
+
+/* Define to 1 if SHMEM has the pshmem_complexd_prod_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COMPLEXD_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_complexd_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COMPLEXD_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_complexf_prod_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COMPLEXF_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_complexf_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_COMPLEXF_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_double_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_G
+
+/* Define to 1 if SHMEM has the pshmem_double_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_GET
+
+/* Define to 1 if SHMEM has the pshmem_double_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_IGET
+
+/* Define to 1 if SHMEM has the pshmem_double_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_double_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_double_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_double_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_P
+
+/* Define to 1 if SHMEM has the pshmem_double_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_double_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_PUT
+
+/* Define to 1 if SHMEM has the pshmem_double_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_double_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_DOUBLE_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_fcollect32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FCOLLECT32
+
+/* Define to 1 if SHMEM has the pshmem_fcollect64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FCOLLECT64
+
+/* Define to 1 if SHMEM has the pshmem_fence symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FENCE
+
+/* Define to 1 if SHMEM has the pshmem_finalize symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FINALIZE
+
+/* Define to 1 if SHMEM has the pshmem_float_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_G
+
+/* Define to 1 if SHMEM has the pshmem_float_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_GET
+
+/* Define to 1 if SHMEM has the pshmem_float_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_IGET
+
+/* Define to 1 if SHMEM has the pshmem_float_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_float_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_float_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_float_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_P
+
+/* Define to 1 if SHMEM has the pshmem_float_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_float_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_PUT
+
+/* Define to 1 if SHMEM has the pshmem_float_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_float_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_FLOAT_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_get128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_GET128
+
+/* Define to 1 if SHMEM has the pshmem_get16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_GET16
+
+/* Define to 1 if SHMEM has the pshmem_get32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_GET32
+
+/* Define to 1 if SHMEM has the pshmem_get64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_GET64
+
+/* Define to 1 if SHMEM has the pshmem_getmem symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_GETMEM
+
+/* Define to 1 if SHMEM has the pshmem_iget128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IGET128
+
+/* Define to 1 if SHMEM has the pshmem_iget16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IGET16
+
+/* Define to 1 if SHMEM has the pshmem_iget32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IGET32
+
+/* Define to 1 if SHMEM has the pshmem_iget64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IGET64
+
+/* Define to 1 if SHMEM has the pshmem_init symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INIT
+
+/* Define to 1 if SHMEM has the pshmem_init_thread symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INIT_THREAD
+
+/* Define to 1 if SHMEM has the pshmem_int_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_ADD
+
+/* Define to 1 if SHMEM has the pshmem_int_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_CSWAP
+
+/* Define to 1 if SHMEM has the pshmem_int_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_FADD
+
+/* Define to 1 if SHMEM has the pshmem_int_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_FINC
+
+/* Define to 1 if SHMEM has the pshmem_int_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_G
+
+/* Define to 1 if SHMEM has the pshmem_int_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_GET
+
+/* Define to 1 if SHMEM has the pshmem_int_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_IGET
+
+/* Define to 1 if SHMEM has the pshmem_int_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_INC
+
+/* Define to 1 if SHMEM has the pshmem_int_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_int_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_P
+
+/* Define to 1 if SHMEM has the pshmem_int_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_PUT
+
+/* Define to 1 if SHMEM has the pshmem_int_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_int_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_int_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_WAIT
+
+/* Define to 1 if SHMEM has the pshmem_int_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the pshmem_int_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_INT_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_iput128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IPUT128
+
+/* Define to 1 if SHMEM has the pshmem_iput16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IPUT16
+
+/* Define to 1 if SHMEM has the pshmem_iput32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IPUT32
+
+/* Define to 1 if SHMEM has the pshmem_iput64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_IPUT64
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_G
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_GET
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_IGET
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_max_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_min_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_P
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_prod_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_PUT
+
+/* Define to 1 if SHMEM has the pshmem_longdouble_sum_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGDOUBLE_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_ADD
+
+/* Define to 1 if SHMEM has the pshmem_longlong_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_CSWAP
+
+/* Define to 1 if SHMEM has the pshmem_longlong_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_FADD
+
+/* Define to 1 if SHMEM has the pshmem_longlong_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_FINC
+
+/* Define to 1 if SHMEM has the pshmem_longlong_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_G
+
+/* Define to 1 if SHMEM has the pshmem_longlong_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_GET
+
+/* Define to 1 if SHMEM has the pshmem_longlong_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_IGET
+
+/* Define to 1 if SHMEM has the pshmem_longlong_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_INC
+
+/* Define to 1 if SHMEM has the pshmem_longlong_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_longlong_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_P
+
+/* Define to 1 if SHMEM has the pshmem_longlong_prod_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_PUT
+
+/* Define to 1 if SHMEM has the pshmem_longlong_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_longlong_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_WAIT
+
+/* Define to 1 if SHMEM has the pshmem_longlong_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the pshmem_longlong_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONGLONG_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_ADD
+
+/* Define to 1 if SHMEM has the pshmem_long_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_CSWAP
+
+/* Define to 1 if SHMEM has the pshmem_long_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_FADD
+
+/* Define to 1 if SHMEM has the pshmem_long_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_FINC
+
+/* Define to 1 if SHMEM has the pshmem_long_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_G
+
+/* Define to 1 if SHMEM has the pshmem_long_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_GET
+
+/* Define to 1 if SHMEM has the pshmem_long_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_IGET
+
+/* Define to 1 if SHMEM has the pshmem_long_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_INC
+
+/* Define to 1 if SHMEM has the pshmem_long_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_long_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_P
+
+/* Define to 1 if SHMEM has the pshmem_long_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_PUT
+
+/* Define to 1 if SHMEM has the pshmem_long_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_long_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_long_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_WAIT
+
+/* Define to 1 if SHMEM has the pshmem_long_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the pshmem_long_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_LONG_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_my_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_MY_PE
+
+/* Define to 1 if SHMEM has the pshmem_n_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_N_PES
+
+/* Define to 1 if SHMEM has the pshmem_pe_accessible symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PE_ACCESSIBLE
+
+/* Define to 1 if SHMEM has the pshmem_ptr symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PTR
+
+/* Define to 1 if SHMEM has the pshmem_put128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PUT128
+
+/* Define to 1 if SHMEM has the pshmem_put16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PUT16
+
+/* Define to 1 if SHMEM has the pshmem_put32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PUT32
+
+/* Define to 1 if SHMEM has the pshmem_put64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PUT64
+
+/* Define to 1 if SHMEM has the pshmem_putmem symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_PUTMEM
+
+/* Define to 1 if SHMEM has the pshmem_quiet symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_QUIET
+
+/* Define to 1 if SHMEM has the pshmem_set_cache_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SET_CACHE_INV
+
+/* Define to 1 if SHMEM has the pshmem_set_cache_line_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SET_CACHE_LINE_INV
+
+/* Define to 1 if SHMEM has the pshmem_set_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SET_EVENT
+
+/* Define to 1 if SHMEM has the pshmem_set_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SET_LOCK
+
+/* Define to 1 if SHMEM has the pshmem_short_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_ADD
+
+/* Define to 1 if SHMEM has the pshmem_short_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_CSWAP
+
+/* Define to 1 if SHMEM has the pshmem_short_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_FADD
+
+/* Define to 1 if SHMEM has the pshmem_short_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_FINC
+
+/* Define to 1 if SHMEM has the pshmem_short_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_G
+
+/* Define to 1 if SHMEM has the pshmem_short_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_GET
+
+/* Define to 1 if SHMEM has the pshmem_short_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_IGET
+
+/* Define to 1 if SHMEM has the pshmem_short_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_INC
+
+/* Define to 1 if SHMEM has the pshmem_short_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_IPUT
+
+/* Define to 1 if SHMEM has the pshmem_short_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_P
+
+/* Define to 1 if SHMEM has the pshmem_short_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_PUT
+
+/* Define to 1 if SHMEM has the pshmem_short_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_short_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_short_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_WAIT
+
+/* Define to 1 if SHMEM has the pshmem_short_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the pshmem_short_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SHORT_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the pshmem_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_SWAP
+
+/* Define to 1 if SHMEM has the pshmem_team_alltoall symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_ALLTOALL
+
+/* Define to 1 if SHMEM has the pshmem_team_alltoallv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_ALLTOALLV
+
+/* Define to 1 if SHMEM has the pshmem_team_alltoallv_packed symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_ALLTOALLV_PACKED
+
+/* Define to 1 if SHMEM has the pshmem_team_barrier symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_BARRIER
+
+/* Define to 1 if SHMEM has the pshmem_team_create_strided symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_CREATE_STRIDED
+
+/* Define to 1 if SHMEM has the pshmem_team_free symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_FREE
+
+/* Define to 1 if SHMEM has the pshmem_team_mype symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_MYPE
+
+/* Define to 1 if SHMEM has the pshmem_team_npes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_NPES
+
+/* Define to 1 if SHMEM has the pshmem_team_split symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_SPLIT
+
+/* Define to 1 if SHMEM has the pshmem_team_translate_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEAM_TRANSLATE_PE
+
+/* Define to 1 if SHMEM has the pshmem_test_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEST_EVENT
+
+/* Define to 1 if SHMEM has the pshmem_test_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_TEST_LOCK
+
+/* Define to 1 if SHMEM has the pshmem_udcflush symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_UDCFLUSH
+
+/* Define to 1 if SHMEM has the pshmem_udcflush_line symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_UDCFLUSH_LINE
+
+/* Define to 1 if SHMEM has the pshmem_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_WAIT
+
+/* Define to 1 if SHMEM has the pshmem_wait_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_WAIT_EVENT
+
+/* Define to 1 if SHMEM has the pshmem_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHMEM_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the pshrealloc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSHREALLOC
+
+/* Define to 1 if SHMEM has the pstart_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_PSTART_PES
+
+/* Define to 1 if SHMEM has the p_my_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_P_MY_PE
+
+/* Define to 1 if SHMEM has the p_num_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_P_NUM_PES
+
+/* Define to 1 if SHMEM has the shfree symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHFREE
+
+/* Define to 1 if SHMEM has the shmalloc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMALLOC
+
+/* Define to 1 if SHMEM has the shmemalign symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEMALIGN
+
+/* Define to 1 if SHMEM has the shmem_addr_accessible symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_ADDR_ACCESSIBLE
+
+/* Define to 1 if SHMEM has the shmem_barrier symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_BARRIER
+
+/* Define to 1 if SHMEM has the shmem_barrier_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_BARRIER_ALL
+
+/* Define to 1 if SHMEM has the shmem_broadcast32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_BROADCAST32
+
+/* Define to 1 if SHMEM has the shmem_broadcast64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_BROADCAST64
+
+/* Define to 1 if SHMEM has the shmem_char_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CHAR_G
+
+/* Define to 1 if SHMEM has the shmem_char_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CHAR_GET
+
+/* Define to 1 if SHMEM has the shmem_char_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CHAR_P
+
+/* Define to 1 if SHMEM has the shmem_char_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CHAR_PUT
+
+/* Define to 1 if SHMEM has the shmem_clear_cache_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CLEAR_CACHE_INV
+
+/* Define to 1 if SHMEM has the shmem_clear_cache_line_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CLEAR_CACHE_LINE_INV
+
+/* Define to 1 if SHMEM has the shmem_clear_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CLEAR_EVENT
+
+/* Define to 1 if SHMEM has the shmem_clear_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_CLEAR_LOCK
+
+/* Define to 1 if SHMEM has the shmem_collect32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COLLECT32
+
+/* Define to 1 if SHMEM has the shmem_collect64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COLLECT64
+
+/* Define to 1 if SHMEM has the shmem_complexd_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COMPLEXD_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_complexd_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COMPLEXD_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_complexf_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COMPLEXF_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_complexf_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_COMPLEXF_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_double_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_G
+
+/* Define to 1 if SHMEM has the shmem_double_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_GET
+
+/* Define to 1 if SHMEM has the shmem_double_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_IGET
+
+/* Define to 1 if SHMEM has the shmem_double_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_IPUT
+
+/* Define to 1 if SHMEM has the shmem_double_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_double_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_double_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_P
+
+/* Define to 1 if SHMEM has the shmem_double_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_double_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_PUT
+
+/* Define to 1 if SHMEM has the shmem_double_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_double_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_DOUBLE_SWAP
+
+/* Define to 1 if SHMEM has the shmem_fcollect32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FCOLLECT32
+
+/* Define to 1 if SHMEM has the shmem_fcollect64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FCOLLECT64
+
+/* Define to 1 if SHMEM has the shmem_fence symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FENCE
+
+/* Define to 1 if SHMEM has the shmem_finalize symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FINALIZE
+
+/* Define to 1 if SHMEM has the shmem_float_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_G
+
+/* Define to 1 if SHMEM has the shmem_float_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_GET
+
+/* Define to 1 if SHMEM has the shmem_float_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_IGET
+
+/* Define to 1 if SHMEM has the shmem_float_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_IPUT
+
+/* Define to 1 if SHMEM has the shmem_float_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_float_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_float_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_P
+
+/* Define to 1 if SHMEM has the shmem_float_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_float_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_PUT
+
+/* Define to 1 if SHMEM has the shmem_float_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_float_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_FLOAT_SWAP
+
+/* Define to 1 if SHMEM has the shmem_get128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_GET128
+
+/* Define to 1 if SHMEM has the shmem_get16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_GET16
+
+/* Define to 1 if SHMEM has the shmem_get32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_GET32
+
+/* Define to 1 if SHMEM has the shmem_get64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_GET64
+
+/* Define to 1 if SHMEM has the shmem_getmem symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_GETMEM
+
+/* Define to 1 if SHMEM has the shmem_iget128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IGET128
+
+/* Define to 1 if SHMEM has the shmem_iget16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IGET16
+
+/* Define to 1 if SHMEM has the shmem_iget32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IGET32
+
+/* Define to 1 if SHMEM has the shmem_iget64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IGET64
+
+/* Define to 1 if SHMEM has the shmem_init symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INIT
+
+/* Define to 1 if SHMEM has the shmem_init_thread symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INIT_THREAD
+
+/* Define to 1 if SHMEM has the shmem_int_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_ADD
+
+/* Define to 1 if SHMEM has the shmem_int_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_CSWAP
+
+/* Define to 1 if SHMEM has the shmem_int_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_FADD
+
+/* Define to 1 if SHMEM has the shmem_int_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_FINC
+
+/* Define to 1 if SHMEM has the shmem_int_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_G
+
+/* Define to 1 if SHMEM has the shmem_int_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_GET
+
+/* Define to 1 if SHMEM has the shmem_int_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_IGET
+
+/* Define to 1 if SHMEM has the shmem_int_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_INC
+
+/* Define to 1 if SHMEM has the shmem_int_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_IPUT
+
+/* Define to 1 if SHMEM has the shmem_int_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_P
+
+/* Define to 1 if SHMEM has the shmem_int_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_PUT
+
+/* Define to 1 if SHMEM has the shmem_int_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_int_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_SWAP
+
+/* Define to 1 if SHMEM has the shmem_int_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_WAIT
+
+/* Define to 1 if SHMEM has the shmem_int_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the shmem_int_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_INT_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_iput128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IPUT128
+
+/* Define to 1 if SHMEM has the shmem_iput16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IPUT16
+
+/* Define to 1 if SHMEM has the shmem_iput32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IPUT32
+
+/* Define to 1 if SHMEM has the shmem_iput64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_IPUT64
+
+/* Define to 1 if SHMEM has the shmem_longdouble_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_G
+
+/* Define to 1 if SHMEM has the shmem_longdouble_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_GET
+
+/* Define to 1 if SHMEM has the shmem_longdouble_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_IGET
+
+/* Define to 1 if SHMEM has the shmem_longdouble_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_IPUT
+
+/* Define to 1 if SHMEM has the shmem_longdouble_max_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longdouble_min_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longdouble_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_P
+
+/* Define to 1 if SHMEM has the shmem_longdouble_prod_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longdouble_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_PUT
+
+/* Define to 1 if SHMEM has the shmem_longdouble_sum_to_all symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGDOUBLE_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_ADD
+
+/* Define to 1 if SHMEM has the shmem_longlong_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_CSWAP
+
+/* Define to 1 if SHMEM has the shmem_longlong_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_FADD
+
+/* Define to 1 if SHMEM has the shmem_longlong_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_FINC
+
+/* Define to 1 if SHMEM has the shmem_longlong_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_G
+
+/* Define to 1 if SHMEM has the shmem_longlong_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_GET
+
+/* Define to 1 if SHMEM has the shmem_longlong_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_IGET
+
+/* Define to 1 if SHMEM has the shmem_longlong_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_INC
+
+/* Define to 1 if SHMEM has the shmem_longlong_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_IPUT
+
+/* Define to 1 if SHMEM has the shmem_longlong_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_P
+
+/* Define to 1 if SHMEM has the shmem_longlong_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_PUT
+
+/* Define to 1 if SHMEM has the shmem_longlong_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_longlong_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_SWAP
+
+/* Define to 1 if SHMEM has the shmem_longlong_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_WAIT
+
+/* Define to 1 if SHMEM has the shmem_longlong_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the shmem_longlong_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONGLONG_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_ADD
+
+/* Define to 1 if SHMEM has the shmem_long_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_CSWAP
+
+/* Define to 1 if SHMEM has the shmem_long_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_FADD
+
+/* Define to 1 if SHMEM has the shmem_long_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_FINC
+
+/* Define to 1 if SHMEM has the shmem_long_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_G
+
+/* Define to 1 if SHMEM has the shmem_long_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_GET
+
+/* Define to 1 if SHMEM has the shmem_long_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_IGET
+
+/* Define to 1 if SHMEM has the shmem_long_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_INC
+
+/* Define to 1 if SHMEM has the shmem_long_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_IPUT
+
+/* Define to 1 if SHMEM has the shmem_long_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_P
+
+/* Define to 1 if SHMEM has the shmem_long_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_PUT
+
+/* Define to 1 if SHMEM has the shmem_long_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_long_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_SWAP
+
+/* Define to 1 if SHMEM has the shmem_long_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_WAIT
+
+/* Define to 1 if SHMEM has the shmem_long_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the shmem_long_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_LONG_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_my_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_MY_PE
+
+/* Define to 1 if SHMEM has the shmem_n_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_N_PES
+
+/* Define to 1 if SHMEM has the shmem_pe_accessible symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PE_ACCESSIBLE
+
+/* Define to 1 if SHMEM has the shmem_ptr symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PTR
+
+/* Define to 1 if SHMEM has the shmem_put128 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PUT128
+
+/* Define to 1 if SHMEM has the shmem_put16 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PUT16
+
+/* Define to 1 if SHMEM has the shmem_put32 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PUT32
+
+/* Define to 1 if SHMEM has the shmem_put64 symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PUT64
+
+/* Define to 1 if SHMEM has the shmem_putmem symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_PUTMEM
+
+/* Define to 1 if SHMEM has the shmem_quiet symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_QUIET
+
+/* Define to 1 if SHMEM has the shmem_set_cache_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SET_CACHE_INV
+
+/* Define to 1 if SHMEM has the shmem_set_cache_line_inv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SET_CACHE_LINE_INV
+
+/* Define to 1 if SHMEM has the shmem_set_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SET_EVENT
+
+/* Define to 1 if SHMEM has the shmem_set_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SET_LOCK
+
+/* Define to 1 if SHMEM has the shmem_short_add symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_ADD
+
+/* Define to 1 if SHMEM has the shmem_short_and_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_AND_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_cswap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_CSWAP
+
+/* Define to 1 if SHMEM has the shmem_short_fadd symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_FADD
+
+/* Define to 1 if SHMEM has the shmem_short_finc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_FINC
+
+/* Define to 1 if SHMEM has the shmem_short_g symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_G
+
+/* Define to 1 if SHMEM has the shmem_short_get symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_GET
+
+/* Define to 1 if SHMEM has the shmem_short_iget symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_IGET
+
+/* Define to 1 if SHMEM has the shmem_short_inc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_INC
+
+/* Define to 1 if SHMEM has the shmem_short_iput symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_IPUT
+
+/* Define to 1 if SHMEM has the shmem_short_max_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_MAX_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_min_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_MIN_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_or_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_OR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_p symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_P
+
+/* Define to 1 if SHMEM has the shmem_short_prod_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_PROD_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_put symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_PUT
+
+/* Define to 1 if SHMEM has the shmem_short_sum_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_SUM_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_short_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_SWAP
+
+/* Define to 1 if SHMEM has the shmem_short_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_WAIT
+
+/* Define to 1 if SHMEM has the shmem_short_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the shmem_short_xor_to_all symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SHORT_XOR_TO_ALL
+
+/* Define to 1 if SHMEM has the shmem_swap symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_SWAP
+
+/* Define to 1 if SHMEM has the shmem_team_alltoall symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_ALLTOALL
+
+/* Define to 1 if SHMEM has the shmem_team_alltoallv symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_ALLTOALLV
+
+/* Define to 1 if SHMEM has the shmem_team_alltoallv_packed symbol, 0 if not
+   */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_ALLTOALLV_PACKED
+
+/* Define to 1 if SHMEM has the shmem_team_barrier symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_BARRIER
+
+/* Define to 1 if SHMEM has the shmem_team_create_strided symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_CREATE_STRIDED
+
+/* Define to 1 if SHMEM has the shmem_team_free symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_FREE
+
+/* Define to 1 if SHMEM has the shmem_team_mype symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_MYPE
+
+/* Define to 1 if SHMEM has the shmem_team_npes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_NPES
+
+/* Define to 1 if SHMEM has the shmem_team_split symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_SPLIT
+
+/* Define to 1 if SHMEM has the shmem_team_translate_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEAM_TRANSLATE_PE
+
+/* Define to 1 if SHMEM has the shmem_test_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEST_EVENT
+
+/* Define to 1 if SHMEM has the shmem_test_lock symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_TEST_LOCK
+
+/* Define to 1 if SHMEM has the shmem_udcflush symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_UDCFLUSH
+
+/* Define to 1 if SHMEM has the shmem_udcflush_line symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_UDCFLUSH_LINE
+
+/* Define to 1 if SHMEM has the shmem_wait symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_WAIT
+
+/* Define to 1 if SHMEM has the shmem_wait_event symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_WAIT_EVENT
+
+/* Define to 1 if SHMEM has the shmem_wait_until symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHMEM_WAIT_UNTIL
+
+/* Define to 1 if SHMEM has the shrealloc symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_SHREALLOC
+
+/* Define to 1 if SHMEM has the start_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL_START_PES
+
+/* Define to 1 if SHMEM has the _my_pe symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL__MY_PE
+
+/* Define to 1 if SHMEM has the _num_pes symbol, 0 if not */
+#undef HAVE_SHMEM_SYMBOL__NUM_PES
+
+/* shmem_test_lock is standard compliant */
+#undef HAVE_SHMEM_TEST_LOCK_COMPLIANT
+
+/* shmem_test_lock is VOLATILE variant */
+#undef HAVE_SHMEM_TEST_LOCK_VOLATILE_VARIANT
+
+/* shmem_wait is standard compliant */
+#undef HAVE_SHMEM_WAIT_COMPLIANT
+
+/* shmem_wait_until is standard compliant */
+#undef HAVE_SHMEM_WAIT_UNTIL_COMPLIANT
+
+/* shmem_wait_until is VOLATILE variant */
+#undef HAVE_SHMEM_WAIT_UNTIL_VOLATILE_VARIANT
+
+/* shmem_wait is VOLATILE variant */
+#undef HAVE_SHMEM_WAIT_VOLATILE_VARIANT
+
+/* Define to 1 if you have the `sigaction' function. */
+#undef HAVE_SIGACTION
+
+/* Define to 1 if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
+
+/* define if the compiler has stringstream */
+#undef HAVE_SSTREAM
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* define if the compiler has strstream */
+#undef HAVE_STRSTREAM
+
+/* Define to 1 if you have the <sys/mman.h> header file. */
+#undef HAVE_SYS_MMAN_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/syscall.h> header file. */
+#undef HAVE_SYS_SYSCALL_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_THREAD_LOCAL_STORAGE
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Defined if unwinding support is available. */
+#undef HAVE_UNWINDING_SUPPORT
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* The #include argument used to include this packages error codes header. */
+#undef PACKAGE_ERROR_CODES_HEADER
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Toplevel src directory */
+#undef SCOREP_ABS_TOPLEVEL_SRCDIR
+
+/* First guess, use the maximum of size(void*) and sizeof(double) as alignment
+   for SCOREP_Allocator. */
+#undef SCOREP_ALLOCATOR_ALIGNMENT
+
+/* Backend nm. */
+#undef SCOREP_BACKEND_NM
+
+/* Revision of common repository */
+#undef SCOREP_COMMON_REVISION
+
+/* Revision of Score-P */
+#undef SCOREP_COMPONENT_REVISION
+
+/* Default name of the machine Score-P is running on. */
+#undef SCOREP_DEFAULT_MACHINE_NAME
+
+/* Defined if we are working from svn. */
+#undef SCOREP_IN_DEVELOPEMENT
+
+/* Defined if we are working from a make dist generated tarball. */
+#undef SCOREP_IN_PRODUCTION
+
+/* Name of the platform Score-P was built on. */
+#undef SCOREP_PLATFORM_NAME
+
+/* Provides the return address from the current function. */
+#undef SCOREP_RETURN_ADDRESS
+
+/* Defined to RUSAGE_THREAD, if it is available, else to RUSAGE_SELF. */
+#undef SCOREP_RUSAGE_SCOPE
+
+/* Defined if we are building shared libraries. See also SCOREP_STATIC_BUILD
+   */
+#undef SCOREP_SHARED_BUILD
+
+/* Compliant prototype arguments for shmem_addr_accessible */
+#undef SCOREP_SHMEM_ADDR_ACCESSIBLE_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_char_g */
+#undef SCOREP_SHMEM_CHAR_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_clear_lock */
+#undef SCOREP_SHMEM_CLEAR_LOCK_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_complexd_prod_to_all */
+#undef SCOREP_SHMEM_COMPLEXD_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_complexd_sum_to_all */
+#undef SCOREP_SHMEM_COMPLEXD_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_complexf_prod_to_all */
+#undef SCOREP_SHMEM_COMPLEXF_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_complexf_sum_to_all */
+#undef SCOREP_SHMEM_COMPLEXF_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_double_g */
+#undef SCOREP_SHMEM_DOUBLE_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_double_max_to_all */
+#undef SCOREP_SHMEM_DOUBLE_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_double_min_to_all */
+#undef SCOREP_SHMEM_DOUBLE_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_double_prod_to_all */
+#undef SCOREP_SHMEM_DOUBLE_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_double_sum_to_all */
+#undef SCOREP_SHMEM_DOUBLE_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_finalize */
+#undef SCOREP_SHMEM_FINALIZE_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_float_g */
+#undef SCOREP_SHMEM_FLOAT_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_float_max_to_all */
+#undef SCOREP_SHMEM_FLOAT_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_float_min_to_all */
+#undef SCOREP_SHMEM_FLOAT_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_float_prod_to_all */
+#undef SCOREP_SHMEM_FLOAT_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_float_sum_to_all */
+#undef SCOREP_SHMEM_FLOAT_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_init_thread */
+#undef SCOREP_SHMEM_INIT_THREAD_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_and_to_all */
+#undef SCOREP_SHMEM_INT_AND_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_g */
+#undef SCOREP_SHMEM_INT_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_max_to_all */
+#undef SCOREP_SHMEM_INT_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_min_to_all */
+#undef SCOREP_SHMEM_INT_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_or_to_all */
+#undef SCOREP_SHMEM_INT_OR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_prod_to_all */
+#undef SCOREP_SHMEM_INT_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_sum_to_all */
+#undef SCOREP_SHMEM_INT_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_wait */
+#undef SCOREP_SHMEM_INT_WAIT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_wait_until */
+#undef SCOREP_SHMEM_INT_WAIT_UNTIL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_int_xor_to_all */
+#undef SCOREP_SHMEM_INT_XOR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_get */
+#undef SCOREP_SHMEM_LONGDOUBLE_GET_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_g */
+#undef SCOREP_SHMEM_LONGDOUBLE_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_iget */
+#undef SCOREP_SHMEM_LONGDOUBLE_IGET_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_iput */
+#undef SCOREP_SHMEM_LONGDOUBLE_IPUT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_max_to_all */
+#undef SCOREP_SHMEM_LONGDOUBLE_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_min_to_all */
+#undef SCOREP_SHMEM_LONGDOUBLE_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_prod_to_all */
+#undef SCOREP_SHMEM_LONGDOUBLE_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_put */
+#undef SCOREP_SHMEM_LONGDOUBLE_PUT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longdouble_sum_to_all */
+#undef SCOREP_SHMEM_LONGDOUBLE_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_and_to_all */
+#undef SCOREP_SHMEM_LONGLONG_AND_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_g */
+#undef SCOREP_SHMEM_LONGLONG_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_max_to_all */
+#undef SCOREP_SHMEM_LONGLONG_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_min_to_all */
+#undef SCOREP_SHMEM_LONGLONG_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_or_to_all */
+#undef SCOREP_SHMEM_LONGLONG_OR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_prod_to_all */
+#undef SCOREP_SHMEM_LONGLONG_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_sum_to_all */
+#undef SCOREP_SHMEM_LONGLONG_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_wait */
+#undef SCOREP_SHMEM_LONGLONG_WAIT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_wait_until */
+#undef SCOREP_SHMEM_LONGLONG_WAIT_UNTIL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_longlong_xor_to_all */
+#undef SCOREP_SHMEM_LONGLONG_XOR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_and_to_all */
+#undef SCOREP_SHMEM_LONG_AND_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_g */
+#undef SCOREP_SHMEM_LONG_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_max_to_all */
+#undef SCOREP_SHMEM_LONG_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_min_to_all */
+#undef SCOREP_SHMEM_LONG_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_or_to_all */
+#undef SCOREP_SHMEM_LONG_OR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_prod_to_all */
+#undef SCOREP_SHMEM_LONG_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_sum_to_all */
+#undef SCOREP_SHMEM_LONG_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_wait */
+#undef SCOREP_SHMEM_LONG_WAIT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_wait_until */
+#undef SCOREP_SHMEM_LONG_WAIT_UNTIL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_long_xor_to_all */
+#undef SCOREP_SHMEM_LONG_XOR_TO_ALL_PROTO_ARGS
+
+/* Name of the implemented SHMEM specification. */
+#undef SCOREP_SHMEM_NAME
+
+/* Compliant prototype arguments for shmem_ptr */
+#undef SCOREP_SHMEM_PTR_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_set_lock */
+#undef SCOREP_SHMEM_SET_LOCK_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_and_to_all */
+#undef SCOREP_SHMEM_SHORT_AND_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_g */
+#undef SCOREP_SHMEM_SHORT_G_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_max_to_all */
+#undef SCOREP_SHMEM_SHORT_MAX_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_min_to_all */
+#undef SCOREP_SHMEM_SHORT_MIN_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_or_to_all */
+#undef SCOREP_SHMEM_SHORT_OR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_prod_to_all */
+#undef SCOREP_SHMEM_SHORT_PROD_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_sum_to_all */
+#undef SCOREP_SHMEM_SHORT_SUM_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_wait */
+#undef SCOREP_SHMEM_SHORT_WAIT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_wait_until */
+#undef SCOREP_SHMEM_SHORT_WAIT_UNTIL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_short_xor_to_all */
+#undef SCOREP_SHMEM_SHORT_XOR_TO_ALL_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_test_lock */
+#undef SCOREP_SHMEM_TEST_LOCK_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_wait */
+#undef SCOREP_SHMEM_WAIT_PROTO_ARGS
+
+/* Compliant prototype arguments for shmem_wait_until */
+#undef SCOREP_SHMEM_WAIT_UNTIL_PROTO_ARGS
+
+/* Defined if we are building static libraries. See also SCOREP_SHARED_BUILD
+   */
+#undef SCOREP_STATIC_BUILD
+
+/* Variable attribute to select a specific TLS model. */
+#undef SCOREP_THREAD_LOCAL_STORAGE_MODEL
+
+/* Set specifier to mark a variable as thread-local storage (TLS) */
+#undef SCOREP_THREAD_LOCAL_STORAGE_SPECIFIER
+
+/* The size of `double', as computed by sizeof. */
+#undef SIZEOF_DOUBLE
+
+/* The size of `void *', as computed by sizeof. */
+#undef SIZEOF_VOID_P
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Type to use for implicit character length arguments. */
+#undef scorep_fortran_charlen_t

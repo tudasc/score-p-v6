@@ -1,0 +1,50 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2013,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file       Makefile.inc.am
+
+if HAVE_SCOREP_OMP_TPD
+
+if SCOREP_HAVE_FC
+
+check_LTLIBRARIES                += libfortran_c_alignment.la
+libfortran_c_alignment_la_SOURCES = $(SRC_ROOT)test/alignment/alignment_test_c.c
+
+check_PROGRAMS             += fortran_c_alignment
+fortran_c_alignment_SOURCES = $(SRC_ROOT)test/alignment/alignment_test_f.F90
+fortran_c_alignment_CPPFLAGS = -I.
+fortran_c_alignment_LDADD   = libfortran_c_alignment.la
+
+TESTS_SERIAL += fortran_c_alignment
+
+endif SCOREP_HAVE_FC
+
+endif HAVE_SCOREP_OMP_TPD

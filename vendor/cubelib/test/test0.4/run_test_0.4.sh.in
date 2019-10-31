@@ -1,0 +1,40 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+
+echo "################# UNITE TESTS ########################"
+echo "#               Run test 0.4  :                       "
+echo "# Check the functionality of different pagind strategies"
+echo "#"
+echo "######################################################"
+mkdir -p tests
+cd tests 
+#make test fail till proper tests are not imiplemented
+result1=-1
+# here is an example of how to run test
+# echo "Perform test 1"
+# ./cube_unite_test_0.4_1
+#result1=$?
+#
+cd ..
+if [[ $result1 -ne 0  ]];
+then
+echo "Test FAILED. Inspect output above for more details."
+exit -1
+fi

@@ -1,0 +1,121 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2017                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+##CUBE4_HEADERS_ROOT=$(srcdir)/../src/cube/
+#CUBE4_TOOLS_COMMON_INC = $(srcdir)/../src/tools/common_inc
+
+CUBE4_TOOLS_LIBRARY_INC = $(srcdir)/../src/tools/tools/0001.library
+
+
+noinst_LTLIBRARIES += libcube.tools.library.la
+libcube_tools_library_la_SOURCES =                               \
+$(srcdir)/../src/tools/tools/0001.library/AbridgeTraversal.cpp \
+$(srcdir)/../src/tools/tools/0001.library/AbridgeTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/AbstractConstraint.cpp \
+$(srcdir)/../src/tools/tools/0001.library/AbstractConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/AggregatedMetric.cpp \
+$(srcdir)/../src/tools/tools/0001.library/AggregatedMetric.h \
+$(srcdir)/../src/tools/tools/0001.library/Blacklist.cpp \
+$(srcdir)/../src/tools/tools/0001.library/Blacklist.h \
+$(srcdir)/../src/tools/tools/0001.library/CCnode.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CCnode.h \
+$(srcdir)/../src/tools/tools/0001.library/CMetricCnodeConstraint.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CMetricCnodeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/CRegion.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CRegion.h \
+$(srcdir)/../src/tools/tools/0001.library/Cacheable.cpp \
+$(srcdir)/../src/tools/tools/0001.library/Cacheable.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeConstraint.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CnodeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeInfo.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CnodeInfo.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeMetric.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CnodeMetric.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubForest.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubForest.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubTree.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubTree.h \
+$(srcdir)/../src/tools/tools/0001.library/ColorMode.h \
+$(srcdir)/../src/tools/tools/0001.library/ComputeTraversal.cpp \
+$(srcdir)/../src/tools/tools/0001.library/ComputeTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/CowTree.cpp \
+$(srcdir)/../src/tools/tools/0001.library/CowTree.h \
+$(srcdir)/../src/tools/tools/0001.library/DiffPrintTraversal.cpp \
+$(srcdir)/../src/tools/tools/0001.library/DiffPrintTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/InfoObj.h \
+$(srcdir)/../src/tools/tools/0001.library/MdAggrCube.cpp \
+$(srcdir)/../src/tools/tools/0001.library/MdAggrCube.h \
+$(srcdir)/../src/tools/tools/0001.library/MdTraversal.cpp \
+$(srcdir)/../src/tools/tools/0001.library/MdTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/MultiMdAggrCube.cpp \
+$(srcdir)/../src/tools/tools/0001.library/MultiMdAggrCube.h \
+$(srcdir)/../src/tools/tools/0001.library/PrintableCCnode.cpp \
+$(srcdir)/../src/tools/tools/0001.library/PrintableCCnode.h \
+$(srcdir)/../src/tools/tools/0001.library/RegionConstraint.cpp \
+$(srcdir)/../src/tools/tools/0001.library/RegionConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/RegionInfo.cpp \
+$(srcdir)/../src/tools/tools/0001.library/RegionInfo.h \
+$(srcdir)/../src/tools/tools/0001.library/Traversal.cpp \
+$(srcdir)/../src/tools/tools/0001.library/Traversal.h \
+$(srcdir)/../src/tools/tools/0001.library/TreeConstraint.cpp \
+$(srcdir)/../src/tools/tools/0001.library/TreeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/VisitorsMetric.cpp \
+$(srcdir)/../src/tools/tools/0001.library/VisitorsMetric.h
+
+
+dist_cube_tools_library_headers_HEADERS += \
+$(srcdir)/../src/tools/tools/0001.library/AbridgeTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/AbstractConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/AggregatedMetric.h \
+$(srcdir)/../src/tools/tools/0001.library/Blacklist.h \
+$(srcdir)/../src/tools/tools/0001.library/CCnode.h \
+$(srcdir)/../src/tools/tools/0001.library/CMetricCnodeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/CRegion.h \
+$(srcdir)/../src/tools/tools/0001.library/Cacheable.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeInfo.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeMetric.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubForest.h \
+$(srcdir)/../src/tools/tools/0001.library/CnodeSubTree.h \
+$(srcdir)/../src/tools/tools/0001.library/ColorMode.h \
+$(srcdir)/../src/tools/tools/0001.library/ComputeTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/CowTree.h \
+$(srcdir)/../src/tools/tools/0001.library/DiffPrintTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/InfoObj.h \
+$(srcdir)/../src/tools/tools/0001.library/MdAggrCube.h \
+$(srcdir)/../src/tools/tools/0001.library/MdTraversal.h \
+$(srcdir)/../src/tools/tools/0001.library/MultiMdAggrCube.h \
+$(srcdir)/../src/tools/tools/0001.library/PrintableCCnode.h \
+$(srcdir)/../src/tools/tools/0001.library/RegionConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/RegionInfo.h \
+$(srcdir)/../src/tools/tools/0001.library/Traversal.h \
+$(srcdir)/../src/tools/tools/0001.library/TreeConstraint.h \
+$(srcdir)/../src/tools/tools/0001.library/VisitorsMetric.h
+
+libcube_tools_library_la_CPPFLAGS = \
+$(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) -I$(CUBE4_TOOLS_LIBRARY_INC)  $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION)\
+                       $(AM_CPPFLAGS) \
+                       $(AM_CXXFLAGS) \
+                       $(CXXFLAGS) \
+                       $(CXXFLAGS_FOR_BUILD)
+
+
+
+
+
+##$(srcdir)/../src/tools/tools/0001.library/PrintTraversal.cpp \
+##(srcdir)/../src/tools/tools/0001.library/PrintTraversal.h \

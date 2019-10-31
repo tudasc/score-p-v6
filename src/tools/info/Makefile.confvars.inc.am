@@ -1,0 +1,47 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2012, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2013-2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2015,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file src/tools/info/Makefile.confvars.inc.am
+
+
+noinst_LTLIBRARIES += libscorep_confvars.la
+
+libscorep_confvars_la_SOURCES = \
+    $(SRC_ROOT)src/measurement/SCOREP_Config.c \
+    $(SRC_ROOT)src/measurement/scorep_type_utils.c \
+    $(SRC_ROOT)src/measurement/scorep_environment.c \
+    $(SRC_ROOT)src/measurement/scorep_subsystem_management.c \
+    $(SRC_ROOT)src/tools/info/scorep_confvars_all_subsystems.c \
+    $(SRC_ROOT)src/measurement/paradigm/scorep_system_tree_sequence_on.c
+
+libscorep_confvars_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    -I$(INC_ROOT)src/measurement/include \
+    -I$(INC_ROOT)src/measurement \
+    -I$(INC_ROOT)src/measurement/profiling/include \
+    -I$(INC_ROOT)src/measurement/online_access \
+    -I$(INC_ROOT)src/measurement/filtering \
+    -I$(INC_ROOT)src/adapters/include \
+    -I$(INC_ROOT)src/services/include \
+    -I$(PUBLIC_INC_DIR) \
+    $(UTILS_CPPFLAGS) \
+    -I$(INC_DIR_SUBSTRATES) \
+    -I$(INC_DIR_DEFINITIONS)
+
+libscorep_confvars_la_LIBADD =

@@ -1,0 +1,1065 @@
+/* ../src/config-backend.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Define if building universal (internal helper macro) */
+#undef AC_APPLE_UNIVERSAL_BUILD
+
+/* Name of the sub-build. */
+#undef AFS_PACKAGE_BUILD
+
+/* Symbol name of the sub-build in upper case. */
+#undef AFS_PACKAGE_BUILD_NAME
+
+/* Symbol name of the sub-build in lower case. */
+#undef AFS_PACKAGE_BUILD_name
+
+/* The package name usable as a symbol in upper case. */
+#undef AFS_PACKAGE_NAME
+
+/* Relative path to the top-level source directory. */
+#undef AFS_PACKAGE_SRCDIR
+
+/* The package name usable as a symbol in lower case. */
+#undef AFS_PACKAGE_name
+
+/* Try to use colorful output for tests. */
+#undef CUTEST_USE_COLOR
+
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef F77_DUMMY_MAIN
+
+/* Define to a macro mangling the given C identifier (in lower and upper
+   case), which must not contain underscores, for linking with Fortran. */
+#undef F77_FUNC
+
+/* As F77_FUNC, but for C identifiers containing underscores. */
+#undef F77_FUNC_
+
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef F77_NO_MINUS_C_MINUS_O
+
+/* Define to dummy `main' function (if any) required to link to the Fortran
+   libraries. */
+#undef FC_DUMMY_MAIN
+
+/* Define if F77 and FC dummy `main' functions are identical. */
+#undef FC_DUMMY_MAIN_EQ_F77
+
+/* Define to a macro mangling the given C identifier (in lower and upper
+   case), which must not contain underscores, for linking with Fortran. */
+#undef FC_FUNC
+
+/* As FC_FUNC, but for C identifiers containing underscores. */
+#undef FC_FUNC_
+
+/* Define to 1 if your Fortran compiler doesn't accept -c and -o together. */
+#undef FC_NO_MINUS_C_MINUS_O
+
+/* Makes C variable alignment consistent with Fortran */
+#undef FORTRAN_ALIGNED
+
+/* Name of var after mangled by the Fortran compiler. */
+#undef FORTRAN_MANGLED
+
+/* Define to 1 if you have the <arpa/inet.h> header file. */
+#undef HAVE_ARPA_INET_H
+
+/* Compiler constructor support */
+#undef HAVE_BACKEND_COMPILER_CONSTRUCTOR_SUPPORT
+
+/* Defined if compiler instrumentation is available. */
+#undef HAVE_BACKEND_COMPILER_INSTRUMENTATION
+
+/* Define if the compiler instrumentation needs the symbol table. */
+#undef HAVE_BACKEND_COMPILER_INSTRUMENTATION_NEEDS_SYMBOL_TABLE
+
+/* Defined if cuda is available. */
+#undef HAVE_BACKEND_CUDA_SUPPORT
+
+/* Defined if CUDA version is greater or equal 6.0. */
+#undef HAVE_BACKEND_CUDA_VERSION_GREATER_EQUAL_60
+
+/* Defined if CUPTI activity asynchronous buffer handling is available. */
+#undef HAVE_BACKEND_CUPTI_ASYNC_SUPPORT
+
+/* Define if cplus_demangle is available. */
+#undef HAVE_BACKEND_DEMANGLE
+
+/* Defined if dlfcn.h provides RTLD_NEXT option for calls to dlsym function.
+   */
+#undef HAVE_BACKEND_DLFCN_RTLD_NEXT
+
+/* Defined if dynamic linking via dlfcn.h is supported. */
+#undef HAVE_BACKEND_DLFCN_SUPPORT
+
+/* Defined if GCC plug-in support is available. */
+#undef HAVE_BACKEND_GCC_PLUGIN_SUPPORT
+
+/* Defined if getrusage() is available. */
+#undef HAVE_BACKEND_GETRUSAGE
+
+/* Defined if the linker is GNU ld. */
+#undef HAVE_BACKEND_GNU_LINKER
+
+/* Define if libbfd is available. */
+#undef HAVE_BACKEND_LIBBFD
+
+/* Define if linktime library wrapping is possible. */
+#undef HAVE_BACKEND_LIBWRAP_LINKTIME_SUPPORT
+
+/* Define if runtime library wrapping is possible. */
+#undef HAVE_BACKEND_LIBWRAP_RUNTIME_SUPPORT
+
+/* Define if library wrapping is possible at all. */
+#undef HAVE_BACKEND_LIBWRAP_SUPPORT
+
+/* Define if memory tracking is supported. */
+#undef HAVE_BACKEND_MEMORY_SUPPORT
+
+/* Defined if metric perf support is available. */
+#undef HAVE_BACKEND_METRIC_PERF
+
+/* Defined if MPI support is available. */
+#undef HAVE_BACKEND_MPI_SUPPORT
+
+/* Define if nm is available. */
+#undef HAVE_BACKEND_NM
+
+/* Defined if online access is possible. */
+#undef HAVE_BACKEND_ONLINE_ACCESS
+
+/* OPARI2 revision used for version-dependent feature activation. */
+#undef HAVE_BACKEND_OPARI2_REVISION
+
+/* Defined if openacc.h has been found and OpenACC enabled. */
+#undef HAVE_BACKEND_OPENACC
+
+/* Defined if openacc.h and acc_prof.h have been found and OpenACC enabled */
+#undef HAVE_BACKEND_OPENACC_SUPPORT
+
+/* Defined if OpenCL is available. */
+#undef HAVE_BACKEND_OPENCL_SUPPORT
+
+/* Defined if OpenCL API version 1.0 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_0_SUPPORT
+
+/* Defined if OpenCL API version 1.1 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_1_SUPPORT
+
+/* Defined if OpenCL API version 1.2 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_2_SUPPORT
+
+/* Defined if OpenCL API version 2.0 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_2_0_SUPPORT
+
+/* Defined if libpapi is available. */
+#undef HAVE_BACKEND_PAPI
+
+/* Defined if PMI is available. */
+#undef HAVE_BACKEND_PMI
+
+/* Defined if recording calls to POSIX asynchronous I/O is possible. */
+#undef HAVE_BACKEND_POSIX_AIO_SUPPORT
+
+/* Defined if recording calls to POSIX I/O is possible. */
+#undef HAVE_BACKEND_POSIX_IO_SUPPORT
+
+/* Defined if sampling support is available. */
+#undef HAVE_BACKEND_SAMPLING_SUPPORT
+
+/* Timer aix available */
+#undef HAVE_BACKEND_SCOREP_TIMER_AIX
+
+/* Timer bgl available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGL
+
+/* Timer bgp available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGP
+
+/* Timer bgq available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGQ
+
+/* Timer clock_gettime available */
+#undef HAVE_BACKEND_SCOREP_TIMER_CLOCK_GETTIME
+
+/* The clk_id as string used in clock_gettime calls. */
+#undef HAVE_BACKEND_SCOREP_TIMER_CLOCK_GETTIME_CLK_ID_NAME
+
+/* Default timer */
+#undef HAVE_BACKEND_SCOREP_TIMER_DEFAULT
+
+/* Timer gettimeofday available */
+#undef HAVE_BACKEND_SCOREP_TIMER_GETTIMEOFDAY
+
+/* Timer mac available */
+#undef HAVE_BACKEND_SCOREP_TIMER_MAC
+
+/* Timer mingw available */
+#undef HAVE_BACKEND_SCOREP_TIMER_MINGW
+
+/* Timer tsc available */
+#undef HAVE_BACKEND_SCOREP_TIMER_TSC
+
+/* TSC timer */
+#undef HAVE_BACKEND_SCOREP_TIMER_TSC_NAME
+
+/* Defined if SHMEM Profiling Interface support is available. */
+#undef HAVE_BACKEND_SHMEM_PROFILING_INTERFACE
+
+/* Defined if SHMEM support is available. */
+#undef HAVE_BACKEND_SHMEM_SUPPORT
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_BACKEND_THREAD_LOCAL_STORAGE
+
+/* Defined if unwinding support is available. */
+#undef HAVE_BACKEND_UNWINDING_SUPPORT
+
+/* Define to 1 if you have the <bfd.h> header file. */
+#undef HAVE_BFD_H
+
+/* Can link a close function */
+#undef HAVE_CLOSE
+
+/* Define to 1 if you have the <CL/cl.h> header file. */
+#undef HAVE_CL_CL_H
+
+/* Defined if configured to use Cobi. */
+#undef HAVE_COBI
+
+/* Whether the compiler accepts argumetns to a constructor. */
+#undef HAVE_COMPILER_CONSTRUCTOR_ARGS
+
+/* Compiler constructor support */
+#undef HAVE_COMPILER_CONSTRUCTOR_SUPPORT
+
+/* Defined if compiler instrumentation is available. */
+#undef HAVE_COMPILER_INSTRUMENTATION
+
+/* Define if the compiler instrumentation needs the symbol table. */
+#undef HAVE_COMPILER_INSTRUMENTATION_NEEDS_SYMBOL_TABLE
+
+/* Define to 1 if you have the <ctype.h> header file. */
+#undef HAVE_CTYPE_H
+
+/* Define to 1 if you have the <cuda.h> header file. */
+#undef HAVE_CUDA_H
+
+/* Define to 1 if you have the <cuda_runtime_api.h> header file. */
+#undef HAVE_CUDA_RUNTIME_API_H
+
+/* Defined if cuda is available. */
+#undef HAVE_CUDA_SUPPORT
+
+/* Defined if CUDA version is greater or equal 6.0. */
+#undef HAVE_CUDA_VERSION_GREATER_EQUAL_60
+
+/* Defined if CUPTI activity asynchronous buffer handling is available. */
+#undef HAVE_CUPTI_ASYNC_SUPPORT
+
+/* Define to 1 if you have the <cupti.h> header file. */
+#undef HAVE_CUPTI_H
+
+/* Define to 1 if you have the declaration of `close', and to 0 if you don't.
+   */
+#undef HAVE_DECL_CLOSE
+
+/* Define to 1 if you have the declaration of `fileno', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FILENO
+
+/* Define to 1 if you have the declaration of `fseeko', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FSEEKO
+
+/* Define to 1 if you have the declaration of `fseeko64', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FSEEKO64
+
+/* Define to 1 if you have the declaration of `getcwd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETCWD
+
+/* Define to 1 if you have the declaration of `gethostid', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTID
+
+/* Define to 1 if you have the declaration of `gethostname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTNAME
+
+/* Define to 1 if you have the declaration of `PERF_COUNT_HW_REF_CPU_CYCLES',
+   and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_REF_CPU_CYCLES
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_HW_STALLED_CYCLES_BACKEND', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_STALLED_CYCLES_BACKEND
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_HW_STALLED_CYCLES_FRONTEND', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_HW_STALLED_CYCLES_FRONTEND
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_SW_ALIGNMENT_FAULTS', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_SW_ALIGNMENT_FAULTS
+
+/* Define to 1 if you have the declaration of
+   `PERF_COUNT_SW_EMULATION_FAULTS', and to 0 if you don't. */
+#undef HAVE_DECL_PERF_COUNT_SW_EMULATION_FAULTS
+
+/* Define to 1 if you have the declaration of `read', and to 0 if you don't.
+   */
+#undef HAVE_DECL_READ
+
+/* Define to 1 if you have the declaration of `realpath', and to 0 if you
+   don't. */
+#undef HAVE_DECL_REALPATH
+
+/* Define to 1 if you have the declaration of `RTLD_LAZY', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_LAZY
+
+/* Define to 1 if you have the declaration of `RTLD_LOCAL', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_LOCAL
+
+/* Define to 1 if you have the declaration of `RTLD_NOW', and to 0 if you
+   don't. */
+#undef HAVE_DECL_RTLD_NOW
+
+/* Define to 1 if you have the declaration of `unw_init_local2', and to 0 if
+   you don't. */
+#undef HAVE_DECL_UNW_INIT_LOCAL2
+
+/* Define to 1 if you have the declaration of `unw_init_local_signal', and to
+   0 if you don't. */
+#undef HAVE_DECL_UNW_INIT_LOCAL_SIGNAL
+
+/* Define if cplus_demangle is available. */
+#undef HAVE_DEMANGLE
+
+/* Defined if opendir/readdir/closedir is supported. */
+#undef HAVE_DIRENT
+
+/* Define to 1 if you have the <dirent.h> header file. */
+#undef HAVE_DIRENT_H
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Defined if dlfcn.h provides RTLD_NEXT option for calls to dlsym function.
+   */
+#undef HAVE_DLFCN_RTLD_NEXT
+
+/* Defined if dynamic linking via dlfcn.h is supported. */
+#undef HAVE_DLFCN_SUPPORT
+
+/* Can link a fileno function */
+#undef HAVE_FILENO
+
+/* Can link a fseeko function */
+#undef HAVE_FSEEKO
+
+/* Can link a fseeko64 function */
+#undef HAVE_FSEEKO64
+
+/* Defined if GCC plug-in support is available. */
+#undef HAVE_GCC_PLUGIN_SUPPORT
+
+/* Can link a getcwd function */
+#undef HAVE_GETCWD
+
+/* Can link a gethostid function */
+#undef HAVE_GETHOSTID
+
+/* Can link a gethostname function */
+#undef HAVE_GETHOSTNAME
+
+/* Define to 1 if you have the `gethrtime' function. */
+#undef HAVE_GETHRTIME
+
+/* Can link a getrlimit function */
+#undef HAVE_GETRLIMIT
+
+/* Defined if getrusage() is available. */
+#undef HAVE_GETRUSAGE
+
+/* Define to 1 if you have the <gnu/lib-names.h> header file. */
+#undef HAVE_GNU_LIB_NAMES_H
+
+/* Defined if the linker is GNU ld. */
+#undef HAVE_GNU_LINKER
+
+/* Define to 1 if hrtime_t is defined in <sys/time.h> */
+#undef HAVE_HRTIME_T
+
+/* Define to 1 if you have the <intrinsics.h> header file. */
+#undef HAVE_INTRINSICS_H
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define if libbfd is available. */
+#undef HAVE_LIBBFD
+
+/* Defined if libcuda is available. */
+#undef HAVE_LIBCUDA
+
+/* Defined if libcudart is available. */
+#undef HAVE_LIBCUDART
+
+/* Defined if libcupti is available. */
+#undef HAVE_LIBCUPTI
+
+/* Define to 1 if you have the `dl' library (-ldl). */
+#undef HAVE_LIBDL
+
+/* Defined if libOpenCL is available. */
+#undef HAVE_LIBOPENCL
+
+/* Defined if libpmi is available. */
+#undef HAVE_LIBPMI
+
+/* Defined if librca is available. */
+#undef HAVE_LIBRCA
+
+/* Defined if libunwind is available. */
+#undef HAVE_LIBUNWIND
+
+/* Define to 1 if you have the <libunwind.h> header file. */
+#undef HAVE_LIBUNWIND_H
+
+/* Define if linktime library wrapping is possible. */
+#undef HAVE_LIBWRAP_LINKTIME_SUPPORT
+
+/* Define if runtime library wrapping is possible. */
+#undef HAVE_LIBWRAP_RUNTIME_SUPPORT
+
+/* Define if library wrapping is possible at all. */
+#undef HAVE_LIBWRAP_SUPPORT
+
+/* Define to 1 if you have the <linux/perf_event.h> header file. */
+#undef HAVE_LINUX_PERF_EVENT_H
+
+/* Can link macOS _NSGetExecutablePath */
+#undef HAVE_MACOS_GETEXEC
+
+/* Can link macOS proc_pidpath */
+#undef HAVE_MACOS_LIBPROC
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Define if memory tracking is supported. */
+#undef HAVE_MEMORY_SUPPORT
+
+/* Defined if metric perf support is available. */
+#undef HAVE_METRIC_PERF
+
+/* Defined to 1 if native MIC build exists */
+#undef HAVE_MIC_SUPPORT
+
+/* Defined if MPI support is available. */
+#undef HAVE_MPI_SUPPORT
+
+/* define if the compiler implements namespaces */
+#undef HAVE_NAMESPACES
+
+/* Define to 1 if you have the <netdb.h> header file. */
+#undef HAVE_NETDB_H
+
+/* Define to 1 if you have the <netinet/in.h> header file. */
+#undef HAVE_NETINET_IN_H
+
+/* Define if nm is available. */
+#undef HAVE_NM
+
+/* Defined if online access is possible. */
+#undef HAVE_ONLINE_ACCESS
+
+/* Defined if openacc.h has been found and OpenACC enabled. */
+#undef HAVE_OPENACC
+
+/* Defined if openacc.h and acc_prof.h have been found and OpenACC enabled */
+#undef HAVE_OPENACC_SUPPORT
+
+/* Define to 1 if you have the <OpenCL/opencl.h> header file. */
+#undef HAVE_OPENCL_OPENCL_H
+
+/* Defined if OpenCL is available. */
+#undef HAVE_OPENCL_SUPPORT
+
+/* Defined if OpenCL API version 1.0 is supported. */
+#undef HAVE_OPENCL_VERSION_1_0_SUPPORT
+
+/* Defined if OpenCL API version 1.1 is supported. */
+#undef HAVE_OPENCL_VERSION_1_1_SUPPORT
+
+/* Defined if OpenCL API version 1.2 is supported. */
+#undef HAVE_OPENCL_VERSION_1_2_SUPPORT
+
+/* Defined if OpenCL API version 2.0 is supported. */
+#undef HAVE_OPENCL_VERSION_2_0_SUPPORT
+
+/* Define if the used OTF2 library has SIONlib support. */
+#undef HAVE_OTF2_SUBSTRATE_SION
+
+/* Defined if libpapi is available. */
+#undef HAVE_PAPI
+
+/* Set if we are building for the AIX platform */
+#undef HAVE_PLATFORM_AIX
+
+/* Set if we are building for the ALTIX platform */
+#undef HAVE_PLATFORM_ALTIX
+
+/* Set if we are building for the ARM platform */
+#undef HAVE_PLATFORM_ARM
+
+/* Set if we are building for the BG/L platform */
+#undef HAVE_PLATFORM_BGL
+
+/* Set if we are building for the BG/P platform */
+#undef HAVE_PLATFORM_BGP
+
+/* Set if we are building for the BG/Q platform */
+#undef HAVE_PLATFORM_BGQ
+
+/* Set if we are building for the Cray platform */
+#undef HAVE_PLATFORM_CRAY
+
+/* Set if we are building for the Cray XC platform */
+#undef HAVE_PLATFORM_CRAYXC
+
+/* Set if we are building for the Cray XE platform */
+#undef HAVE_PLATFORM_CRAYXE
+
+/* Set if we are building for the Cray XK platform */
+#undef HAVE_PLATFORM_CRAYXK
+
+/* Set if we are building for the Cray XT platform */
+#undef HAVE_PLATFORM_CRAYXT
+
+/* Set if we are building for the FX10 platform */
+#undef HAVE_PLATFORM_FX10
+
+/* Set if we are building for the FX100 platform */
+#undef HAVE_PLATFORM_FX100
+
+/* Set if we are building for the K platform */
+#undef HAVE_PLATFORM_K
+
+/* Set if we are building for the Linux platform */
+#undef HAVE_PLATFORM_LINUX
+
+/* Set if we are building for the macOS platform */
+#undef HAVE_PLATFORM_MAC
+
+/* Set if we are building for the Intel MIC platform */
+#undef HAVE_PLATFORM_MIC
+
+/* Set if we are building for the MinGW platform */
+#undef HAVE_PLATFORM_MINGW
+
+/* Set if we are building for the NEC SX platform */
+#undef HAVE_PLATFORM_NECSX
+
+/* Set if we are building for the Solaris platform */
+#undef HAVE_PLATFORM_SOLARIS
+
+/* Defined if PMI is available. */
+#undef HAVE_PMI
+
+/* Define to 1 if you have the <pmi.h> header file. */
+#undef HAVE_PMI_H
+
+/* Can link against popen and pclose */
+#undef HAVE_POPEN
+
+/* Can link posix access function */
+#undef HAVE_POSIX_ACCESS
+
+/* Defined if recording calls to POSIX asynchronous I/O is possible. */
+#undef HAVE_POSIX_AIO_SUPPORT
+
+/* Defined if recording calls to POSIX I/O is possible. */
+#undef HAVE_POSIX_IO_SUPPORT
+
+/* Define to 1 if POSIX I/O has the aio_cancel symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_CANCEL
+
+/* Define to 1 if POSIX I/O has the aio_error symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_ERROR
+
+/* Define to 1 if POSIX I/O has the aio_fsync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_FSYNC
+
+/* Define to 1 if POSIX I/O has the aio_read symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_READ
+
+/* Define to 1 if POSIX I/O has the aio_return symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_RETURN
+
+/* Define to 1 if POSIX I/O has the aio_suspend symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_SUSPEND
+
+/* Define to 1 if POSIX I/O has the aio_write symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_AIO_WRITE
+
+/* Define to 1 if POSIX I/O has the close symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CLOSE
+
+/* Define to 1 if POSIX I/O has the closedir symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CLOSEDIR
+
+/* Define to 1 if POSIX I/O has the creat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CREAT
+
+/* Define to 1 if POSIX I/O has the creat64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_CREAT64
+
+/* Define to 1 if POSIX I/O has the dup symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP
+
+/* Define to 1 if POSIX I/O has the dup2 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP2
+
+/* Define to 1 if POSIX I/O has the dup3 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_DUP3
+
+/* Define to 1 if POSIX I/O has the fclose symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FCLOSE
+
+/* Define to 1 if POSIX I/O has the fcntl symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FCNTL
+
+/* Define to 1 if POSIX I/O has the fdatasync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FDATASYNC
+
+/* Define to 1 if POSIX I/O has the fdopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FDOPEN
+
+/* Define to 1 if POSIX I/O has the fflush symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FFLUSH
+
+/* Define to 1 if POSIX I/O has the fgetc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETC
+
+/* Define to 1 if POSIX I/O has the fgetpos symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETPOS
+
+/* Define to 1 if POSIX I/O has the fgets symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FGETS
+
+/* Define to 1 if POSIX I/O has the flockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FLOCKFILE
+
+/* Define to 1 if POSIX I/O has the fopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FOPEN
+
+/* Define to 1 if POSIX I/O has the fopen64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FOPEN64
+
+/* Define to 1 if POSIX I/O has the fprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPRINTF
+
+/* Define to 1 if POSIX I/O has the fputc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPUTC
+
+/* Define to 1 if POSIX I/O has the fputs symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FPUTS
+
+/* Define to 1 if POSIX I/O has the fread symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FREAD
+
+/* Define to 1 if POSIX I/O has the freopen symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FREOPEN
+
+/* Define to 1 if POSIX I/O has the fscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSCANF
+
+/* Define to 1 if POSIX I/O has the fseek symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEK
+
+/* Define to 1 if POSIX I/O has the fseeko symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEKO
+
+/* Define to 1 if POSIX I/O has the fseeko64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSEEKO64
+
+/* Define to 1 if POSIX I/O has the fsync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FSYNC
+
+/* Define to 1 if POSIX I/O has the ftell symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTELL
+
+/* Define to 1 if POSIX I/O has the ftello symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTELLO
+
+/* Define to 1 if POSIX I/O has the ftrylockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FTRYLOCKFILE
+
+/* Define to 1 if POSIX I/O has the funlockfile symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FUNLOCKFILE
+
+/* Define to 1 if POSIX I/O has the fwrite symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_FWRITE
+
+/* Define to 1 if POSIX I/O has the getchar symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_GETCHAR
+
+/* Define to 1 if POSIX I/O has the gets symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_GETS
+
+/* Define to 1 if POSIX I/O has the lio_listio symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LIO_LISTIO
+
+/* Define to 1 if POSIX I/O has the lockf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LOCKF
+
+/* Define to 1 if POSIX I/O has the lseek symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LSEEK
+
+/* Define to 1 if POSIX I/O has the lseek64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_LSEEK64
+
+/* Define to 1 if POSIX I/O has the open symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPEN
+
+/* Define to 1 if POSIX I/O has the open64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPEN64
+
+/* Define to 1 if POSIX I/O has the openat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_OPENAT
+
+/* Define to 1 if POSIX I/O has the pread symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREAD
+
+/* Define to 1 if POSIX I/O has the pread64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREAD64
+
+/* Define to 1 if POSIX I/O has the preadv symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PREADV
+
+/* Define to 1 if POSIX I/O has the printf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PRINTF
+
+/* Define to 1 if POSIX I/O has the pselect symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PSELECT
+
+/* Define to 1 if POSIX I/O has the putchar symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PUTCHAR
+
+/* Define to 1 if POSIX I/O has the puts symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PUTS
+
+/* Define to 1 if POSIX I/O has the pwrite symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITE
+
+/* Define to 1 if POSIX I/O has the pwrite64 symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITE64
+
+/* Define to 1 if POSIX I/O has the pwritev symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_PWRITEV
+
+/* Define to 1 if POSIX I/O has the read symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_READ
+
+/* Define to 1 if POSIX I/O has the readv symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_READV
+
+/* Define to 1 if POSIX I/O has the rewind symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_REWIND
+
+/* Define to 1 if POSIX I/O has the scanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SCANF
+
+/* Define to 1 if POSIX I/O has the select symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SELECT
+
+/* Define to 1 if POSIX I/O has the sync symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SYNC
+
+/* Define to 1 if POSIX I/O has the syncfs symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_SYNCFS
+
+/* Define to 1 if POSIX I/O has the ungetc symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNGETC
+
+/* Define to 1 if POSIX I/O has the unlink symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNLINK
+
+/* Define to 1 if POSIX I/O has the unlinkat symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_UNLINKAT
+
+/* Define to 1 if POSIX I/O has the vfprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VFPRINTF
+
+/* Define to 1 if POSIX I/O has the vfscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VFSCANF
+
+/* Define to 1 if POSIX I/O has the vprintf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VPRINTF
+
+/* Define to 1 if POSIX I/O has the vscanf symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_VSCANF
+
+/* Define to 1 if POSIX I/O has the write symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_WRITE
+
+/* Define to 1 if POSIX I/O has the writev symbol, 0 if not */
+#undef HAVE_POSIX_IO_SYMBOL_WRITEV
+
+/* Can link posix readlink function */
+#undef HAVE_POSIX_READLINK
+
+/* Define if you have POSIX threads libraries and header files. */
+#undef HAVE_PTHREAD
+
+/* Have PTHREAD_PRIO_INHERIT. */
+#undef HAVE_PTHREAD_PRIO_INHERIT
+
+/* Can link a read function */
+#undef HAVE_READ
+
+/* Define to 1 if you have the `read_real_time' function. */
+#undef HAVE_READ_REAL_TIME
+
+/* Can link a realpath function */
+#undef HAVE_REALPATH
+
+/* Defined if SCOREP_RETURN_ADDRESS() is functional. */
+#undef HAVE_RETURN_ADDRESS
+
+/* Defined if RUSAGE_THREAD is available. */
+#undef HAVE_RUSAGE_THREAD
+
+/* Defined if struct member sigaction.sa_sigaction and type siginfo_t are
+   available. */
+#undef HAVE_SAMPLING_SIGACTION
+
+/* Defined if sampling support is available. */
+#undef HAVE_SAMPLING_SUPPORT
+
+/* Define to 1 to enable additional debug output and checks. */
+#undef HAVE_SCOREP_DEBUG
+
+/* Define to 1 to disable assertions (like NDEBUG). */
+#undef HAVE_SCOREP_NO_ASSERT
+
+/* Define to 1 if OpenMP ancestry functionality is available. */
+#undef HAVE_SCOREP_OMP_ANCESTRY
+
+/* Define to 1 if OpenMP tpd functionality is available. */
+#undef HAVE_SCOREP_OMP_TPD
+
+/* Define to 1 if PDT support available */
+#undef HAVE_SCOREP_PDT
+
+/* If set, time measurements for Score-P's SCOREP_InitMeasurement() and
+   scorep_finalize() functions are performed. */
+#undef HAVE_SCOREP_RUNTIME_MANAGEMENT_TIMINGS
+
+/* Defined if SHMEM Profiling Interface support is available. */
+#undef HAVE_SHMEM_PROFILING_INTERFACE
+
+/* Defined if SHMEM support is available. */
+#undef HAVE_SHMEM_SUPPORT
+
+/* Define to 1 if you have the `sigaction' function. */
+#undef HAVE_SIGACTION
+
+/* Define to 1 if you have the <signal.h> header file. */
+#undef HAVE_SIGNAL_H
+
+/* define if the compiler has stringstream */
+#undef HAVE_SSTREAM
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* define if the compiler has strstream */
+#undef HAVE_STRSTREAM
+
+/* Define to 1 if you have the <sys/mman.h> header file. */
+#undef HAVE_SYS_MMAN_H
+
+/* Define to 1 if you have the <sys/socket.h> header file. */
+#undef HAVE_SYS_SOCKET_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/syscall.h> header file. */
+#undef HAVE_SYS_SYSCALL_H
+
+/* Define to 1 if you have the <sys/time.h> header file. */
+#undef HAVE_SYS_TIME_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_THREAD_LOCAL_STORAGE
+
+/* Define to 1 if you have the `time_base_to_time' function. */
+#undef HAVE_TIME_BASE_TO_TIME
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Defined if unwinding support is available. */
+#undef HAVE_UNWINDING_SUPPORT
+
+/* Define if you have the UNICOS _rtc() intrinsic. */
+#undef HAVE__RTC
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* The #include argument used to include this packages error codes header. */
+#undef PACKAGE_ERROR_CODES_HEADER
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Define to necessary symbol if this constant uses a non-standard name on
+   your system. */
+#undef PTHREAD_CREATE_JOINABLE
+
+/* Toplevel src directory */
+#undef SCOREP_ABS_TOPLEVEL_SRCDIR
+
+/* First guess, use the maximum of size(void*) and sizeof(double) as alignment
+   for SCOREP_Allocator. */
+#undef SCOREP_ALLOCATOR_ALIGNMENT
+
+/* Backend nm. */
+#undef SCOREP_BACKEND_NM
+
+/* Defines path to Cobi. */
+#undef SCOREP_COBI_PATH
+
+/* Revision of common repository */
+#undef SCOREP_COMMON_REVISION
+
+/* Specifies how the compiler supports a constructor in C. */
+#undef SCOREP_COMPILER_CONSTRUCTOR_MODE
+
+/* Attribute mode for compiler constructor in C. */
+#undef SCOREP_COMPILER_CONSTRUCTOR_MODE_ATTRIBUTE
+
+/* Pragma mode for compiler constructor in C. */
+#undef SCOREP_COMPILER_CONSTRUCTOR_MODE_PRAGMA
+
+/* Prototype arguments accepts to a constructor. */
+#undef SCOREP_COMPILER_CONSTRUCTOR_PROTO_ARGS
+
+/* Arguments from constructor passing to another function. */
+#undef SCOREP_COMPILER_CONSTRUCTOR_PROXY_ARGS
+
+/* Revision of Score-P */
+#undef SCOREP_COMPONENT_REVISION
+
+/* Default name of the machine Score-P is running on. */
+#undef SCOREP_DEFAULT_MACHINE_NAME
+
+/* Defined if we are working from svn. */
+#undef SCOREP_IN_DEVELOPEMENT
+
+/* Defined if we are working from a make dist generated tarball. */
+#undef SCOREP_IN_PRODUCTION
+
+/* Name of the platform Score-P was built on. */
+#undef SCOREP_PLATFORM_NAME
+
+/* Provides the return address from the current function. */
+#undef SCOREP_RETURN_ADDRESS
+
+/* Defined to RUSAGE_THREAD, if it is available, else to RUSAGE_SELF. */
+#undef SCOREP_RUSAGE_SCOPE
+
+/* Defined if we are building shared libraries. See also SCOREP_STATIC_BUILD
+   */
+#undef SCOREP_SHARED_BUILD
+
+/* Defined if we are building static libraries. See also SCOREP_SHARED_BUILD
+   */
+#undef SCOREP_STATIC_BUILD
+
+/* Variable attribute to select a specific TLS model. */
+#undef SCOREP_THREAD_LOCAL_STORAGE_MODEL
+
+/* Set specifier to mark a variable as thread-local storage (TLS) */
+#undef SCOREP_THREAD_LOCAL_STORAGE_SPECIFIER
+
+/* The clk_id used in clock_gettime calls. */
+#undef SCOREP_TIMER_CLOCK_GETTIME_CLK_ID
+
+/* The size of `double', as computed by sizeof. */
+#undef SIZEOF_DOUBLE
+
+/* The size of `int64_t', as computed by sizeof. */
+#undef SIZEOF_INT64_T
+
+/* The size of `void *', as computed by sizeof. */
+#undef SIZEOF_VOID_P
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* Define WORDS_BIGENDIAN to 1 if your processor stores words with the most
+   significant byte first (like Motorola and SPARC, unlike Intel). */
+#if defined AC_APPLE_UNIVERSAL_BUILD
+# if defined __BIG_ENDIAN__
+#  define WORDS_BIGENDIAN 1
+# endif
+#else
+# ifndef WORDS_BIGENDIAN
+#  undef WORDS_BIGENDIAN
+# endif
+#endif
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Type to use for implicit character length arguments. */
+#undef scorep_fortran_charlen_t

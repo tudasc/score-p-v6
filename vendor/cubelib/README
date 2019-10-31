@@ -1,0 +1,73 @@
+
+                             Cube Library v4.4 README
+                             ========================
+
+Cube Library is a general purpose library for reading and writing of a multi-
+dimensional performance space consisting of the dimensions (i) performance 
+metric, (ii) call path, and (iii) system resource. Each dimension can be 
+represented as a tree, where non-leaf nodes of the tree can be collapsed or 
+expanded to achieve the desired level of granularity. 
+
+The Cube Library is a general purpose library, optimized in first place to be 
+be used with Cube GUI, but might ge used in another tools as well. 
+
+Cube Library is released as open source under a BSD-style license. 
+Please see the COPYING file in the package base directory for details.
+
+
+Installation
+============
+
+See the INSTALL file for detailed information about how to configure, build
+and install Cube Library.
+
+User Documentation
+==================
+
+Cube Library documentation for a specific installation is by default
+installed into the '$CUBEW_ROOT/share/doc/cubelib' subdirectory.  At
+present, however, user documentation is still limited.
+
+ * Cube Derived Metrics Guide 
+    (CubeDerivedMetricsGuide.pdf | derived/html/index.html):
+
+   The Cube Derived Metrics Guide is currently being rewritten and still 
+   incomplete. However, it should already contain enough information to get you
+   started and avoid the most common pitfalls.
+   
+ * Cube Library Tools Developer Guide 
+    (CubeToolDevelopmentGuide.pdf | tools-dev/html/index.html):
+
+   The Cube Library Tools Developer Guide is currently being rewritten 
+   and still incomplete. However, it should already contain enough information 
+   to get you started and avoid the most common pitfalls.
+
+ * Cube Tools Guide 
+    (CubeToolGuide.pdf | tools-guide/html/index.html):
+
+   The Cube Tools Guide is currently being rewritten and still incomplete. 
+   However, it should already contain enough information to get you started and 
+   avoid the most common pitfalls.
+
+ * Cube Library open issues & limitations (OPEN_ISSUES):
+
+   Compendium of known limitations and unimplemented features that may affect
+   Cube Library usability on various platforms or with certain 
+   applications, with suggested workarounds where appropriate.  Although issues 
+   may be uncommon and/or quite technically complex, users are encouraged to 
+   briefly review this document, particularly if they believe they have 
+   encountered a problem when using Cube Library, prior to contacting 
+   user support.
+
+
+Web page & Contact
+==================
+
+For further more detailed information on Cube Library see the
+project webpages at
+
+        http://www.scalasca.org/
+
+For help, reporting bugs, and making comments or suggestions send e-mail to
+
+        scalasca@fz-juelich.de

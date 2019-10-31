@@ -1,0 +1,55 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE1_OUT="$TEMPLATE_DIR/nodeview1.out"
+TEMPLATE2_OUT="$TEMPLATE_DIR/nodeview2.out"
+
+EXT_CUBE_LOCATION="@CUBE_TEST_FILE_LOCATION@"
+if test "x$EXT_CUBE_LOCATION" == "x"; then
+CUBEFILE=example3.cubex
+else
+CUBEFILE=$EXT_CUBE_LOCATION/example3.cubex
+fi
+
+
+echo "##########################################################################"
+echo "# Run test 21 : Check the tool \"cube_nodeview\" "
+echo "#              DISABLED                                                  #"
+echo "##########################################################################"
+exit 0
+mkdir -p tests
+cd tests
+echo "=====>  Printout nodeview for metric visits..."
+../cube_nodeview -m visits $CUBEFILE > nodeviewout1
+result1=$?
+echo "=====> Compare result with saved template using diff..."
+diff $TEMPLATE1_OUT nodeviewout1 &> test21_1.diff
+result2=$?
+echo "=====>  Printout nodeview for metric time..."
+../cube_nodeview -m time $CUBEFILE > nodeviewout2
+result3=$?
+echo "=====> Compare result with saved template using diff..."
+diff $TEMPLATE2_OUT nodeviewout2 &> test21_2.diff
+result4=$?
+cd ..
+if [[ $result1 -ne 0 || $result2 -ne 0 || $result1 -ne 0 || $result2 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above and tests/test21.diff for more details."
+exit -1
+fi

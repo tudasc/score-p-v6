@@ -1,0 +1,68 @@
+#!/bin/bash
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011, 2014
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## See the COPYING file in the package base directory for details.
+##
+
+## file       run_selective_test.sh
+
+
+OTF2_PRINT=@OTF2_BINDIR@/otf2-print
+SRC_ROOT=@abs_top_srcdir@/..
+RESULT_DIR=scorep-selective-test-dir
+
+cleanup()
+{
+    rm -rf scorep-measurement-tmp
+    rm -rf $RESULT_DIR
+    rm -f trace.txt
+}
+trap cleanup EXIT
+
+# Execute selective test
+SCOREP_EXPERIMENT_DIRECTORY=$RESULT_DIR SCOREP_ENABLE_PROFILING=true SCOREP_ENABLE_TRACING=true SCOREP_SELECTIVE_CONFIG_FILE=$SRC_ROOT/test/adapters/user/C/selective.cfg ./selective_test
+if [ $? -ne 0 ]; then
+    echo "selective_test exited with errors."
+    exit 1
+fi
+
+# Check output
+$OTF2_PRINT $RESULT_DIR/traces.otf2 | LC_ALL=C grep '^\(ENTER\|LEAVE\) ' > trace.txt
+if [ x`grep -c loop trace.txt` = x16 ]; then
+  if [ x`grep -c foo trace.txt` = x16 ]; then
+    exit 0;
+  else
+    echo "Uncorrect number of events for 'foo'."
+    echo "16 expected but `grep -c loop trace.txt` occurred"
+    exit 1
+  fi
+fi
+
+echo "Uncorrect number of events for 'foo'."
+echo "16 expected but `grep -c loop trace.txt` occurred"
+exit 1
+
+

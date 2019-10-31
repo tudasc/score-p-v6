@@ -1,0 +1,12 @@
+CC=icc -mmic
+CXX=icpc -mmic
+F77=ifort -mmic
+FC=ifort -mmic
+
+CPPFLAGS=-I/usr/include
+CFLAGS=-I/usr/include
+CXXFLAGS=-I/usr/include
+#FFLAGS=
+#FCFLAGS=
+LDFLAGS=-L/usr/lib64
+#LIBS=

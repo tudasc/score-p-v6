@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cube version="3.0">
+  <doc>
+    <mirrors>
+    </mirrors>
+  </doc>
+  <metrics>
+    <metric id="0">
+      <uniq_name>Uniq_name1</uniq_name>
+      <dtype>FLOAT</dtype>
+      <disp_name>Time</disp_name>
+      <uom>sec</uom>
+      <url>@mirror@patterns-2.1.html#execution</url>
+      <descr>root node</descr>
+      <metric id="1">
+        <uniq_name>Uniq_name2</uniq_name>
+        <dtype>FLOAT</dtype>
+        <disp_name>User time</disp_name>
+        <uom>sec</uom>
+        <url>http://www.cs.utk.edu/usr.html</url>
+        <descr>2nd level</descr>
+      </metric>
+      <metric id="2">
+        <uniq_name>Uniq_name3</uniq_name>
+        <dtype>INTEGER</dtype>
+        <disp_name>NEWTime</disp_name>
+        <uom>sec</uom>
+        <url>@mirror@patterns-2.1.html#execution</url>
+        <descr>root node</descr>
+        <metric id="3">
+          <uniq_name>Uniq_name4</uniq_name>
+          <dtype>FLOAT</dtype>
+          <disp_name>NEW User time</disp_name>
+          <uom>sec</uom>
+          <url>http://www.cs.utk.edu/usr.html</url>
+          <descr>2nd level</descr>
+        </metric>
+      </metric>
+    </metric>
+  </metrics>
+  <program>
+    <region id="0" mod="/ICL/CUBE/example.c" begin="21" end="100">
+      <name>main</name>
+      <url></url>
+      <descr>1st level</descr>
+    </region>
+    <region id="1" mod="/ICL/CUBE/example.c" begin="1" end="10">
+      <name>&lt;&lt;init&gt;&gt;foo</name>
+      <url></url>
+      <descr>2nd level</descr>
+    </region>
+    <region id="2" mod="/ICL/CUBE/example.c" begin="11" end="20">
+      <name>&lt;&lt;loop&gt;&gt;bar</name>
+      <url></url>
+      <descr>2nd level</descr>
+    </region>
+    <cnode id="0" line="21" mod="/ICL/CUBE/example.c" calleeId="0">
+      <cnode id="1" line="60" mod="/ICL/CUBE/example.c" calleeId="1">
+      </cnode>
+      <cnode id="2" line="80" mod="/ICL/CUBE/example.c" calleeId="2">
+      </cnode>
+    </cnode>
+  </program>
+  <system>
+    <machine Id="0">
+      <name>MSC&lt;&lt;juelich&gt;&gt;</name>
+      <node Id="0">
+        <name>Athena&lt;&lt;juropa&gt;&gt;</name>
+        <process Id="0">
+          <name>Process 0&lt;&lt;master&gt;&gt;</name>
+          <rank>0</rank>
+          <thread Id="0">
+            <name>Thread 0&lt;&lt;iterator&gt;&gt;</name>
+            <rank>0</rank>
+          </thread>
+        </process>
+        <process Id="1">
+          <name>Process 1&lt;&lt;worker&gt;&gt;</name>
+          <rank>1</rank>
+          <thread Id="1">
+            <name>Thread 1&lt;&lt;solver&gt;&gt;</name>
+            <rank>1</rank>
+          </thread>
+        </process>
+      </node>
+    </machine>
+    <topologies>
+      <cart  name="Topology 1" ndims="2">
+        <dim size="5" periodic="true"/>
+        <dim size="5" periodic="false"/>
+        <coord thrdId="1">0 0</coord>
+      </cart>
+      <cart   name="2D Dim"  ndims="2">
+        <dim name="X" size="3" periodic="true"/>
+        <dim name="Y" size="3" periodic="false"/>
+        <coord thrdId="0">0 1</coord>
+        <coord thrdId="1">1 0</coord>
+      </cart>
+      <cart   name="4D Dim" ndims="4">
+        <dim name="Dimension X" size="3" periodic="true"/>
+        <dim name="Dimension Y" size="3" periodic="false"/>
+        <dim name="Dimension Z" size="3" periodic="false"/>
+        <dim name="Dimension Q" size="3" periodic="false"/>
+        <coord thrdId="0">0 1 0 0</coord>
+        <coord thrdId="1">1 0 0 0</coord>
+      </cart>
+      <cart   name="14D Dim!" ndims="14">
+        <dim size="3" periodic="true"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <coord thrdId="0">0 1 0 0 0 0 0 0 0 0 0 0 0 2</coord>
+        <coord thrdId="1">1 0 0 0 0 0 0 0 0 0 0 0 0 0</coord>
+      </cart>
+      <cart  ndims="2">
+        <dim size="5" periodic="true"/>
+        <dim size="5" periodic="false"/>
+        <coord thrdId="1">0 0</coord>
+      </cart>
+      <cart  ndims="2">
+        <dim size="3" periodic="true"/>
+        <dim size="3" periodic="false"/>
+        <coord thrdId="0">0 1</coord>
+        <coord thrdId="1">1 0</coord>
+      </cart>
+      <cart  ndims="4">
+        <dim size="3" periodic="true"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <coord thrdId="0">0 1 0 0</coord>
+        <coord thrdId="1">1 0 0 0</coord>
+      </cart>
+      <cart  ndims="14">
+        <dim size="3" periodic="true"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <dim size="3" periodic="false"/>
+        <coord thrdId="0">0 1 0 0 0 0 0 0 0 0 0 0 0 2</coord>
+        <coord thrdId="1">1 0 0 0 0 0 0 0 0 0 0 0 0 0</coord>
+      </cart>
+    </topologies>
+  </system>
+  <severity>
+    <matrix metricId="0">
+    <row cnodeId="0">
+-1123.4
+3567.9
+     </row>
+    <row cnodeId="1">
+1123.4
+2567.9
+     </row>
+    <row cnodeId="2">
+123.4
+567.9
+     </row>
+    </matrix>
+    <matrix metricId="1">
+      <row cnodeId="0">
+    -123.4
+    -567.9
+       </row>
+      <row cnodeId="1">
+    0
+    0
+       </row>
+      <row cnodeId="2">
+    0
+    0
+       </row>
+    </matrix>
+    <matrix metricId="2">
+      <row cnodeId="0">
+    0
+    0
+       </row>
+      <row cnodeId="1">
+    0
+    0
+       </row>
+      <row cnodeId="2">
+    23
+    26
+       </row>
+    </matrix>
+    <matrix metricId="3">
+        <row cnodeId="0">
+        -30
+        10
+         </row>
+        <row cnodeId="1">
+        340
+        10
+         </row>
+        <row cnodeId="2">
+        3
+        6
+         </row>
+    </matrix>
+  </severity>
+</cube>

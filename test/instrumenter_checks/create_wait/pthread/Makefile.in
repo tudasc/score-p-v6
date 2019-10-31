@@ -1,0 +1,69 @@
+## -*- mode: makefile -*-
+
+## @configure_input@ from test/instrumenter_checks/create_wait/pthread/Makefile.in
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2015-2016, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+
+CC   = @CC@
+# -Ox does not work for all compilers. Use AM_CONDITIONAL here?
+CFLAGS   = -O3
+
+@HAVE_PTHREAD_WITHOUT_FLAGS_TRUE@PTHREAD_OPTION = --thread=pthread
+@HAVE_PTHREAD_WITHOUT_FLAGS_FALSE@PTHREAD_OPTION =
+
+SCOREP_OPTIONS = --nomemory
+@SCOREP_COMPILER_SUN_TRUE@SCOREP_OPTIONS += --nocompiler
+@SCOREP_COMPILER_SUN_FALSE@@HAVE_COMPILER_INSTRUMENTATION_FALSE@SCOREP_OPTIONS += --nocompiler
+
+@HAVE_PTHREAD_WITHOUT_FLAGS_TRUE@@SCOREP_COMPILER_SUN_TRUE@suffix = _pthread_nocompiler
+@HAVE_PTHREAD_WITHOUT_FLAGS_TRUE@@SCOREP_COMPILER_SUN_FALSE@suffix = _pthread
+@HAVE_PTHREAD_WITHOUT_FLAGS_FALSE@@SCOREP_COMPILER_SUN_TRUE@suffix = _nocompiler
+@HAVE_PTHREAD_WITHOUT_FLAGS_FALSE@@SCOREP_COMPILER_SUN_FALSE@suffix =
+
+BINDIR = @abs_top_builddir@/../installcheck/instrumenter_checks/bin
+SRCDIR = @abs_top_srcdir@/../test/instrumenter_checks/create_wait/pthread
+INCDIR = @abs_top_builddir@/../installcheck/instrumenter_checks
+TOOLS  = @BINDIR@/scorep @BINDIR@/scorep-config $(INCDIR)/check-instrumentation.sh
+PREP   = "@BINDIR@/scorep"
+
+SCOREP_INSTRUMENTING_VERBOSE = $(scorep_instrumenting_verbose_$(V))
+scorep_instrumenting_verbose_ = $(scorep_instrumenting_verbose_0)
+scorep_instrumenting_verbose_0 = @echo "  SCOREP CC " $@;
+
+SCOREP_INSTRUMENTING_VERBOSE2 = $(scorep_instrumenting_verbose2_$(V))
+scorep_instrumenting_verbose2_ =
+scorep_instrumenting_verbose2_1 = --verbose
+
+
+TESTS = \
+    $(BINDIR)/pi-pthread-cc$(suffix) \
+    $(BINDIR)/pi_mutex-pthread-cc$(suffix) \
+    $(BINDIR)/producer_consumer-pthread-cc$(suffix) \
+    $(BINDIR)/management_routines-pthread-cc$(suffix) \
+    $(BINDIR)/synchronization_routines-pthread-cc$(suffix) \
+    $(BINDIR)/dining_philosophers-pthread-cc$(suffix)
+
+
+all: $(TESTS)
+
+
+$(BINDIR)/%$(suffix): $(SRCDIR)/%.c $(TOOLS)
+	@mkdir -p $(BINDIR)
+	$(SCOREP_INSTRUMENTING_VERBOSE)$(PREP) $(PTHREAD_OPTION) $(SCOREP_OPTIONS) $(SCOREP_INSTRUMENTING_VERBOSE2) $(CC) @PTHREAD_CFLAGS@ $(CFLAGS) -o $@ $< @PTHREAD_LIBS@ -lm
+	@$(INCDIR)/check-instrumentation.sh pthread $@ $(SCOREP_INSTRUMENTING_VERBOSE2) $(PTHREAD_OPTION) $(SCOREP_OPTIONS)
+
+clean:
+	@rm -f $(TESTS)

@@ -1,0 +1,54 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+EXTRA_DIST += 	\
+		$(srcdir)/vendor/windows/Makefile.bat  \
+		$(srcdir)/vendor/windows/Clean.bat  \
+		$(srcdir)/vendor/windows/cubelib-install.nsi  \
+		$(srcdir)/vendor/windows/cube/cube.pro  \
+		$(srcdir)/vendor/windows/tools/calltree/cube_calltree.pro  \
+		$(srcdir)/vendor/windows/tools/canonize/cube_canonize.pro  \
+		$(srcdir)/vendor/windows/tools/clean/cube_clean.pro  \
+		$(srcdir)/vendor/windows/tools/cmp/cube_cmp.pro  \
+		$(srcdir)/vendor/windows/tools/common/common.pro  \
+		$(srcdir)/vendor/windows/tools/commoncalltree/cube_commoncalltree.pro  \
+		$(srcdir)/vendor/windows/tools/cube3to4/cube3to4.pro  \
+		$(srcdir)/vendor/windows/tools/cube4to3/cube4to3.pro  \
+		$(srcdir)/vendor/windows/tools/cut/cube_cut.pro  \
+		$(srcdir)/vendor/windows/tools/diff/cube_diff.pro  \
+		$(srcdir)/vendor/windows/tools/dump/cube_dump.pro  \
+		$(srcdir)/vendor/windows/tools/derive/cube_derive.pro  \
+		$(srcdir)/vendor/windows/tools/exclusify/cube_exclusify.pro  \
+		$(srcdir)/vendor/windows/tools/inclusify/cube_inclusify.pro  \
+		$(srcdir)/vendor/windows/tools/info/cube_info.pro  \
+		$(srcdir)/vendor/windows/tools/isempty/cube_is_empty.pro  \
+		$(srcdir)/vendor/windows/tools/mean/cube_mean.pro  \
+		$(srcdir)/vendor/windows/tools/merge/cube_merge.pro  \
+		$(srcdir)/vendor/windows/tools/nodeview/cube_nodeview.pro  \
+		$(srcdir)/vendor/windows/tools/part/cube_part.pro  \
+		$(srcdir)/vendor/windows/tools/rank/cube_rank.pro  \
+		$(srcdir)/vendor/windows/tools/regioninfo/cube_regioninfo.pro  \
+		$(srcdir)/vendor/windows/tools/remap2/cube_remap2.pro  \
+		$(srcdir)/vendor/windows/tools/sanity/cube_sanity.pro  \
+		$(srcdir)/vendor/windows/tools/score/cube_score.pro  \
+		$(srcdir)/vendor/windows/tools/stat/cube_stat.pro  \
+		$(srcdir)/vendor/windows/tools/tau2cube/tau2cube.pro  \
+		$(srcdir)/vendor/windows/tools/test/cube_test.pro  \
+		$(srcdir)/vendor/windows/tools/toolslibrary/toolslibrary.pro  \
+		$(srcdir)/vendor/windows/tools/topoassist/cube_topoassist.pro
+

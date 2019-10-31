@@ -1,0 +1,172 @@
+/* ../src/config-libwrap.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Name of the sub-build. */
+#undef AFS_PACKAGE_BUILD
+
+/* Symbol name of the sub-build in upper case. */
+#undef AFS_PACKAGE_BUILD_NAME
+
+/* Symbol name of the sub-build in lower case. */
+#undef AFS_PACKAGE_BUILD_name
+
+/* The package name usable as a symbol in upper case. */
+#undef AFS_PACKAGE_NAME
+
+/* Relative path to the top-level source directory. */
+#undef AFS_PACKAGE_SRCDIR
+
+/* The package name usable as a symbol in lower case. */
+#undef AFS_PACKAGE_name
+
+/* Can link a close function */
+#undef HAVE_CLOSE
+
+/* Define to 1 if you have the declaration of `close', and to 0 if you don't.
+   */
+#undef HAVE_DECL_CLOSE
+
+/* Define to 1 if you have the declaration of `fileno', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FILENO
+
+/* Define to 1 if you have the declaration of `fseeko', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FSEEKO
+
+/* Define to 1 if you have the declaration of `fseeko64', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FSEEKO64
+
+/* Define to 1 if you have the declaration of `getcwd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETCWD
+
+/* Define to 1 if you have the declaration of `gethostid', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTID
+
+/* Define to 1 if you have the declaration of `gethostname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTNAME
+
+/* Define to 1 if you have the declaration of `read', and to 0 if you don't.
+   */
+#undef HAVE_DECL_READ
+
+/* Define to 1 if you have the declaration of `realpath', and to 0 if you
+   don't. */
+#undef HAVE_DECL_REALPATH
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Can link a fileno function */
+#undef HAVE_FILENO
+
+/* Can link a fseeko function */
+#undef HAVE_FSEEKO
+
+/* Can link a fseeko64 function */
+#undef HAVE_FSEEKO64
+
+/* Can link a getcwd function */
+#undef HAVE_GETCWD
+
+/* Can link a gethostid function */
+#undef HAVE_GETHOSTID
+
+/* Can link a gethostname function */
+#undef HAVE_GETHOSTNAME
+
+/* Can link a getrlimit function */
+#undef HAVE_GETRLIMIT
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* define if the compiler implements namespaces */
+#undef HAVE_NAMESPACES
+
+/* Can link against popen and pclose */
+#undef HAVE_POPEN
+
+/* Can link a read function */
+#undef HAVE_READ
+
+/* Can link a realpath function */
+#undef HAVE_REALPATH
+
+/* Define to 1 to enable additional debug output and checks. */
+#undef HAVE_SCOREP_DEBUG
+
+/* Define to 1 to disable assertions (like NDEBUG). */
+#undef HAVE_SCOREP_NO_ASSERT
+
+/* define if the compiler has stringstream */
+#undef HAVE_SSTREAM
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* define if the compiler has strstream */
+#undef HAVE_STRSTREAM
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* The #include argument used to include this packages error codes header. */
+#undef PACKAGE_ERROR_CODES_HEADER
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Defined if we are working from svn. */
+#undef SCOREP_IN_DEVELOPEMENT
+
+/* Defined if we are working from a make dist generated tarball. */
+#undef SCOREP_IN_PRODUCTION
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION

@@ -1,0 +1,150 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2017                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2013                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+/** @page introduction Introduction into Cube Derived Metrics
+
+@section intro Introduction
+With Cube 4.1.0 derived metrics are introduced and provide a powerful tool for performance data processing. 
+
+Unlike normal metrics of the cube, derived metrics do not store any data inside of the cube report, but derive 
+their value according to an expression, formulated using CubePL (Cube Processing Language) syntax ( \secref{cubeplsyntax} ).
+
+Cube supports different kinds ( \secref{threeofkind} ) of derived metrics. Derived metric can be a child metric of any  
+metric of cube or other derived metrics. 
+
+Derived metrics are naturally metrics with the value \texttt{DOUBLE}
+
+@section creation Creation of a derived metric in Cube
+
+Derived metrics play the very same role as a normal metric in cube, therefore one proceeds with creation of derived metrics as usual.
+The only difference is the specification of the CubePL expression. 
+
+@subsection cwritercreation Using the C writer
+
+To create a derived metric in a C program, one calls \texttt{cube_metric_set_expression(...)} subsequently to \texttt{cube_def_met(...)}.
+Here is a code example:
+@code
+  cube_metric * met = cube_def_met(cube,
+				    "Derived metric",
+				    "derivedmetric1",
+				    "DOUBLE",
+				    "sec",
+				    "",
+				    "https://doc.web.org/metrics.html#derived",
+				    "Average execution time",
+				    NULL,
+				    CUBE_METRIC_PREDERIVED_EXCLUSIVE
+				   );
+  cube_metric_set_expression(met, "metric::time(i)/metric::visits(e)");
+@endcode
+
+Derived metric specification allows to define an CubePL expression, which will be execuded only once before the actual metric expression 
+is executed. 
+To specify an initalization expression, one uses the call \texttt{cube_metric_set_init_expression(...)}.
+
+Prederived metrics allow to redefine operators "+" and "-" in the aggregation formula by any user defined expression using same CubePL syntax.
+
+Any such expression should be a formula of "arg1" and "arg2" parameters. E.g. \texttt{max(arg1, arg2)}.
+ 
+To specify an expression for an aggregation operator one uses the call \texttt{cube_metric_set_aggr_expression(metric,operator,expression)},
+where operator can be \texttt{CUBE_METRIC_AGGR_PLUS} or \texttt{CUBE_METRIC_AGGR_MINUS}
+
+
+
+@subsection cppcreation Using the C++ library
+To create a derived metric in C++ programs, one specifies the expression as the last parameter of the metric definition. This parameter can be omitted, in this case the derived metric returns always 0.
+
+Here is a code example:
+@code
+  Metric * met = cube.def_met(
+				"Derived metric",
+				"derivedmetric1",
+				"DOUBLE",
+				"sec",
+				"",
+				"https://doc.web.org/metrics.html#derived",
+				"Average execution time",
+				NULL,
+				CUBE_METRIC_PREDERIVED_EXCLUSIVE,
+				"${unit}*metric::time(i)/metric::visits(e)",
+				"{ ${unit}=1000; }",
+				"min(arg1,arg2)",
+				""
+				);
+@endcode	
+\texttt{CUBE_METRIC_PREDERIVED_EXCLUSIVE} defines the kind of the derived metric (see \secref{threeofkind} below).
+
+Derived metric specification allows to define an CubePL expression, which will be execuded only once before the actual metric expression 
+is executed. This expression is the last argument in the parameter \texttt{\{ \$\{unit\}=1000; \}}.
+
+Operator "+" is redefined like \texttt{min(arg1,arg2)}. 
+
+Note, that the CubePL expression should be valid at the time of execution. It means, if there is a reference to metric, this metric should be defined before. 
+
+
+@section threeofkind The three kinds of derived metrics
+
+Cube provides an API to calculate different inclusive and exclusive values aggregated over different dimensions. 
+
+In the context of derived metrics it is sometimes useful, when evaluation of the expression is done after the aggregation of the metrics
+in the expression, sometimes it is needed to aggregate values of the derived metrics. 
+
+Therefor Cube provides three kinds of derived metrics:
+<ol>
+<li>
+<b>Prederived exclusive metric</b> - metric, which value of which expression is observed as "being stored" inside of cube report 
+and it behaves as a usual exclusive (along call tree) metric. 
+
+One specifies this type of metric using 
+constant 
+
+\texttt{CUBE_METRIC_PREDERIVED_EXCLUSIVE}
+
+For this metric one can redefine only operator "+". Operator "-" will be ignored.
+
+</li>
+<li>
+<b>Prederived inclusive metric</b> - metric, which value of which expression is observed as "being stored" inside of cube report 
+and it behaves as a usual inclusive (along call tree) metric. 
+
+One specifies this type of metric  using 
+constant 
+
+\texttt{CUBE_METRIC_PREDERIVED_INCLUSIVE}
+
+For this metric one can redefine both operators, "+" and "-".
+
+
+</li>
+<li>
+<b>Postderived metric</b> - metric, which expression evaluated only after metrics, which were used inside of the expression, get 
+aggregated according to the aggregation context (along system tree or along call tree). 
+
+If expression doesn't contain references 
+to another metrics, no aggregation is done. In this case the expression gets calculated and its value returned. 
+
+One specifies this type of metric  using 
+constant 
+
+\texttt{CUBE_METRIC_POSTDERIVE}
+
+This metric doesn't allow to redefine anyoperators, because calculation of this metric is performed AFTER aggregation within another metric.
+
+</li>
+</ol>
+
+*/
+

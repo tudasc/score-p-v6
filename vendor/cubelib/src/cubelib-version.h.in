@@ -1,0 +1,84 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2016                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2015                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+
+#ifndef CUBELIB_VERSION_H
+#define CUBELIB_VERSION_H
+
+
+/*-------------------------------------------------------------------------*/
+/**
+ *  @file  cube-version.h
+ *  @brief Provides the Cube package version information.
+ **/
+/*-------------------------------------------------------------------------*/
+
+
+/// @name Cube version information
+/// @{
+
+/// Cube revision number
+#define CUBELIB_REVISION "@CUBELIB_BUILD_REVISION@"
+
+/// Cube revision number
+#define CUBELIB_REVISION_NUMBER @CUBELIB_BUILD_REVISION@
+
+/// Cube revision number
+#define CUBELIB_REVISION_STRING CUBELIB_REVISION
+
+
+
+
+/// Cube major version number
+#define CUBELIB_MAJOR   "@PACKAGE_MAJOR@"
+
+/// Cube minor version number
+#define CUBELIB_MINOR   "@PACKAGE_MINOR@"
+
+/// Cube bugfix version number
+#define CUBELIB_BUGFIX   "@PACKAGE_BUGFIX@"
+
+/// Cube suffix
+#define CUBELIB_SUFFIX   "@PACKAGE_SUFFIX@"
+
+/// Cube suffix_internally
+#define CUBELIB_SUFFIX_INTERNAL   @PACKAGE_SUFFIX@
+
+/// Cube version number (<i>major</i>.<i>minor</i>)
+#define CUBELIB_SHORT_VERSION   CUBELIB_MAJOR "." CUBELIB_MINOR
+
+/// Cube full version number (<i>major</i>.<i>minor</i>.<i>bugfix</i>)
+#define CUBELIB_FULL_VERSION   CUBELIB_SHORT_VERSION "." CUBELIB_BUGFIX
+
+/// Cube version number
+#define CUBELIB_VERSION "@CUBELIB_BUILD_VERSION@"
+
+/// Cube package name "cube"
+#define CUBELIB_SHORT_NAME  "@CUBELIB_BUILD_SHORT_NAME@"
+
+/// Cube package name "cube-4.x.1-XX"
+#define CUBELIB_FULL_NAME   CUBELIB_SHORT_NAME "-" CUBELIB_FULL_VERSION CUBELIB_SUFFIX 
+
+
+/// Cube library interface information
+#define LIBRARY_CURRENT "@LIBRARY_CURRENT@"
+#define LIBRARY_REVISION "@LIBRARY_REVISION@"
+#define LIBRARY_AGE "@LIBRARY_AGE@"
+
+/// @}
+
+
+#endif   // !CUBELIB_VERSION_H

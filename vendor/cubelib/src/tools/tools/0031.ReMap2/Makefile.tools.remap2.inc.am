@@ -1,0 +1,74 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2017                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+noinst_LTLIBRARIES += libcube.tools.remapper.la
+libcube_tools_remapper_la_SOURCES =    \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/FlexLexer.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapDriver.cpp \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapDriver.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParseContext.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.cc \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.hh \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.cc \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/location.hh \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/position.hh \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/stack.hh \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/remap2_calls.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/remap2_calls.cpp
+   
+   
+dist_cube_tools_remapper_headers_HEADERS += \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/remap2_calls.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapDriver.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParseContext.h \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.hh \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.h 
+   
+   
+bin_PROGRAMS += cube_remap2
+cube_remap2_SOURCES = \
+   $(srcdir)/../src/tools/tools/0031.ReMap2/cube_remap2.cpp 
+
+
+
+if ENABLE_MAKEFILE_RULES_FOR_REGENERATION
+$(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.cc: $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.ll
+	$(LEX) -f  -o $@ $^
+
+$(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.cc: $(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.yy
+	$(YACC) -d -v -o $@  $^
+endif
+
+
+EXTRA_DIST += \
+$(srcdir)/../src/tools/tools/0031.ReMap2/ReMapScanner.ll \
+$(srcdir)/../src/tools/tools/0031.ReMap2/ReMapParser.yy
+
+libcube_tools_remapper_la_CPPFLAGS = \
+$(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) -I$(CUBE4_TOOLS_LIBRARY_INC)  $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION)\
+                       $(AM_CPPFLAGS) \
+                       $(AM_CXXFLAGS) \
+                       $(CXXFLAGS) \
+                       $(CXXFLAGS_FOR_BUILD)
+
+
+
+cube_remap2_LDADD =libcube4.la libcube.tools.remapper.la
+cube_remap2_CPPFLAGS = $(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION)  \
+	$(AM_CPPFLAGS) \
+	$(CXXFLAGS_FOR_BUILD)

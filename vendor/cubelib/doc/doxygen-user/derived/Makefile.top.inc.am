@@ -1,0 +1,130 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2018                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+## Convenience variable
+DOXYGEN_DERIVED_SRC = $(SRC_ROOT)doc/doxygen-user/derived
+
+
+##--- Extra distribution files ----------------------------------------------
+
+EXTRA_DIST += \
+    $(DOXYGEN_DERIVED_SRC)/mainpage.dox \
+    $(DOXYGEN_DERIVED_SRC)/introduction.dox \
+    $(DOXYGEN_DERIVED_SRC)/examples.dox \
+    $(DOXYGEN_DERIVED_SRC)/reference.dox \
+    $(DOXYGEN_DERIVED_SRC)/syntax.dox \
+    $(DOXYGEN_DERIVED_SRC)/footer.tex \
+    $(DOXYGEN_DERIVED_SRC)/title.tex \
+    $(DOXYGEN_DERIVED_SRC)/attention.tex \
+    $(DOXYGEN_DERIVED_SRC)/doxygen-layout.xml
+
+
+
+##--- Doxygen-related targets -----------------------------------------------
+
+if HAVE_DOXYGEN
+
+DERIVED_COVERS = \
+    $(USER_DOC_DIR)/doxygen-user/derived/frontcover.pdf \
+    $(abs_srcdir)/doc/doxygen-user/derived/frontcover.pdf \
+    $(abs_srcdir)/doc/doxygen-common/draftcover.pdf
+
+PHONY_TARGETS += \
+    doxygen-derived \
+    doxygen-derived-pack \
+    doxygen-derived-cover
+
+doxygen-derived: doc/doxygen-user-at-make-time.cfg \
+		doc/doxygen-user/derived/doxygen-derived.cfg \
+		doc/doxygen-common/doxygen-common.cfg
+	@$(MKDIR_P) $(USER_DOC_DIR)/derived/html
+	$(AM_V_GEN)$(DOXYGEN) doc/doxygen-user/derived/doxygen-derived.cfg
+	set -e; \
+	if test -d $(USER_DOC_DIR)/derived/latex; then \
+	    for cover in $(DERIVED_COVERS); do \
+	        if test -f $$cover; then \
+	            $(INSTALL_DATA) $$cover \
+	                            $(USER_DOC_DIR)/derived/latex/frontcover.pdf; \
+	            break; \
+	        fi \
+	    done; \
+	    cd $(USER_DOC_DIR)/derived/latex \
+	        && sed -e '/\\chapter{Cube Derived Metrics User Guide}/{N;N;d;}' \
+	               -e '/\\chapter{Copyright}/{N;d;}' \
+	               refman.tex > xx.sed \
+	        && mv xx.sed refman.tex \
+	        && cat $(abs_srcdir)/doc/doxygen-user/derived/attention.tex >> license.tex \
+	        && $(MAKE) \
+	        && mv refman.pdf ../../CubeDerivedMetricsGuide.pdf \
+	        && cd .. \
+	        && rm -rf latex; \
+	fi
+
+doxygen-derived-pack: doxygen-derived
+	set -e; \
+	cd $(USER_DOC_DIR); \
+	    tar czvf derived-html.tar.gz derived/html; \
+	    rm -rf derived
+
+endif HAVE_DOXYGEN
+
+
+##--- Cover generation ------------------------------------------------------
+
+if HAVE_DOXYGEN_LATEX
+
+if SVN_CONTROLLED
+
+DERIVED_COVER_FILES = \
+    $(abs_builddir)/doc/doxygen-common/config.tex \
+    $(abs_srcdir)/doc/doxygen-user/derived/title.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/frontcover.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/backcover.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/FZJ_LogoInvert.pdf \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/CubeLogo.pdf \
+    $(abs_builddir)/doc/doxygen-common/imgsrc/corporate.tex
+
+doxygen-derived-cover:
+	$(MKDIR_P) $(USER_DOC_DIR)/doxygen-user/derived/cover
+	set -e; \
+	cd $(USER_DOC_DIR)/doxygen-user/derived/cover; \
+	    for file in $(DERIVED_COVER_FILES); do \
+	        cp $$file . ; \
+	    done; \
+	    pdflatex frontcover.tex; \
+	    pdflatex frontcover.tex; \
+	    mv frontcover.pdf ../frontcover.pdf; \
+	    pdflatex backcover.tex; \
+	    pdflatex backcover.tex; \
+	    mv backcover.pdf ../backcover.pdf; \
+	    cd ..; \
+	    rm -rf cover
+
+else !SVN_CONTROLLED
+
+doxygen-derived-cover:
+	$(MKDIR_P) $(USER_DOC_DIR)/doxygen-user/derived
+	$(INSTALL_DATA) $(abs_srcdir)/$(DOXYGEN_DERIVED_SRC)/frontcover.pdf \
+	                $(USER_DOC_DIR)/doxygen-user/derived
+
+endif !SVN_CONTROLLED
+
+else !HAVE_DOXYGEN_LATEX
+
+# Nothing to do in this case...
+doxygen-derived-cover:
+
+endif !HAVE_DOXYGEN_LATEX

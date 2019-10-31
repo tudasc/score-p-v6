@@ -1,0 +1,59 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE1_OUT="$TEMPLATE_DIR/template1.out"
+TEMPLATE2_OUT="$TEMPLATE_DIR/template2.out"
+EXT_CUBE_LOCATION="@CUBE_TEST_FILE_LOCATION@"
+
+if test "x$EXT_CUBE_LOCATION" == "x"; then
+CUBEFILE=example_histogram_parameters.cubex
+else
+CUBEFILE=$EXT_CUBE_LOCATION/example_histogram_parameters.cubex
+fi
+
+
+echo "##########################################################################"
+echo "# Run test 31 : Check the support for histogramms                         "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+if ! test -x $CUBEFILE; then 
+exit 0
+fi
+
+cd tests
+echo "=====> Create file with histogramms ..." 
+#../cube_self_test3_4
+result0=0
+echo "=====> Print out the histogramms..."
+../cube_dump -m time1,time2 -s gnuplot -z incl -t aggr $CUBEFILE &> test31.1.out
+result1=$?
+../cube_dump -m time1,time2 -s gnuplot -z incl  $CUBEFILE &> test31.2.out
+result2=$?
+echo "=====> Compare result with saved template using diff..."
+diff test31.1.out $TEMPLATE1_OUT &> test31.1.diff
+result3=$?
+diff test31.2.out $TEMPLATE2_OUT &> test31.2.diff
+result4=$?
+cd ..
+if [[ $result0 -ne 0 || $result1 -ne 0 || $result2 -ne 0 || $result3 -ne 0 || $result4 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above and tests/test31.1|2.diff for more details." 
+exit -1
+fi

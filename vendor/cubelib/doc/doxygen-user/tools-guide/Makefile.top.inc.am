@@ -1,0 +1,127 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2018                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+## Convenience variable
+DOXYGEN_TOOLS_GUIDE_SRC = $(SRC_ROOT)doc/doxygen-user/tools-guide
+
+
+##--- Extra distribution files ----------------------------------------------
+
+EXTRA_DIST += \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/mainpage.dox \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/guide.dox \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/footer.tex \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/title.tex \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/attention.tex \
+    $(DOXYGEN_TOOLS_GUIDE_SRC)/doxygen-layout.xml
+
+
+
+##--- Doxygen-related targets -----------------------------------------------
+
+if HAVE_DOXYGEN
+
+TOOLS_GUIDE_COVERS = \
+    $(USER_DOC_DIR)/doxygen-user/tools-guide/frontcover.pdf \
+    $(abs_srcdir)/doc/doxygen-user/tools-guide/frontcover.pdf \
+    $(abs_srcdir)/doc/doxygen-common/draftcover.pdf
+
+PHONY_TARGETS += \
+    doxygen-tools-guide \
+    doxygen-tools-guide-pack \
+    doxygen-tools-guide-cover
+
+doxygen-tools-guide: doc/doxygen-user-at-make-time.cfg \
+		doc/doxygen-user/tools-guide/doxygen-tools-guide.cfg \
+		doc/doxygen-common/doxygen-common.cfg
+	@$(MKDIR_P) $(USER_DOC_DIR)/tools-guide/html
+	$(AM_V_GEN)$(DOXYGEN) doc/doxygen-user/tools-guide/doxygen-tools-guide.cfg
+	set -e; \
+	if test -d $(USER_DOC_DIR)/tools-guide/latex; then \
+	    for cover in $(TOOLS_GUIDE_COVERS); do \
+	        if test -f $$cover; then \
+	            $(INSTALL_DATA) $$cover \
+	                            $(USER_DOC_DIR)/tools-guide/latex/frontcover.pdf; \
+	            break; \
+	        fi \
+	    done; \
+	    cd $(USER_DOC_DIR)/tools-guide/latex \
+	        && sed -e '/\\chapter{Cube Tools Guide}/{N;N;d;}' \
+	               -e '/\\chapter{Copyright}/{N;d;}' \
+	               refman.tex > xx.sed \
+	        && mv xx.sed refman.tex \
+	        && cat $(abs_srcdir)/doc/doxygen-user/tools-guide/attention.tex >> license.tex \
+	        && $(MAKE) \
+	        && mv refman.pdf ../../CubeToolsGuide.pdf \
+	        && cd .. \
+	        && rm -rf latex; \
+	fi
+
+doxygen-tools-guide-pack: doxygen-tools-guide
+	set -e; \
+	cd $(USER_DOC_DIR); \
+	tar czvf tools-guide-html.tar.gz tools-guide/html; \
+	rm -rf tools-guide
+
+endif HAVE_DOXYGEN
+
+
+##--- Cover generation ------------------------------------------------------
+
+if HAVE_DOXYGEN_LATEX
+
+if SVN_CONTROLLED
+
+TOOLS_GUIDE_COVER_FILES = \
+    $(abs_builddir)/doc/doxygen-common/config.tex \
+    $(abs_srcdir)/doc/doxygen-user/tools-guide/title.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/frontcover.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/backcover.tex \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/FZJ_LogoInvert.pdf \
+    $(abs_srcdir)/doc/doxygen-common/imgsrc/CubeLogo.pdf \
+    $(abs_builddir)/doc/doxygen-common/imgsrc/corporate.tex
+
+doxygen-tools-guide-cover:
+	$(MKDIR_P) $(USER_DOC_DIR)/doxygen-user/tools-guide/cover
+	set -e; \
+	cd $(USER_DOC_DIR)/doxygen-user/tools-guide/cover; \
+	    for file in $(TOOLS_GUIDE_COVER_FILES); do \
+	        cp $$file . ; \
+	    done; \
+	    pdflatex frontcover.tex; \
+	    pdflatex frontcover.tex; \
+	    mv frontcover.pdf ../frontcover.pdf; \
+	    pdflatex backcover.tex; \
+	    pdflatex backcover.tex; \
+	    mv backcover.pdf ../backcover.pdf; \
+	    cd ..; \
+	    rm -rf cover
+
+else !SVN_CONTROLLED
+
+doxygen-tools-guide-cover:
+	$(MKDIR_P) $(USER_DOC_DIR)/doxygen-user/tools-guide
+	$(INSTALL_DATA) $(abs_srcdir)/$(DOXYGEN_TOOLS_GUIDE_SRC)/frontcover.pdf \
+	                $(USER_DOC_DIR)/doxygen-user/tools-guide
+
+endif !SVN_CONTROLLED
+
+else !HAVE_DOXYGEN_LATEX
+
+# Nothing to do in this case...
+doxygen-tools-guide-cover:
+
+endif !HAVE_DOXYGEN_LATEX

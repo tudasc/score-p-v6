@@ -1,0 +1,80 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2016                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2015                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+/**
+* \file cube_unite_test0.0.cpp
+* \brief An test of constructors and destructores of cube. 
+*/
+#include "config.h"
+
+#include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
+
+#include "Cube.h"
+#include "CubeMetric.h"
+#include "CubeCnode.h"
+#include "CubeProcess.h"
+#include "CubeNode.h"
+#include "CubeThread.h"
+#include "CubeCartesian.h"
+
+using namespace std;
+using namespace cube;
+
+// example code.
+/**
+* Main program. 
+* - Create an object empty "cube"
+* - Creates reads from file  (cube3 report)
+* - Creates reads from file  (cube4 report)
+* - Closes cubes wihout writing anything
+* - end.
+* Test should not fail and not produce anything 
+*/
+int main(int argc, char* argv[]) {
+  try
+  {
+	Cube cube1;
+	cube1.openCubeReport("@abs_srcdir@/test0.0.cubex");  /// test of opening cube4 report
+	string name1 = "Humpty Dumpty";
+	vector<char> data = cube1.get_misc_data(name1);
+	for (vector<char>::iterator iter = data.begin(); iter != data.end(); iter++)
+	  cout << *iter;
+	
+	cout << endl << endl;
+	
+	
+	string name2 = "Jabberwocky";
+	data = cube1.get_misc_data(name2);
+	for (vector<char>::iterator iter = data.begin(); iter != data.end(); iter++)
+	  cout << *iter;
+	
+	cout << endl << endl;
+
+	Cube cube2;
+	cube2.openCubeReport("@abs_srcdir@/test0.0.cube");  /// test of opening cube3report 
+	Cube cube3(cube2); /// test of making copy
+  } 
+  catch(const RuntimeError& e)
+    {	
+	cout << "ERROR: " << e.get_msg() << endl;
+	return -1;
+    }
+
+    return 0;
+}

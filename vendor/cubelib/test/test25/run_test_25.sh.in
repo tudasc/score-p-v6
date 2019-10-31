@@ -1,0 +1,89 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+TEMPLATE_CUBE="$TEMPLATE_DIR/template.cube"
+TEMPLATE_CUBE1="$TEMPLATE_DIR/template1.cube"
+TEMPLATE_CUBE2="$TEMPLATE_DIR/template2.cube"
+TEMPLATE_INPUT="$TEMPLATE_DIR/input.in"
+TEMPLATE_INPUT1="$TEMPLATE_DIR/input1.in"
+TEMPLATE_INPUT2="$TEMPLATE_DIR/input2.in"
+
+EXT_CUBE_LOCATION="@CUBE_TEST_FILE_LOCATION@"
+if test "x$EXT_CUBE_LOCATION" == "x"; then
+CUBEFILE=example3.cubex
+else
+CUBEFILE=$EXT_CUBE_LOCATION/example3.cubex
+fi
+
+
+echo "##########################################################################"
+echo "# Run test 25 : Check the tool \"cube_topoassistant\" "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+cd tests
+echo "=====> Add a topology to example3.cubex..."
+cat $TEMPLATE_INPUT | ../cube_topoassist -c $CUBEFILE
+result1=$?
+echo "=====> Transform result to cube3 format..."
+../cube4to3 topo.cubex
+result2=$?
+echo "=====> Compare result with saved template..."
+../cube_cmp topo.cube $TEMPLATE_CUBE
+result3=$?
+echo "=====> Compare result with saved template using diff..."
+diff topo.cube $TEMPLATE_CUBE &> test25.1.diff
+result4=$?
+mv  topo.cube topo1.cube
+mv  topo.cubex topo1.cubex
+echo "=====> Rename added topology in topo1.cubex..."
+cat $TEMPLATE_INPUT1 | ../cube_topoassist -n topo1.cubex
+result5=$?
+echo "=====> Transform result to cube3 format..."
+../cube4to3 topo.cubex
+result6=$?
+echo "=====> Compare result with saved template..."
+../cube_cmp topo.cube $TEMPLATE_CUBE1
+result7=$?
+echo "=====> Compare result with saved template using diff..."
+diff topo.cube $TEMPLATE_CUBE1 &> test25.2.diff
+result8=$?
+
+mv  topo.cube topo2.cube
+mv  topo.cubex topo2.cubex
+echo "=====> Rename dimensions in third topology in topo.cubex..."
+cat $TEMPLATE_INPUT2 | ../cube_topoassist -d topo2.cubex
+result9=$?
+echo "=====> Transform result to cube3 format..."
+../cube4to3 topo.cubex
+result10=$?
+echo "=====> Compare result with saved template..."
+../cube_cmp topo.cube $TEMPLATE_CUBE2
+result11=$?
+echo "=====> Compare result with saved template using diff..."
+diff topo.cube $TEMPLATE_CUBE2 &> test25.3.diff
+result12=$?
+mv  topo.cube topo3.cube
+
+cd ..
+if [[ $result1 -ne 0 || $result2 -ne 0 || $result3 -ne 0 || $result4 -ne 0 || $result5 -ne 0 || $result6 -ne 0 || $result7 -ne 0 || $result8 -ne 0 || $result9 -ne 0 || $result10 -ne 0 || $result11 -ne 0 || $result12 -ne 0 ]];
+then
+echo "Test FAILED. Inspect output above and tests/test25.1|2|3.diff for more details."
+exit -1
+fi
+ 

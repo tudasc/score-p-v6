@@ -1,0 +1,115 @@
+## -*- mode: makefile -*-
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 2016                                                     ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+## Convenience variable
+CUBE_NETWORK_TEST = $(SRC_ROOT)src/cube/test/network
+
+
+##--- Tests -----------------------------------------------------------------
+
+check_PROGRAMS += \
+	CubeCallpathSubtreeValuesRequest_Test.login \
+	CubeMetricSubtreeValuesRequest_Test.login \
+    CubeProtocol_Test.login \
+    CubeSocket_Test.login \
+    CubeUrl_Test.login
+    
+CUBE_UNIT_TESTS += \
+    CubeCallpathSubtreeValuesRequest_Test.login \
+    CubeMetricSubtreeValuesRequest_Test.login \
+	CubeProtocol_Test.login \
+	CubeSocket_Test.login \
+    CubeUrl_Test.login
+    
+CubeCallpathSubtreeValuesRequest_Test_login_SOURCES = \
+    $(CUBE_NETWORK_TEST)/CubeCallpathSubtreeValuesRequest_Test.cpp
+CubeCallpathSubtreeValuesRequest_Test_login_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@ \
+    @GMOCK_CPPFLAGS@
+CubeCallpathSubtreeValuesRequest_Test_login_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@ \
+    @GMOCK_CXXFLAGS@
+CubeCallpathSubtreeValuesRequest_Test_login_LDADD = \
+    libcube4.la \
+    libgtest_plain.la \
+    libgtest_core.la \
+    libgmock.la \
+    @GTEST_LIBS@ \
+    @GMOCK_LIBS@
+
+CubeMetricSubtreeValuesRequest_Test_login_SOURCES = \
+    $(CUBE_NETWORK_TEST)/CubeMetricSubtreeValuesRequest_Test.cpp
+CubeMetricSubtreeValuesRequest_Test_login_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@ \
+    @GMOCK_CPPFLAGS@
+CubeMetricSubtreeValuesRequest_Test_login_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@ \
+    @GMOCK_CXXFLAGS@
+CubeMetricSubtreeValuesRequest_Test_login_LDADD = \
+    libcube4.la \
+    libgtest_plain.la \
+    libgtest_core.la \
+    libgmock.la \
+    @GTEST_LIBS@ \
+    @GMOCK_LIBS@
+
+CubeProtocol_Test_login_SOURCES = \
+    $(CUBE_NETWORK_TEST)/CubeProtocol_Test.cpp
+CubeProtocol_Test_login_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@
+CubeProtocol_Test_login_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+CubeProtocol_Test_login_LDADD = \
+    libcube4.la \
+    libgtest_plain.la \
+    libgtest_core.la \
+    @GTEST_LIBS@
+
+CubeSocket_Test_login_SOURCES = \
+    $(CUBE_NETWORK_TEST)/CubeSocket_Test.cpp
+CubeSocket_Test_login_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@
+CubeSocket_Test_login_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+CubeSocket_Test_login_LDADD = \
+    libcube4.la \
+    libgtest_plain.la \
+    libgtest_core.la \
+    @GTEST_LIBS@
+    
+CubeUrl_Test_login_SOURCES = \
+    $(CUBE_NETWORK_TEST)/CubeUrl_Test.cpp
+CubeUrl_Test_login_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@
+CubeUrl_Test_login_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+CubeUrl_Test_login_LDADD = \
+    libcube4.la \
+    libgtest_plain.la \
+    libgtest_core.la \
+    @GTEST_LIBS@

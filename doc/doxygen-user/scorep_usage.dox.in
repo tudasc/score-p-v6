@@ -1,0 +1,140 @@
+
+This is the Score-P instrumentation tool. The usage is:
+scorep <options> <original command>
+
+Common options are:
+  --help, -h      Show help output. Does not execute any other command.
+  --config=<file> Specifies file for the instrumentation configuration.
+  -v, --verbose[=<value>] Specifies the verbosity level. The following
+                  levels are available:
+                  0 = No output
+                  1 = Executed commands are displayed (default if no
+                      value is specified)
+                  2 = Detailed information is displayed
+  --dry-run       Only displays the executed commands. It does not
+                  execute any command.
+  --keep-files    Do not delete temporarily created files after successful
+                  instrumentation. By default, temporary files are deleted
+                  if no error occurs during instrumentation.
+  --instrument-filter=<file>
+                  Specifies the filter file for filtering functions during
+                  compile-time. Not supported by all instrumentation methods.
+                  It applies the same syntax, as the one used by Score-P during
+                  run-time.
+  --version       Prints the Score-P version and exits.
+  --disable-preprocessing
+                  Tells scorep to skip all preprocessing related steps,
+                  the input files are already preprocessed.
+  --static        Enforce static linking of the Score-P libraries.
+  --dynamic       Enforce dynamic linking of the Score-P libraries.
+  --no-as-needed  Adds a GNU ld linker flag to fix undefined references
+                  when using shared Score-P libraries. This happens on
+                  systems using --as-needed as linker default. It will
+                  be handled transparently in future releases of Score-P.
+  --thread=<paradigm>
+                  Possible paradigms and variants are:
+              none
+                  No thread support.
+              omp
+                  OpenMP support using thread tracking via ancestry
+                  functions in OpenMP 3.0 and later or via an
+                  OPARI2-instrumented threadprivate variable.
+                  It requires and, thus, automatically enables OPARI2
+                  instrumentation.
+              pthread
+                  Pthread support using thread tracking via library wrapping
+                  It conflicts and, thus, automatically disables OPARI2
+                  instrumentation.
+  --mpp=<paradigm>[:<variant>]
+                  Possible paradigms and variants are:
+              none
+                  No multi-process support.
+              mpi
+                  MPI support using library wrapping
+              shmem
+                  SHMEM support using library wrapping
+  --io=[<wrap-mode>:]<paradigm>[:<variant>](,[<wrap-mode>:]<paradigm>[:<variant>])*
+                  <wrap-mode> may be 'linktime' or 'runtime'.
+                  The default is the first supported mode in the above order.
+                  Possible paradigms and variants are:
+              none
+                  No I/O wrapping support.
+              posix
+                  POSIX I/O support using library wrapping. This includes the
+                  file descriptor based POSIX API (i.e., `open`/`close`). The
+                  POSIX asynchronous I/O API (i.e., `aio_read`/`aio_write`), if
+                  available. And the ISO C `FILE` handle based API (i.e.,
+                  `fopen`/`fclose`).
+  --mutex=<paradigm>[:<variant>]
+                  Possible paradigms and variants are:
+              none
+                  serial case, no locking
+              pthread
+                  Pthread mutex locks
+              pthread:spinlock
+                  Pthread spinlocks
+              omp
+                  OpenMP locks
+  --compiler      Enables compiler instrumentation.
+                  By default, it disables pdt instrumentation.
+  --nocompiler    Disables compiler instrumentation.
+  --cuda          Enables CUDA instrumentation. Enabled by default, if the
+                  nvcc compiler is in use. In this case it also conflicts and
+                  thus automatically disables preprocessing.
+  --nocuda        Disables CUDA instrumentation.
+  --online-access Enables online-access support. It is disabled by default.
+  --noonline-access
+                  Disables online-access support.
+  --pomp          Enables pomp user instrumentation. By default, it also
+                  enables preprocessing.
+  --nopomp        Disables pomp user instrumentation. (Default)
+  --openmp        Enables instrumentation of OpenMP directives. By default,
+                  it also enables preprocessing. (Default for compile units
+                  with enabled OpenMP support during the compilation)
+  --noopenmp      Disables instrumentation of OpenMP directives.
+                  Note: To ensure thread-safe execution of the measurement,
+                  parallel regions still need to be tracked and will appear
+                  in the results. (Default for compile units without OpenMP
+                  enabled compilation)
+  --opari=<parameter-list>
+                  Pass options to the source-to-source instrumenter OPARI2
+                  to have finer control over the instrumentation process.
+                  Please refer to the OPARI2 user documentation for more
+                  details.
+  --pdt[=<parameter-list>]
+                  Enables pdt instrumentation.
+                  You may add additional parameters that are passed to pdt.
+                  It requires and, thus, automatically enables user
+                  instrumentation.
+                  It conflicts and, thus, automatically disables preprocess
+                  instrumentation.
+                  By default, it disables compiler instrumentation.
+  --nopdt         Disables pdt instrumentation.
+  --preprocess    Enables preprocess instrumentation.
+                  It cannot be enabled, if not at least one of the following is
+                  enabled: OPARI2 instrumentation.
+                  It conflicts and, thus, automatically disables pdt
+                  instrumentation.
+  --nopreprocess  Disables preprocess instrumentation.
+  --user          Enables user instrumentation.
+  --nouser        Disables user instrumentation.
+  --opencl[:<wrap-mode>]
+                  Enables OpenCL instrumentation.
+  --noopencl      Disables OpenCL instrumentation.
+  --openacc       Enables OpenACC instrumentation.
+  --noopenacc     Disables OpenACC instrumentation.
+  --memory        Enables memory usage instrumentation. It is enabled by default.
+  --nomemory      Disables memory usage instrumentation.
+  --libwrap=[<wrap-mode>:](<wrapper-name>...|<path-to-wrapper>)
+                  Enables user library wrapping for specified libraries.
+                  <wrap-mode> may be 'linktime' or 'runtime'.
+                  The default is the first supported mode in the above order.
+                  <wrapper-name>... is a comma-separated list of library wrappers
+                  which will be looked up in the paths of the colon-separated
+                  'SCOREP_LIBWRAP_PATH' environment variable and in the installation
+                  directory of Score-P. <path-to-wrapper> is a full path to the
+                  .libwrap anchor file.
+                  Use 'scorep-info libwrap-summary' for a more detailed listing
+                  of available library wrappers.
+
+Report bugs to <support@score-p.org>

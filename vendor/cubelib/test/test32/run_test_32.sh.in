@@ -1,0 +1,66 @@
+#!/bin/bash
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+TEMPLATE_DIR="@abs_srcdir@"
+#TEMPLATE_DIR="/home/mcopik/Projekty/FZJuelich/Cube/DEV-MC-CubeVariousImprovements/build-backend/..
+#use the data from documentation
+TEST_DATA=("$TEMPLATE_DIR/example.cube" "$TEMPLATE_DIR/experiment1.cube")
+RSCRIPT_BIN="$TEMPLATE_DIR/R_compare_outputs"
+OPTIONS=(" " "-t aggr" "-r" "-r -t aggr")
+
+#send - bin,additional parameters, type, source,output
+function test {
+        `$1 -m all $2 -s $3 $4 -o $5`
+}
+
+
+echo "##########################################################################"
+echo "# Run test 32 : Check the correctness of R output for cube_dump             "
+echo "#"
+echo "##########################################################################"
+mkdir -p tests
+cd tests
+for element in "${TEST_DATA[@]}"
+do
+        printf -v fileoutCSV "%s_csv2" `basename $element`
+        printf -v fileoutR "%s_R" `basename $element`
+        for option in "${OPTIONS[@]}"
+        do
+                        if [ "$option" = " "  ]; then
+				printf "=====> Generate CSV2 and R output for file %s\n" "$element"
+                        else
+				printf "=====> Generate CSV2 and R output for file %s with additional option %s\n" "$element" "$option"
+                                #printf -v fileoutCSV "%s_%s_csv2" `basename $element` $option
+                                #printf -v fileoutR "%s_%s_R" `basename $element` $option
+                        fi
+                        test "../cube_dump" "$option" "csv2" "$element" "$fileoutCSV"
+                        test "../cube_dump" "$option" "R" "$element" "$fileoutR"
+			echo "=====> Compare the CSV2 and R output using Rscript"
+                        #echo $element `Rscript $RSCRIPT_BIN --args $fileoutR $fileoutCSV`
+			result0=`Rscript "$RSCRIPT_BIN" --args "$fileoutR" "$fileoutCSV"`	
+                        #test $NEW_BIN "-t aggr " "csv2" $element "$element_csv2_"
+			
+			if [[ "$result0" != "TRUE" ]];
+			then
+				cd ..
+				echo "Test FAILED. Inspect output for more details: $result0" 
+				exit -1
+			fi
+        done
+done
+cd ..

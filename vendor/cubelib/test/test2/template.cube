@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cube version="3.0">
+  <attr key="description" value="a simple example"/>
+  <attr key="experiment time" value="November 1st, 2004"/>
+  <attr key="statisticfile" value="statisticstat"/>
+  <attr key="withflattree" value="no"/>
+  <doc>
+    <mirrors>
+      <murl>http://icl.cs.utk.edu/software/kojak/</murl>
+      <murl>http://www.fz-juelich.de/jsc/kojak/</murl>
+    </mirrors>
+  </doc>
+  <metrics title="sfdgsaf%$&amp;amp;WDFGYVART&amp;amp;">
+    <metric id="0">
+      <uniq_name>Uniq_name1</uniq_name>
+      <dtype>INTEGER</dtype>
+      <disp_name>Time</disp_name>
+      <uom>sec</uom>
+      <url>@mirror@patterns-2.1.html#execution</url>
+      <descr>root node</descr>
+      <metric id="1">
+        <uniq_name>Uniq_name2</uniq_name>
+        <dtype>INTEGER</dtype>
+        <disp_name>User time</disp_name>
+        <uom>sec</uom>
+        <url>http://www.cs.utk.edu/usr.html</url>
+        <descr>2nd level</descr>
+      </metric>
+      <metric id="2">
+        <uniq_name>Uniq_name3</uniq_name>
+        <dtype>INTEGER</dtype>
+        <disp_name>System time</disp_name>
+        <uom>sec</uom>
+        <url>http://www.cs.utk.edu/sys.html</url>
+        <descr>2nd level</descr>
+      </metric>
+    </metric>
+  </metrics>
+  <program title="calltreesfdgsaf%$&amp;amp;WDFGYVART&amp;amp;">
+    <region id="0" mod="/ICL/CUBE/example.c" begin="21" end="100">
+      <name>main</name>
+      <url></url>
+      <descr>1st level</descr>
+    </region>
+    <region id="1" mod="/ICL/CUBE/example.c" begin="1" end="10">
+      <name>foo</name>
+      <url></url>
+      <descr>2nd level</descr>
+    </region>
+    <region id="2" mod="/ICL/CUBE/example.c" begin="11" end="20">
+      <name>bar</name>
+      <url></url>
+      <descr>2nd level</descr>
+    </region>
+    <cnode id="0" line="21" mod="/ICL/CUBE/example.c" calleeId="0">
+      <cnode id="1" line="60" mod="/ICL/CUBE/example.c" calleeId="1">
+      </cnode>
+      <cnode id="2" line="80" mod="/ICL/CUBE/example.c" calleeId="2">
+      </cnode>
+    </cnode>
+  </program>
+  <system title="systemsfdgsaf%$&amp;amp;WDFGYVART&amp;amp;">
+    <machine Id="0">
+      <name>MSC</name>
+      <node Id="0">
+        <name>Athena</name>
+        <process Id="0">
+          <name>Process 0</name>
+          <rank>0</rank>
+          <thread Id="0">
+            <name>Thread 0</name>
+            <rank>0</rank>
+          </thread>
+        </process>
+        <process Id="1">
+          <name>Process 1</name>
+          <rank>1</rank>
+          <thread Id="1">
+            <name>Thread 1</name>
+            <rank>1</rank>
+          </thread>
+        </process>
+      </node>
+    </machine>
+    <topologies>
+      <cart  ndims="2">
+        <dim size="5" periodic="true"/>
+        <dim size="5" periodic="false"/>
+        <coord thrdId="1">0 0</coord>
+      </cart>
+      <cart name="MY SUPER TOPOL&lt;&lt;d&gt;&amp;&amp;$%&amp;&lt;y;&quot;&quot;OGYW 2"  ndims="2">
+        <dim size="3" periodic="true"/>
+        <dim size="3" periodic="false"/>
+        <coord thrdId="0">0 1</coord>
+        <coord thrdId="1">1 0</coord>
+      </cart>
+    </topologies>
+  </system>
+  <severity>
+    <matrix metricId="0">
+    <row cnodeId="0">
+4
+0
+     </row>
+    <row cnodeId="1">
+5
+9
+     </row>
+    <row cnodeId="2">
+0
+0
+     </row>
+    </matrix>
+    <matrix metricId="1">
+      <row cnodeId="0">
+    2
+    1
+       </row>
+      <row cnodeId="1">
+    0
+    3
+       </row>
+      <row cnodeId="2">
+    0
+    0
+       </row>
+    </matrix>
+    <matrix metricId="2">
+      <row cnodeId="0">
+    0
+    0
+       </row>
+      <row cnodeId="1">
+    0
+    323
+       </row>
+      <row cnodeId="2">
+    0
+    0
+       </row>
+    </matrix>
+  </severity>
+</cube>

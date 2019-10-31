@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cube version="3.0">
+  <attr key="CUBE_CT_AGGR" value="MAX"/>
+  <doc>
+    <mirrors>
+    </mirrors>
+  </doc>
+  <metrics>
+    <metric id="0">
+      <disp_name>TIME</disp_name>
+      <uniq_name>TIME</uniq_name>
+      <dtype>INTEGER</dtype>
+      <uom>sec</uom>
+      <url></url>
+      <descr>Time in seconds</descr>
+    </metric>
+    <metric id="1">
+      <disp_name>CALLS</disp_name>
+      <uniq_name>CALLS</uniq_name>
+      <dtype>INTEGER</dtype>
+      <uom>occ</uom>
+      <url></url>
+      <descr>Number of calls</descr>
+    </metric>
+  </metrics>
+  <program>
+    <region id="0" mod="" begin="-1" end="-1">
+      <name>f1() (sleeps 1 sec, calls f2, f4)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <region id="1" mod="" begin="-1" end="-1">
+      <name>f2() (sleeps 2 sec, calls f3)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <region id="2" mod="" begin="-1" end="-1">
+      <name>f3() (sleeps 3 sec)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <region id="3" mod="" begin="-1" end="-1">
+      <name>f4() (sleeps 4 sec, calls f2)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <region id="4" mod="" begin="-1" end="-1">
+      <name>f5() (sleeps 5 sec)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <region id="5" mod="" begin="-1" end="-1">
+      <name>main() (calls f1, f5)</name>
+      <url></url>
+      <descr></descr>
+    </region>
+    <cnode id="0" calleeId="5">
+      <cnode id="1" calleeId="0">
+        <cnode id="2" calleeId="1">
+          <cnode id="3" calleeId="2">
+          </cnode>
+        </cnode>
+        <cnode id="4" calleeId="3">
+          <cnode id="5" calleeId="1">
+            <cnode id="6" calleeId="2">
+            </cnode>
+          </cnode>
+        </cnode>
+      </cnode>
+      <cnode id="7" calleeId="4">
+      </cnode>
+    </cnode>
+  </program>
+  <system>
+    <machine Id="0">
+      <name>Machine</name>
+      <descr>Created by tau2cube</descr>
+      <node Id="1">
+        <name>Node</name>
+        <process Id="0">
+          <name></name>
+          <rank>0</rank>
+          <thread Id="0">
+            <name></name>
+            <rank>0</rank>
+          </thread>
+        </process>
+      </node>
+    </machine>
+    <topologies>
+    </topologies>
+  </system>
+<severity>
+<matrix metricId="0">
+<row cnodeId="0">
+0
+</row>
+<row cnodeId="1">
+1
+</row>
+<row cnodeId="2">
+2
+</row>
+<row cnodeId="3">
+3
+</row>
+<row cnodeId="4">
+4
+</row>
+<row cnodeId="5">
+2
+</row>
+<row cnodeId="6">
+3
+</row>
+<row cnodeId="7">
+5
+</row>
+</matrix>
+<matrix metricId="1">
+<row cnodeId="0">
+-1
+</row>
+<row cnodeId="1">
+-1
+</row>
+<row cnodeId="2">
+0
+</row>
+<row cnodeId="3">
+1
+</row>
+<row cnodeId="4">
+0
+</row>
+<row cnodeId="5">
+0
+</row>
+<row cnodeId="6">
+1
+</row>
+<row cnodeId="7">
+1
+</row>
+</matrix>
+</severity>
+</cube>

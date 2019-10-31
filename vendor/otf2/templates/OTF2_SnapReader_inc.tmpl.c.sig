@@ -1,0 +1,9 @@
+2689ce8c75e43e1bd00c100d6ad5eea1
+67b4e7d54a6e1c3866c23a49f49c9696
+../src/OTF2_SnapReader_inc.c
+OTF2_SnapReader_inc.tmpl.c
+../share/otf2/otf2.types
+../share/otf2/otf2.enums
+../share/otf2/otf2.defs
+../share/otf2/otf2.events
+../share/otf2/otf2.snaps

@@ -1,0 +1,84 @@
+/****************************************************************************
+**  CUBE        http://www.scalasca.org/                                   **
+*****************************************************************************
+**  Copyright (c) 1998-2016                                                **
+**  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          **
+**                                                                         **
+**  Copyright (c) 2009-2015                                                **
+**  German Research School for Simulation Sciences GmbH,                   **
+**  Laboratory for Parallel Programming                                    **
+**                                                                         **
+**  This software may be modified and distributed under the terms of       **
+**  a BSD-style license.  See the COPYING file in the package base         **
+**  directory for details.                                                 **
+****************************************************************************/
+
+
+
+#ifndef CUBEW_VERSION_H
+#define CUBEW_VERSION_H
+
+
+/*-------------------------------------------------------------------------*/
+/**
+ *  @file  CUBEWW-version.h
+ *  @brief Provides the CUBEWW package version information.
+ **/
+/*-------------------------------------------------------------------------*/
+
+
+/// @name CUBEWW version information
+/// @{
+
+/// CUBEWW revision number
+#define CUBEW_REVISION "@CUBEW_BUILD_REVISION@"
+
+/// CUBEWW revision number
+#define CUBEW_REVISION_NUMBER @CUBEW_BUILD_REVISION@
+
+/// CUBEWW revision number
+#define CUBEW_REVISION_STRING CUBEW_REVISION
+
+
+
+
+/// CUBEWW major version number
+#define CUBEW_MAJOR   "@PACKAGE_MAJOR@"
+
+/// CUBEWW minor version number
+#define CUBEW_MINOR   "@PACKAGE_MINOR@"
+
+/// CUBEWW bugfix version number
+#define CUBEW_BUGFIX   "@PACKAGE_BUGFIX@"
+
+/// CUBEWW suffix
+#define CUBEW_SUFFIX   "@PACKAGE_SUFFIX@"
+
+/// CUBEWW suffix_internally
+#define CUBEW_SUFFIX_INTERNAL   @PACKAGE_SUFFIX@
+
+/// CUBEWW version number (<i>major</i>.<i>minor</i>)
+#define CUBEW_SHORT_VERSION   CUBEW_MAJOR "." CUBEW_MINOR
+
+/// CUBEWW full version number (<i>major</i>.<i>minor</i>.<i>bugfix</i>)
+#define CUBEW_FULL_VERSION   CUBEW_SHORT_VERSION "." CUBEW_BUGFIX
+
+/// CUBEWW version number
+#define CUBEW_VERSION "@CUBEW_BUILD_VERSION@"
+
+/// CUBEWW package name "CUBEWW"
+#define CUBEW_SHORT_NAME  "@CUBEW_BUILD_SHORT_NAME@"
+
+/// CUBEWW package name "CUBEWW-4.x.1-XX"
+#define CUBEW_FULL_NAME   CUBEW_SHORT_NAME "-" CUBEW_FULL_VERSION CUBEW_SUFFIX 
+
+
+/// CUBEWW library interface information
+#define LIBRARY_CURRENT "@LIBRARY_CURRENT@"
+#define LIBRARY_REVISION "@LIBRARY_REVISION@"
+#define LIBRARY_AGE "@LIBRARY_AGE@"
+
+/// @}
+
+
+#endif   // !CUBEW_VERSION_H

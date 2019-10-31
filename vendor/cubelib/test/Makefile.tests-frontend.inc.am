@@ -1,0 +1,330 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+check_PROGRAMS += \
+		cube_unite_test0.0 \
+		cube_unite_test0.1 \
+		cube_unite_test0.2_0 \
+		cube_unite_test0.2_1 \
+		cube_unite_test0.4 \
+		cube_self_test2 \
+		cube_self_test2_1 \
+		cube_self_test2_2 \
+		cube_self_test2_ext \
+		cube_self_test6.0 \
+		cube_self_test6.1\
+		cube_self_test7 \
+		cube_self_test10 \
+		cube_self_test11 \
+		cube_self_test30
+
+#CUBE4_INC_PATH = -I$(INC_ROOT)src/cube
+
+nodist_cube_unite_test0_0_SOURCES  =  ../test/test0.0/cube_unite_test0.0.cpp
+cube_unite_test0_0_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+cube_unite_test0_0_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+cube_unite_test0_1_SOURCES  =  $(SRC_ROOT)test/test0.1/cube_unite_test0.1.cpp
+cube_unite_test0_1_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_unite_test0_1_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+cube_unite_test0_2_0_SOURCES  =  $(SRC_ROOT)test/test0.2/cube_unite_test0.2_0.cpp
+cube_unite_test0_2_0_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_unite_test0_2_0_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+cube_unite_test0_2_1_SOURCES  =  $(SRC_ROOT)test/test0.2/cube_unite_test0.2_1.cpp
+cube_unite_test0_2_1_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_unite_test0_2_1_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+
+cube_unite_test0_4_SOURCES  =  $(SRC_ROOT)test/test0.4/cube_unite_test0.4.cpp
+cube_unite_test0_4_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_unite_test0_4_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+
+cube_self_test2_SOURCES  =  $(srcdir)/../test/test2/cube_self_test2.cpp
+cube_self_test2_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test2_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+cube_self_test2_ext_SOURCES  =  $(srcdir)/../test/test2/cube_self_test2_ext.cpp
+cube_self_test2_ext_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test2_ext_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+cube_self_test2_1_SOURCES  =  $(srcdir)/../test/test2/cube_self_test2_1.cpp
+cube_self_test2_1_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test2_1_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+cube_self_test2_2_SOURCES  =  $(srcdir)/../test/test2/cube_self_test2_2.cpp
+cube_self_test2_2_CPPFLAGS = $(AM_CPPFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test2_2_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+# @LIBBFD@
+
+
+
+
+cube_self_test6_0_SOURCES  =  $(srcdir)/../test/test6/cube_self_test6_0.cpp
+cube_self_test6_0_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test6_0_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+
+
+cube_self_test6_1_SOURCES  =  $(srcdir)/../test/test6/cube_self_test6_1.cpp
+cube_self_test6_1_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+# @COMPILER_INSTRUMENTATION_CPPFLAGS@
+cube_self_test6_1_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+
+cube_self_test7_SOURCES  =  $(srcdir)/../test/test7/cube_self_test7.cpp
+cube_self_test7_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+cube_self_test7_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+cube_self_test10_SOURCES  =  $(srcdir)/../test/test10/cube_self_test10.cpp
+cube_self_test10_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+cube_self_test10_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+cube_self_test11_SOURCES  =  $(srcdir)/../test/test11/cube_self_test11.cpp
+cube_self_test11_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+cube_self_test11_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+cube_self_test30_SOURCES  = $(srcdir)/../test/test30/cube_self_test30.cpp
+cube_self_test30_CPPFLAGS = $(AM_CPPFLAGS) $(AM_CFLAGS) $(CUBE4_INC_PATH)
+cube_self_test30_LDADD    = $(LIB_ROOT)libcube4.la $(LIBS)
+
+
+
+CUBE_FRONTEND_SELF_TESTS    	+=    ../test/test0.0/run_test_0.0.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test0.0/test0.0.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test0.0/test0.0.cubex
+EXTRA_DIST          		+=    $(srcdir)/../test/test0.0/template.out
+
+# CUBE_FRONTEND_SELF_TESTS     	+=    ../test/test0.1/run_test_0.1.sh
+# EXTRA_DIST          		+=    $(srcdir)/../test/test0.1/template
+
+CUBE_FRONTEND_SELF_TESTS     	+=    ../test/test0.2/run_test_0.2.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test0.2/template
+
+#CUBE_FRONTEND_SELF_TESTS     	+=    ../test/test0.3/run_test_0.3.sh
+#EXTRA_DIST          		+=    $(srcdir)/../test/test0.3/template
+
+#CUBE_FRONTEND_SELF_TESTS     	+=    ../test/test0.4/run_test_0.4.sh
+#EXTRA_DIST          		+=    $(srcdir)/../test/test0.4/template
+
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test1.1/run_test_1.1.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.1/equal.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.1/not_equal1.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.1/not_equal2.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.1/template.cube
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test1.2/run_test_1.2.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.2/empty.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.2/no_structure.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.2/non_empty1.cube
+
+if CUBE_COMPRESSION_FRONTEND
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test1.3/run_test_1.3.sh
+endif
+
+EXTRA_DIST          		+=   $(srcdir)/../test/test1.3/template.cube
+
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test2/run_test_2.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test2/template.cube
+EXTRA_DIST          		+=   $(srcdir)/../test/test2/template.data
+
+#CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test3/run_test_3.sh
+#EXTRA_DIST          		+=   $(srcdir)/../test/test3/template.cube
+#EXTRA_DIST          		+=   $(srcdir)/../test/test3/example3_2.data
+#EXTRA_DIST          		+=   $(srcdir)/../test/test3/example_system_tree.data
+#EXTRA_DIST          		+=   $(srcdir)/../test/test3/flex_aggregation_incl.data
+#EXTRA_DIST          		+=   $(srcdir)/../test/test3/flex_aggregation_excl.data
+
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test7/run_test_7.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test7/template.out
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test8/run_test_8.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test8/template.cube 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test9/run_test_9.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test9/template.cube
+
+
+CUBE_FRONTEND_SELF_TESTS    	+=   ../test/test10/run_test_10.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test10/template.out
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test11/run_test_11.sh
+EXTRA_DIST          		+=   $(srcdir)/../test/test11/template.out
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test12/run_test_12.sh
+EXTRA_DIST          		+=   ../test/test12/templatec.cube
+EXTRA_DIST          		+=   ../test/test12/template_C.cube
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test13/run_test_13.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test13/template.cube 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test14/run_test_14.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test14/template.cube 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test15/run_test_15.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test15/template.cube 
+
+CUBE_FRONTEND_SELF_TESTS    	+=   ../test/test16/run_test_16.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test16/profile.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test16/profile_remapped.cube 
+EXTRA_DIST          		+=    $(srcdir)/../test/test16/trace.cube 
+EXTRA_DIST          		+=    $(srcdir)/../test/test16/trace_remapped.cube 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test17/run_test_17.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test17/template1.out
+EXTRA_DIST          		+=    $(srcdir)/../test/test17/template2.out
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test18/run_test_18.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test18/template1.out 
+EXTRA_DIST          		+=    $(srcdir)/../test/test18/template2.out 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test19/run_test_19.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test19/template.cube
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test20/run_test_20.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test20/infoview1.out 
+EXTRA_DIST          		+=    $(srcdir)/../test/test20/infoview2.out 
+EXTRA_DIST          		+=    $(srcdir)/../test/test20/infoview3.out 
+EXTRA_DIST          		+=    $(srcdir)/../test/test20/infoview4.out 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test21/run_test_21.sh
+#EXTRA_DIST          		+=    $(srcdir)/../test/test21/nodeview1.out 
+#EXTRA_DIST          		+=    $(srcdir)/../test/test21/nodeview2.out 
+
+#CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test22/run_test_22.sh
+#EXTRA_DIST          		+=    $(srcdir)/../test/test22/template1.out 
+#EXTRA_DIST          		+=    $(srcdir)/../test/test22/template2.out 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test23/run_test_23.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test23/template.out 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test24/run_test_24.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test24/template.out
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test25/run_test_25.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/template.cube 
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/input.in
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/template1.cube 
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/input1.in
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/template2.cube 
+EXTRA_DIST          		+=    $(srcdir)/../test/test25/input2.in
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test26/run_test_26.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test26/template.cube
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test27/run_test_27.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test27/template.out 
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test28/run_test_28.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test28/profile1/profile.0.0.0
+EXTRA_DIST          		+=    $(srcdir)/../test/test28/profile2/profile.0.0.0
+EXTRA_DIST          		+=    $(srcdir)/../test/test28/template1.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test28/template2.cube
+
+CUBE_FRONTEND_SELF_TESTS     	+=   ../test/test29/run_test_29.sh
+EXTRA_DIST          		+=    $(srcdir)/../test/test29/template1.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test29/template2.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test29/template3.cube
+EXTRA_DIST          		+=    $(srcdir)/../test/test29/template4.cube
+
+CUBE_FRONTEND_SELF_TESTS    += ../test/test30/run_test_30.sh
+EXTRA_DIST                  += $(srcdir)/../test/test30/template.out
+
+CUBE_FRONTEND_SELF_TESTS    += ../test/test31/run_test_31.sh
+EXTRA_DIST                  += $(srcdir)/../test/test31/template1.out
+EXTRA_DIST                  += $(srcdir)/../test/test31/template2.out
+
+if CUBE_DUMP_WITH_R
+CUBE_FRONTEND_SELF_TESTS    += ../test/test32/run_test_32.sh
+endif
+EXTRA_DIST                  += $(srcdir)/../test/test32/example.cube
+EXTRA_DIST                  += $(srcdir)/../test/test32/experiment1.cube
+EXTRA_DIST                  += $(srcdir)/../test/test32/R_compare_outputs
+EXTRA_DIST                  += $(srcdir)/../test/test32/test_script
+CLEANFILES += tests/*
+
+CUBE_FRONTEND_SELF_TESTS    += ../test/test33_CubeProxy/run_io_test.sh \
+                               ../test/test33_CubeProxy/run_network_test.sh
+EXTRA_DIST                  += \
+    $(srcdir)/../test/test33_CubeProxy/cube_selftest_CubeProxy.cpp \
+    $(srcdir)/../test/test33_CubeProxy/cube_selftest_CubeProxy_io.cpp.in \
+    $(srcdir)/../test/test33_CubeProxy/cube_selftest_CubeProxy_network.cpp.in \
+    $(srcdir)/../test/test33_CubeProxy/proxy.cubex \
+    $(srcdir)/../test/test33_CubeProxy/run_io_test.sh.in \
+    $(srcdir)/../test/test33_CubeProxy/run_network_test.sh.in
+
+check_PROGRAMS              += \
+	cube_selftest_CubeIoProxy \
+	cube_selftest_CubeNetworkProxy
+
+cube_selftest_CubeIoProxy_SOURCES  = \
+	$(SRC_ROOT)test/test33_CubeProxy/cube_selftest_CubeProxy.cpp \
+	$(SRC_ROOT)test/test33_CubeProxy/cube_selftest_CubeProxy_io.cpp
+cube_selftest_CubeIoProxy_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@
+cube_selftest_CubeIoProxy_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+cube_selftest_CubeIoProxy_LDADD    = \
+	$(LIB_ROOT)libcube4.la \
+	$(FRONTEND_LIBZ_LD) \
+	$(LIBS) \
+    libgtest_plain.la \
+    libgtest_core.la \
+    @GTEST_LIBS@
+
+cube_selftest_CubeNetworkProxy_SOURCES  = \
+	$(SRC_ROOT)test/test33_CubeProxy/cube_selftest_CubeProxy.cpp \
+	$(SRC_ROOT)test/test33_CubeProxy/cube_selftest_CubeProxy_network.cpp
+cube_selftest_CubeNetworkProxy_CPPFLAGS = \
+	$(AM_CPPFLAGS) \
+	$(CUBE4_INC_PATH) \
+    @GTEST_CPPFLAGS@
+cube_selftest_CubeNetworkProxy_CXXFLAGS = \
+    $(AM_CXXFLAGS) \
+    @GTEST_CXXFLAGS@
+cube_selftest_CubeNetworkProxy_LDADD    = \
+	$(LIB_ROOT)libcube4.la \
+	$(FRONTEND_LIBZ_LD) \
+	$(LIBS) \
+    libgtest_plain.la \
+    libgtest_core.la \
+    @GTEST_LIBS@
+

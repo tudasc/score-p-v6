@@ -1,0 +1,43 @@
+
+
+ ===================== DATA =================== 
+Print out the data of the metric visits
+
+                   Thread             
+-------------------------------------------------------------------------------
+main(id=0)         1                 
+MPI_Init(id=1)     1                 
+calculate(id=2)    3                 
+matMult(id=3)      1                 
+MPI_Reduce(id=4)   1                 
+MPI_Finalize(id=5) 1                 
+Print out the data of the metric time
+
+                   Thread             
+-------------------------------------------------------------------------------
+main(id=0)         3*x**(1.0/2.0)*log(x)**(2.0)
+MPI_Init(id=1)     4*log(x)          
+calculate(id=2)    0.4*x**(1.0/3.0)*log(x)**(3.0)
+matMult(id=3)      0.2*x**(5.0/3.0)  
+MPI_Reduce(id=4)   12*log(x)         
+MPI_Finalize(id=5) 4.2*log(x)        
+Print out the data of the metric sent
+
+                   Thread             
+-------------------------------------------------------------------------------
+main(id=0)         0                 
+MPI_Init(id=1)     0                 
+calculate(id=2)    1*x*log(x)**(3.0) 
+matMult(id=3)      0                 
+MPI_Reduce(id=4)   3*x**(2.0/1.0)*log(x)**(2.0)
+MPI_Finalize(id=5) 0                 
+Print out the data of the metric recv
+
+                   Thread             
+-------------------------------------------------------------------------------
+main(id=0)         0                 
+MPI_Init(id=1)     0                 
+calculate(id=2)    0                 
+matMult(id=3)      0                 
+MPI_Reduce(id=4)   3*x**(2.0/1.0)*log(x)**(2.0)
+MPI_Finalize(id=5) 0                 

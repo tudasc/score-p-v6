@@ -1,0 +1,55 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2016                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+bin_PROGRAMS += cube_dump
+cube_dump_SOURCES = \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump.cpp \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CSV2Printer.cpp\
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CSV2Printer.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CSVPrinter.cpp\
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CSVPrinter.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CommandOption.cpp \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_CommandOption.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_GnuPlot2Printer.cpp \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_GnuPlot2Printer.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_GnuPlotPrinter.cpp \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_GnuPlotPrinter.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_Printer.cpp \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_Printer.h 
+   
+   
+
+cube_dump_LDADD = libcube4.la libcube.tools.library.la   $(FRONTEND_LIBZ_LD)
+cube_dump_CPPFLAGS = \
+	$(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION) \
+	$(AM_CPPFLAGS) \
+	$(AM_CXXFLAGS) \
+	$(CXXFLAGS) \
+	$(CXXFLAGS_FOR_BUILD)
+
+cube_dump_LDFLAGS = 
+#$(OPENMP_CXXFLAGS)
+
+if CUBE_DUMP_WITH_R
+cube_dump_SOURCES += \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_RPrinter.h \
+   $(srcdir)/../src/tools/tools/002k.Dump/cube4_dump_RPrinter.cpp
+cube_dump_LDFLAGS +=  $(R_LDFLAGS)  -lRInside  -L$(R_INSIDE_PATH)/lib -Wl,-rpath -Wl,$(R_INSIDE_PATH)/lib
+cube_dump_CPPFLAGS += -I$(R_INSIDE_PATH)/include -I$(R_CPP_PATH)/include $(R_CPPFLAGS) -DCUBE_DUMP_WITH_R
+endif
+	

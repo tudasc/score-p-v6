@@ -1,0 +1,54 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 1998-2018                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  Copyright (c) 2009-2015                                                ##
+##  German Research School for Simulation Sciences GmbH,                   ##
+##  Laboratory for Parallel Programming                                    ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+##CUBE4_HEADERS_ROOT=$(srcdir)/../src/cube/
+CUBE4_TOOLS_COMMON_INC = $(srcdir)/../src/tools/common_inc
+
+
+noinst_LTLIBRARIES += libcube.tools.common.la
+libcube_tools_common_la_SOURCES =                \
+$(srcdir)/../src/tools/common_inc/Filter.h \
+$(srcdir)/../src/tools/common_inc/Predicates.h \
+$(srcdir)/../src/tools/common_inc/algebra4-internals.h \
+$(srcdir)/../src/tools/common_inc/algebra4.h \
+$(srcdir)/../src/tools/common_inc/cubelib_tools.h\
+$(srcdir)/../src/tools/common_inc/enums.h \
+$(srcdir)/../src/tools/common_inc/helper.h \
+$(srcdir)/../src/tools/common_src/Filter.cpp \
+$(srcdir)/../src/tools/common_src/Predicates.cpp \
+$(srcdir)/../src/tools/common_src/algebra4-internals.cpp \
+$(srcdir)/../src/tools/common_src/algebra4.cpp \
+$(srcdir)/../src/tools/common_src/helper.cpp 
+
+
+dist_cube_tools_common_headers_HEADERS += \
+$(srcdir)/../src/tools/common_inc/Filter.h \
+$(srcdir)/../src/tools/common_inc/Predicates.h \
+$(srcdir)/../src/tools/common_inc/algebra4-internals.h \
+$(srcdir)/../src/tools/common_inc/algebra4.h \
+$(srcdir)/../src/tools/common_inc/cubelib_tools.h\
+$(srcdir)/../src/tools/common_inc/enums.h \
+$(srcdir)/../src/tools/common_inc/helper.h 
+
+
+libcube_tools_common_la_CPPFLAGS = \
+$(OPENMP_CXXFLAGS) $(CUBE4_INC_PATH) -I$(CUBE4_TOOLS_COMMON_INC) $(FRONTEND_LIBZ_HEADERS) $(COMPRESSION)\
+                       $(AM_CPPFLAGS) \
+                       $(AM_CXXFLAGS) \
+                       $(CXXFLAGS) \
+                       $(CXXFLAGS_FOR_BUILD)
+

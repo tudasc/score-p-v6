@@ -1,0 +1,58 @@
+##*************************************************************************##
+##  CUBE        http://www.scalasca.org/                                   ##
+##*************************************************************************##
+##  Copyright (c) 2018-2019                                                ##
+##  Forschungszentrum Juelich GmbH, Juelich Supercomputing Centre          ##
+##                                                                         ##
+##  This software may be modified and distributed under the terms of       ##
+##  a BSD-style license.  See the COPYING file in the package base         ##
+##  directory for details.                                                 ##
+##*************************************************************************##
+
+
+
+
+noinst_LTLIBRARIES += libcube.tools.tau2cube.la
+libcube_tools_tau2cube_la_SOURCES = \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/TauProfile.cpp \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/TauProfile.h \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/tau2cube_calls.h 
+
+
+dist_cube_tools_tau2cube_headers_HEADERS += \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/TauProfile.h \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/tau2cube_calls.h 
+
+libcube_tools_tau2cube_la_CPPFLAGS = \
+			$(CUBE4_INC_PATH) \
+			-I$(CUBE4_TOOLS_COMMON_INC) \
+			-I$(CUBE4_TOOLS_LIBRARY_INC)  \
+			$(FRONTEND_LIBZ_HEADERS) \
+			$(COMPRESSION)\
+                       $(AM_CPPFLAGS) \
+                       $(AM_CXXFLAGS) \
+                       $(CXXFLAGS) \
+                       $(CXXFLAGS_FOR_BUILD)                       
+
+   
+   
+   
+bin_PROGRAMS += tau2cube
+tau2cube_SOURCES = \
+   $(srcdir)/../src/tools/tools/0040.Tau2Cube/tau2cube4.cpp 
+   
+   
+
+tau2cube_LDADD = libcube.tools.tau2cube.la \
+                 libcube4.la \
+                 $(FRONTEND_LIBZ_LD)
+                 
+tau2cube_CPPFLAGS = \
+	$(CUBE4_INC_PATH) \
+	-I$(CUBE4_TOOLS_COMMON_INC) \
+	$(FRONTEND_LIBZ_HEADERS) \
+	$(COMPRESSION) \
+	$(AM_CPPFLAGS) \
+	$(CXXFLAGS_FOR_BUILD)
+
+

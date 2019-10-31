@@ -1,0 +1,117 @@
+## -*- mode: makefile -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2013,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2013,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2015, 2017,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2013,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2015, 2017,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2014,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2013, 2015,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## file src/Makefile.inc.am
+
+
+library_api_version_ldflags = -version-info @LIBRARY_INTERFACE_VERSION@
+
+
+# Utilities used by adapters (and others). To be libadded to
+# adapter_mgmt libraries.
+lib_LTLIBRARIES += libscorep_adapter_utils.la
+libscorep_adapter_utils_la_SOURCES =
+libscorep_adapter_utils_la_LIBADD = \
+    libscorep_filter.la             \
+    libscorep_hashtab.la            \
+    libscorep_vector.la             \
+    libutils.la
+
+libscorep_adapter_utils_la_LDFLAGS = \
+    $(library_api_version_ldflags)
+
+
+lib_LTLIBRARIES += libscorep_measurement.la
+libscorep_measurement_la_SOURCES =
+libscorep_measurement_la_LIBADD =        \
+    libscorep_measurement_core.la        \
+    libscorep_measurement_libwrap.la     \
+    libscorep_timer.la                   \
+    libscorep_metric.la                  \
+    libscorep_profile.la                 \
+    libscorep_tracing.la                 \
+    libscorep_substrates.la              \
+    libscorep_definitions.la             \
+    libscorep_platform.la                \
+    libscorep_bitstring.la               \
+    libscorep_allocator.la               \
+    libscorep_adapter_utils.la           \
+    libscorep_io_management.la           \
+    libutils.la                          \
+    libjenkins_hash.la                   \
+    @SCOREP_PAPI_LIBS@                   \
+    @SCOREP_DLFCN_LIBS@                  \
+    @SCOREP_TIMER_LIBS@                  \
+    @OTF2_LIBS@                          \
+    @CUBEW_LIBS@
+
+if HAVE_UNWINDING_SUPPORT
+
+libscorep_measurement_la_LIBADD += \
+    libscorep_unwinding.la
+
+else !HAVE_UNWINDING_SUPPORT
+
+libscorep_measurement_la_LIBADD += \
+    libscorep_unwinding_mockup.la
+
+endif !HAVE_UNWINDING_SUPPORT
+
+if HAVE_SAMPLING_SUPPORT
+
+libscorep_measurement_la_LIBADD += \
+    libscorep_sampling.la
+
+endif HAVE_SAMPLING_SUPPORT
+
+if !HAVE_SCOREP_EXTERNAL_OTF2
+
+BUILT_SOURCES += @OTF2_LIBS@
+@OTF2_LIBS@:
+	@$(am__cd) `dirname $@` && $(MAKE) $(AM_MAKEFLAGS) `basename $@`
+
+endif !HAVE_SCOREP_EXTERNAL_OTF2
+
+if !HAVE_SCOREP_EXTERNAL_CUBEW
+
+BUILT_SOURCES += @CUBEW_LIBS@
+../vendor/cubew/build-backend/libcube4w.la:
+	@$(am__cd) `dirname $@` && $(MAKE) $(AM_MAKEFLAGS) `basename $@`
+
+endif !HAVE_SCOREP_EXTERNAL_CUBEW
+
+libscorep_measurement_la_LDFLAGS = \
+    $(library_api_version_ldflags) \
+    @OTF2_LDFLAGS@                 \
+    @LIBUNWIND_LDFLAGS@            \
+    @LIBBFD_LDFLAGS@               \
+    @SCOREP_PAPI_LDFLAGS@          \
+    @CUBEW_LDFLAGS@

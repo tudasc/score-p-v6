@@ -1,0 +1,371 @@
+#!/bin/sh
+
+## -*- mode: sh -*-
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2013-2014,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2014, 2016, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+
+## This script verifies that the provided executable contains the expected
+## instrumentation, based on the defaults for the given paradigm as well as
+## the command-line options passed to the instrumenter. Where applicable,
+## this script mimics the tests performed by Scalasca's 'scan' tool used to
+## determine which version of the automatic trace analyzer should be started.
+
+
+# Variables set by configure
+GREP="@GREP@"
+NM="@NM@"
+@PLATFORM_MAC_FALSE@LDD="ldd"
+@PLATFORM_MAC_TRUE@LDD="otool -L"
+
+# Unset some environment variables to avoid surprises...
+unset GREP_OPTIONS
+
+CHECK="$0 $@"
+
+
+#--- Main program -----------------------------------------------------------
+
+# --- Validate arguments ---
+if test $# -lt 2; then
+    echo "Usage: check-instrumentation.sh <paradigm> <executable> [<options>]" >&2
+    echo >&2
+    echo "Valid <paradigm>s:" >&2
+    echo "   serial    -  Serial execution" >&2
+    echo "   omp       -  Pure OpenMP" >&2
+    echo "   mpi       -  Pure MPI" >&2
+    echo "   mpi_omp   -  Hybrid MPI + OpenMP" >&2
+    echo "   shmem     -  Pure SHMEM" >&2
+    echo "   shmem_omp -  Hybrid SHMEM + OpenMP" >&2
+    echo "   pthread   -  Pthreads" >&2
+    echo >&2
+    echo "Valid <options> are instrumenter command-line arguments affecting" >&2
+    echo "instrumentation." >&2
+    exit 1
+fi
+
+
+# --- Process arguments ---
+# Mandatory arguments
+PARADIGM=$1
+EXE=$2
+shift
+shift
+
+valid_mpp()
+{
+    case $1 in
+    mpi|shmem)
+        return 0
+    ;;
+    esac
+
+    return 1
+}
+
+valid_thread()
+{
+    case $1 in
+        omp|pthread)
+            return 0
+            ;;
+    esac
+
+    return 1
+}
+
+# Initialize defaults
+COMP=yes
+@SCOREP_COMPILER_SUN_TRUE@unset COMP
+@SCOREP_COMPILER_SUN_FALSE@@HAVE_COMPILER_INSTRUMENTATION_FALSE@unset COMP
+unset MPP
+unset THREAD
+unset OPARI2_USER
+@HAVE_MEMORY_SUPPORT_TRUE@MEMORY=yes
+@HAVE_MEMORY_SUPPORT_FALSE@unset MEMORY
+unset USER
+unset CUDA
+unset POSIXIO
+unset VERBOSE
+case ${PARADIGM} in
+    serial)
+        # Compiler instrumentation only -- nothing to adjust
+        ;;
+
+    cuda)
+        # CUDA instrumentation uses nvcc, which defaults to enable CUDA
+        CUDA=yes
+        ;;
+
+    *_*)
+        MPP=${PARADIGM%_*}
+        THREAD=${PARADIGM#*_}
+        if ! valid_mpp ${MPP} || ! valid_thread ${THREAD}; then
+            echo "ERROR: Unknown paradigm '${PARADIGM}' encountered!" >&2
+            exit 1
+        fi
+        ;;
+
+    *)
+        if valid_mpp ${PARADIGM}; then
+            MPP=${PARADIGM}
+        elif valid_thread ${PARADIGM}; then
+            THREAD=${PARADIGM}
+        else
+            echo "ERROR: Unknown paradigm '${PARADIGM}' encountered!" >&2
+            exit 1
+        fi
+        ;;
+esac
+
+# Optional arguments
+while test $# -ne 0; do
+    case $1 in
+        --compiler)
+            COMP=yes
+            ;;
+        --nocompiler)
+            unset COMP
+            ;;
+
+        --cuda)
+            CUDA=yes
+            ;;
+        --nocuda)
+            unset CUDA
+            ;;
+
+        --mpp=*)
+            MPP=${1#--mpp=}
+            if ! valid_mpp ${MPP}; then
+                echo "ERROR: Unknown multi-process paradigm in $1!" >&2
+                exit 1
+            fi
+            ;;
+
+        --pdt)
+            USER=yes
+            ;;
+        --nopdt)
+            unset USER
+            ;;
+
+        --openmp)
+            ;;
+
+        --noopenmp)
+            ;;
+
+        --pomp)
+            OPARI2_USER=yes
+            ;;
+        --nopomp)
+            unset OPARI2_USER
+            ;;
+
+        --preprocess|--nopreprocess)
+            # These options have no effect on the inserted instrumentation
+            ;;
+
+        --thread=*)
+            THREAD=${1#--thread=}
+            case ${THREAD} in
+                *:*)
+                    VARIANT=${THREAD#*:}
+                    THREAD=${THREAD%:*}
+                ;;
+            esac
+            if ! valid_thread ${THREAD}; then
+                echo "ERROR: Unknown thread paradigm in $1!" >&2
+                exit 1
+            fi
+            ;;
+
+        --mutex=omp|--mutex=pthread|--mutex=pthread:spinlock|--mutex=pthread:wrap)
+            THREAD=opari2_openmp
+            ;;
+
+        --user)
+            USER=yes
+            ;;
+        --nouser)
+            unset USER
+            ;;
+
+        --memory)
+            MEMORY=yes
+            ;;
+        --nomemory)
+            unset MEMORY
+            ;;
+
+        --io=posix|--io=linktime:posix|--io=runtime:posix)
+            POSIXIO=yes
+            ;;
+
+        --verbose)
+            VERBOSE=yes
+            ;;
+
+        --keep-files)
+            # May be used for debugging -- ignored
+            ;;
+
+        *)
+            echo "ERROR: Unknown option '$1' encountered!" >&2
+            exit 1
+    esac
+    shift
+done
+
+# Ugly, but "omp" is called "opari2_openmp" nowadays
+if test "${THREAD}" = "omp"; then
+    THREAD=opari2_openmp
+fi
+
+# --- Determine which kind of instrumentation is expected ---
+unset INST_EXPECTED
+if test -n "${COMP}${MPP}${THREAD}${OPARI2_USER}${USER}${MEMORY}${CUDA}${POSIXIO}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }init"
+fi
+if test -n "${COMP}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }comp"
+fi
+if test -n "${MPP}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }${MPP}"
+fi
+if test -n "${THREAD}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }${THREAD}"
+fi
+if test -n "${OPARI2_USER}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }opari2_user"
+fi
+if test -n "${USER}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }user"
+fi
+if test -n "${MEMORY}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }memory"
+fi
+if test -n "${CUDA}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }cuda"
+fi
+if test -n "${POSIXIO}"; then
+    INST_EXPECTED="${INST_EXPECTED}${INST_EXPECTED:+ }posixio"
+fi
+
+
+# --- Control output ---
+if test -n "${VERBOSE}"; then
+    echo "$CHECK"
+    set -x
+else
+    echo "  CHECK   ${EXE}"
+fi
+
+
+# --- Determine instrumentation in binary (same order as the expected checks)---
+unset INST_FOUND
+
+# Instrumented at all?     (Scalasca check - do not modify without changing Scalasca)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} SCOREP_InitMeasurement`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }init"
+fi
+
+# Compiler instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_compiler_region_mutex`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_compiler_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }comp"
+fi
+
+# All MPP checks
+
+# MPI instrumentation?     (Scalasca check - do not modify without changing Scalasca)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_mpi_status_size`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_mpi_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }mpi"
+fi
+
+# SHMEM instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} SCOREP_Subsystem_ShmemAdapter`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_shmem_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }shmem"
+fi
+
+# All thread checks
+
+# OpenMP full instrumentation?     (Scalasca check - do not modify without changing Scalasca)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} POMP2_Parallel_fork`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_opari2_openmp_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }opari2_openmp"
+fi
+
+# Pthread instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_pthread_regions`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_pthread_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }pthread"
+fi
+
+# POMP user instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} POMP2_Begin`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_opari2_user_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }opari2_user"
+fi
+
+# User instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_user_region_mutex`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_user_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }user"
+fi
+
+# Memory instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_memory_regions`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_memory_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }memory"
+fi
+
+# CUDA instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_cuda_features`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_cuda_mgmt.`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }cuda"
+fi
+
+# I/O instrumentation?     (custom check)
+STATIC=`${NM}  ${EXE} 2>/dev/null | ${GREP} scorep_posix_io_init`
+SHARED=`${LDD} ${EXE} 2>/dev/null | ${GREP} libscorep_adapter_posix_io_mgmt`
+if test -n "${STATIC}${SHARED}"; then
+    INST_FOUND="${INST_FOUND}${INST_FOUND:+ }posixio"
+fi
+
+
+# --- Compare results ---
+if test "${INST_EXPECTED}" != "${INST_FOUND}"; then
+    echo "ERROR: Instrumentation differs from expected result!" >&2
+    echo "       Expected: ${INST_EXPECTED:-<none>}" >&2
+    echo "       Found   : ${INST_FOUND:-<none>}" >&2
+    exit 1
+fi
+
+# All OK
+exit 0

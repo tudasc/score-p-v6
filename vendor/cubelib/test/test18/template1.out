@@ -1,0 +1,180 @@
+102.4 (0.5525%)                 main                                                              USR:/main
+-33689.6 (-181.8%)                + MAIN__                                                        USR:/main/MAIN__
+102.4 (0.5525%)                   |   + mpi_setup_                                                USR:/main/MAIN__/mpi_setup_
+102.4 (0.5525%)                   |   |   + MPI_Init_thread                                       USR:/main/MAIN__/mpi_setup_/MPI_Init_thread
+102.4 (0.5525%)                   |   |   + MPI_Comm_size                                         USR:/main/MAIN__/mpi_setup_/MPI_Comm_size
+102.4 (0.5525%)                   |   |   + MPI_Comm_rank                                         USR:/main/MAIN__/mpi_setup_/MPI_Comm_rank
+102.4 (0.5525%)                   |   |   + MPI_Comm_split                                        USR:/main/MAIN__/mpi_setup_/MPI_Comm_split
+102.4 (0.5525%)                   |   + MPI_Bcast                                                 USR:/main/MAIN__/MPI_Bcast
+102.4 (0.5525%)                   |   + env_setup_                                                USR:/main/MAIN__/env_setup_
+102.4 (0.5525%)                   |   |   + MPI_Bcast                                             USR:/main/MAIN__/env_setup_/MPI_Bcast
+102.4 (0.5525%)                   |   + zone_setup_                                               USR:/main/MAIN__/zone_setup_
+102.4 (0.5525%)                   |   + map_zones_                                                USR:/main/MAIN__/map_zones_
+102.4 (0.5525%)                   |   |   + get_comm_index_                                       USR:/main/MAIN__/map_zones_/get_comm_index_
+102.4 (0.5525%)                   |   + zone_starts_                                              USR:/main/MAIN__/zone_starts_
+102.4 (0.5525%)                   |   + set_constants_                                            USR:/main/MAIN__/set_constants_
+33894.4 (182.87%)                 |   + initialize_                                               USR:/main/MAIN__/initialize_
+102.4 (0.5525%)                   |   |   + !$omp parallel @initialize.f:28                       USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:31                         USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:31
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:50                         USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:50
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:50/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:50/exact_solution_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:50/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:100                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:100
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:100/exact_solution_
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:119                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:119
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:119/exact_solution_
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:137                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:137
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:137/exact_solution_
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:156                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:156
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:156/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @initialize.f:167      USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:156/!$omp implicit barrier @initialize.f:167
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:174                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:174
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:174/exact_solution_
+102.4 (0.5525%)                   |   |   |   + !$omp do @initialize.f:192                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:192
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:192/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:192/exact_solution_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp do @initialize.f:192/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + !$omp implicit barrier @initialize.f:204          USR:/main/MAIN__/initialize_/!$omp parallel @initialize.f:28/!$omp implicit barrier @initialize.f:204
+102.4 (0.5525%)                   |   + exact_rhs_                                                USR:/main/MAIN__/exact_rhs_
+102.4 (0.5525%)                   |   |   + !$omp parallel @exact_rhs.f:21                        USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21
+102.4 (0.5525%)                   |   |   |   + !$omp do @exact_rhs.f:31                          USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:31
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @exact_rhs.f:41        USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:31/!$omp implicit barrier @exact_rhs.f:41
+102.4 (0.5525%)                   |   |   |   + !$omp do @exact_rhs.f:46                          USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:46
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:46/exact_solution_
+102.4 (0.5525%)                   |   |   |   + !$omp do @exact_rhs.f:147                         USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:147
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:147/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @exact_rhs.f:242       USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:147/!$omp implicit barrier @exact_rhs.f:242
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:147/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + !$omp do @exact_rhs.f:247                         USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:247
+102.4 (0.5525%)                   |   |   |   |   + exact_solution_                               USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:247/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @exact_rhs.f:341       USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:247/!$omp implicit barrier @exact_rhs.f:341
+102.4 (0.5525%)                   |   |   |   + !$omp do @exact_rhs.f:346                         USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp do @exact_rhs.f:346
+102.4 (0.5525%)                   |   |   |   + !$omp implicit barrier @exact_rhs.f:357           USR:/main/MAIN__/exact_rhs_/!$omp parallel @exact_rhs.f:21/!$omp implicit barrier @exact_rhs.f:357
+102.4 (0.5525%)                   |   + timer_clear_                                              USR:/main/MAIN__/timer_clear_
+102.4 (0.5525%)                   |   + exch_qbc_                                                 USR:/main/MAIN__/exch_qbc_
+102.4 (0.5525%)                   |   |   + copy_x_face_                                          USR:/main/MAIN__/exch_qbc_/copy_x_face_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @exch_qbc.f:255                    USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:255
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @exch_qbc.f:255                      USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:255/!$omp do @exch_qbc.f:255
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @exch_qbc.f:264    USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:255/!$omp do @exch_qbc.f:255/!$omp implicit barrier @exch_qbc.f:264
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:255/!$omp do @exch_qbc.f:255/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @exch_qbc.f:244                    USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:244
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @exch_qbc.f:244                      USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:244/!$omp do @exch_qbc.f:244
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @exch_qbc.f:253    USR:/main/MAIN__/exch_qbc_/copy_x_face_/!$omp parallel @exch_qbc.f:244/!$omp do @exch_qbc.f:244/!$omp implicit barrier @exch_qbc.f:253
+102.4 (0.5525%)                   |   |   |   + TRACE BUFFER FLUSH                                USR:/main/MAIN__/exch_qbc_/copy_x_face_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   + copy_y_face_                                          USR:/main/MAIN__/exch_qbc_/copy_y_face_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @exch_qbc.f:215                    USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:215
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @exch_qbc.f:215                      USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:215/!$omp do @exch_qbc.f:215
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @exch_qbc.f:224    USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:215/!$omp do @exch_qbc.f:215/!$omp implicit barrier @exch_qbc.f:224
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:215/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @exch_qbc.f:204                    USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:204
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @exch_qbc.f:204                      USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:204/!$omp do @exch_qbc.f:204
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @exch_qbc.f:213    USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:204/!$omp do @exch_qbc.f:204/!$omp implicit barrier @exch_qbc.f:213
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/exch_qbc_/copy_y_face_/!$omp parallel @exch_qbc.f:204/!$omp do @exch_qbc.f:204/!$omp implicit barrier @exch_qbc.f:213/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + TRACE BUFFER FLUSH                                USR:/main/MAIN__/exch_qbc_/copy_y_face_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   + MPI_Isend                                             USR:/main/MAIN__/exch_qbc_/MPI_Isend
+102.4 (0.5525%)                   |   |   + MPI_Irecv                                             USR:/main/MAIN__/exch_qbc_/MPI_Irecv
+102.4 (0.5525%)                   |   |   + MPI_Waitall                                           USR:/main/MAIN__/exch_qbc_/MPI_Waitall
+102.4 (0.5525%)                   |   |   + TRACE BUFFER FLUSH                                    USR:/main/MAIN__/exch_qbc_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   + adi_                                                      USR:/main/MAIN__/adi_
+102.4 (0.5525%)                   |   |   + compute_rhs_                                          USR:/main/MAIN__/adi_/compute_rhs_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @rhs.f:28                          USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:37                            USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:37
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:62                            USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:62
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:72          USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:62/!$omp implicit barrier @rhs.f:72
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:74                        USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:74
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:80                            USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:80
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:183                       USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:183
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:191                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:191
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:293                       USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:293
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:301                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:301
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:353         USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:301/!$omp implicit barrier @rhs.f:353
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:359                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:359
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:372                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:372
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:384                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:384
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:384/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:400                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:400
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:413                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:413
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:423         USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:413/!$omp implicit barrier @rhs.f:423
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:424                       USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:424
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:428                           USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:428
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:428/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @rhs.f:439             USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp implicit barrier @rhs.f:439
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/adi_/compute_rhs_/!$omp parallel @rhs.f:28/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + TRACE BUFFER FLUSH                                USR:/main/MAIN__/adi_/compute_rhs_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   + x_solve_                                              USR:/main/MAIN__/adi_/x_solve_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @x_solve.f:46                      USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @x_solve.f:54                        USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54
+102.4 (0.5525%)                   |   |   |   |   |   + lhsinit_                                  USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54/lhsinit_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54/lhsinit_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   |   + binvrhs_                                  USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54/binvrhs_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54/binvrhs_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp do @x_solve.f:54/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @x_solve.f:407         USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/!$omp implicit barrier @x_solve.f:407
+102.4 (0.5525%)                   |   |   |   |   + TRACE BUFFER FLUSH                            USR:/main/MAIN__/adi_/x_solve_/!$omp parallel @x_solve.f:46/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   + TRACE BUFFER FLUSH                                USR:/main/MAIN__/adi_/x_solve_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   + y_solve_                                              USR:/main/MAIN__/adi_/y_solve_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @y_solve.f:43                      USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @y_solve.f:52                        USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52
+102.4 (0.5525%)                   |   |   |   |   |   + lhsinit_                                  USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52/lhsinit_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52/lhsinit_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   |   + binvrhs_                                  USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52/binvrhs_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52/binvrhs_/TRACE BUFFER FLUSH
+204.8 (1.105%)                    |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp do @y_solve.f:52/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @y_solve.f:406         USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp implicit barrier @y_solve.f:406
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/y_solve_/!$omp parallel @y_solve.f:43/!$omp implicit barrier @y_solve.f:406/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   + z_solve_                                              USR:/main/MAIN__/adi_/z_solve_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @z_solve.f:43                      USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @z_solve.f:52                        USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52
+102.4 (0.5525%)                   |   |   |   |   |   + lhsinit_                                  USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52/lhsinit_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52/lhsinit_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   |   + binvrhs_                                  USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52/binvrhs_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52/binvrhs_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   |   + TRACE BUFFER FLUSH                        USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp do @z_solve.f:52/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @z_solve.f:428         USR:/main/MAIN__/adi_/z_solve_/!$omp parallel @z_solve.f:43/!$omp implicit barrier @z_solve.f:428
+102.4 (0.5525%)                   |   |   + add_                                                  USR:/main/MAIN__/adi_/add_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @add.f:22                          USR:/main/MAIN__/adi_/add_/!$omp parallel @add.f:22
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @add.f:22                            USR:/main/MAIN__/adi_/add_/!$omp parallel @add.f:22/!$omp do @add.f:22
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @add.f:33          USR:/main/MAIN__/adi_/add_/!$omp parallel @add.f:22/!$omp do @add.f:22/!$omp implicit barrier @add.f:33
+102.4 (0.5525%)                   |   + MPI_Barrier                                               USR:/main/MAIN__/MPI_Barrier
+102.4 (0.5525%)                   |   + timer_start_                                              USR:/main/MAIN__/timer_start_
+102.4 (0.5525%)                   |   + timer_stop_                                               USR:/main/MAIN__/timer_stop_
+102.4 (0.5525%)                   |   + timer_read_                                               USR:/main/MAIN__/timer_read_
+102.4 (0.5525%)                   |   + verify_                                                   USR:/main/MAIN__/verify_
+102.4 (0.5525%)                   |   |   + error_norm_                                           USR:/main/MAIN__/verify_/error_norm_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @error.f:27                        USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @error.f:33                          USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27/!$omp do @error.f:33
+102.4 (0.5525%)                   |   |   |   |   |   + exact_solution_                           USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27/!$omp do @error.f:33/exact_solution_
+102.4 (0.5525%)                   |   |   |   |   |   |   + TRACE BUFFER FLUSH                    USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27/!$omp do @error.f:33/exact_solution_/TRACE BUFFER FLUSH
+102.4 (0.5525%)                   |   |   |   |   + !$omp atomic @error.f:51                      USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27/!$omp atomic @error.f:51
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @error.f:54            USR:/main/MAIN__/verify_/error_norm_/!$omp parallel @error.f:27/!$omp implicit barrier @error.f:54
+102.4 (0.5525%)                   |   |   + compute_rhs_                                          USR:/main/MAIN__/verify_/compute_rhs_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @rhs.f:28                          USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:37                            USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:37
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:62                            USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:62
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:72          USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:62/!$omp implicit barrier @rhs.f:72
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:74                        USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:74
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:80                            USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:80
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:183                       USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:183
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:191                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:191
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:293                       USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:293
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:301                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:301
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:353         USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:301/!$omp implicit barrier @rhs.f:353
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:359                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:359
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:372                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:372
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:384                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:384
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:400                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:400
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:413                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:413
+102.4 (0.5525%)                   |   |   |   |   |   + !$omp implicit barrier @rhs.f:423         USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:413/!$omp implicit barrier @rhs.f:423
+102.4 (0.5525%)                   |   |   |   |   + !$omp master @rhs.f:424                       USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp master @rhs.f:424
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @rhs.f:428                           USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp do @rhs.f:428
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @rhs.f:439             USR:/main/MAIN__/verify_/compute_rhs_/!$omp parallel @rhs.f:28/!$omp implicit barrier @rhs.f:439
+102.4 (0.5525%)                   |   |   + rhs_norm_                                             USR:/main/MAIN__/verify_/rhs_norm_
+102.4 (0.5525%)                   |   |   |   + !$omp parallel @error.f:86                        USR:/main/MAIN__/verify_/rhs_norm_/!$omp parallel @error.f:86
+102.4 (0.5525%)                   |   |   |   |   + !$omp do @error.f:91                          USR:/main/MAIN__/verify_/rhs_norm_/!$omp parallel @error.f:86/!$omp do @error.f:91
+102.4 (0.5525%)                   |   |   |   |   + !$omp atomic @error.f:104                     USR:/main/MAIN__/verify_/rhs_norm_/!$omp parallel @error.f:86/!$omp atomic @error.f:104
+102.4 (0.5525%)                   |   |   |   |   + !$omp implicit barrier @error.f:107           USR:/main/MAIN__/verify_/rhs_norm_/!$omp parallel @error.f:86/!$omp implicit barrier @error.f:107
+102.4 (0.5525%)                   |   |   + MPI_Reduce                                            USR:/main/MAIN__/verify_/MPI_Reduce
+102.4 (0.5525%)                   |   + MPI_Reduce                                                USR:/main/MAIN__/MPI_Reduce
+102.4 (0.5525%)                   |   + print_results_                                            USR:/main/MAIN__/print_results_
+102.4 (0.5525%)                   |   + MPI_Finalize                                              USR:/main/MAIN__/MPI_Finalize

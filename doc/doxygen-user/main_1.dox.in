@@ -1,0 +1,6 @@
+/**
+@page scoreptools @scorep Tools
+
+@section scorep-main scorep
+A call to \c scorep has the following syntax:
+\verbatim

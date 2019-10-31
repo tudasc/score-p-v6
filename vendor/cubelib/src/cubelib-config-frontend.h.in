@@ -1,0 +1,229 @@
+/* ../src/cubelib-config-frontend.h.in.  Generated from configure.ac by autoheader.  */
+
+/* Name of the sub-build. */
+#undef AFS_PACKAGE_BUILD
+
+/* Symbol name of the sub-build in upper case. */
+#undef AFS_PACKAGE_BUILD_NAME
+
+/* Symbol name of the sub-build in lower case. */
+#undef AFS_PACKAGE_BUILD_name
+
+/* The package name usable as a symbol in upper case. */
+#undef AFS_PACKAGE_NAME
+
+/* Relative path to the top-level source directory. */
+#undef AFS_PACKAGE_SRCDIR
+
+/* The package name usable as a symbol in lower case. */
+#undef AFS_PACKAGE_name
+
+/* Compression is enabled */
+#undef COMPRESSION
+
+/* Select 'all rows in memory, on demand' as a data loading strategy */
+#undef CUBE_DEFAULT_ALL_IN_MEMORY
+
+/* Select 'all rows in memory, preloaded' as a data loading strategy */
+#undef CUBE_DEFAULT_ALL_IN_MEMORY_PRELOAD
+
+/* Select 'last N rows in memory' as a data loading strategy */
+#undef CUBE_DEFAULT_LAST_N
+
+/* Select 'manual load' as a data loading strategy */
+#undef CUBE_DEFAULT_MANUAL
+
+/* Select number of kept rows as $CUBE_N_LAST_ROWS */
+#undef CUBE_N_LAST_ROWS
+
+/* Can link a close function */
+#undef HAVE_CLOSE
+
+/* Define to 1 to enable additional debug output and checks. */
+#undef HAVE_CUBELIB_DEBUG
+
+/* Define to 1 to disable assertions (like NDEBUG). */
+#undef HAVE_CUBELIB_NO_ASSERT
+
+/* Define if Cube networking is available */
+#undef HAVE_CUBE_NETWORKING
+
+/* define if the compiler supports basic C++11 syntax */
+#undef HAVE_CXX11
+
+/* define if the compiler supports basic C++14 syntax */
+#undef HAVE_CXX14
+
+/* Define to 1 if you have the declaration of `close', and to 0 if you don't.
+   */
+#undef HAVE_DECL_CLOSE
+
+/* Define to 1 if you have the declaration of `fileno', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FILENO
+
+/* Define to 1 if you have the declaration of `fseeko', and to 0 if you don't.
+   */
+#undef HAVE_DECL_FSEEKO
+
+/* Define to 1 if you have the declaration of `fseeko64', and to 0 if you
+   don't. */
+#undef HAVE_DECL_FSEEKO64
+
+/* Define to 1 if you have the declaration of `getcwd', and to 0 if you don't.
+   */
+#undef HAVE_DECL_GETCWD
+
+/* Define to 1 if you have the declaration of `gethostid', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTID
+
+/* Define to 1 if you have the declaration of `gethostname', and to 0 if you
+   don't. */
+#undef HAVE_DECL_GETHOSTNAME
+
+/* Define to 1 if you have the declaration of `read', and to 0 if you don't.
+   */
+#undef HAVE_DECL_READ
+
+/* Define to 1 if you have the declaration of `realpath', and to 0 if you
+   don't. */
+#undef HAVE_DECL_REALPATH
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Can link a fileno function */
+#undef HAVE_FILENO
+
+/* Can link a fseeko function */
+#undef HAVE_FSEEKO
+
+/* Can link a fseeko64 function */
+#undef HAVE_FSEEKO64
+
+/* Can link a getcwd function */
+#undef HAVE_GETCWD
+
+/* Can link a gethostid function */
+#undef HAVE_GETHOSTID
+
+/* Can link a gethostname function */
+#undef HAVE_GETHOSTNAME
+
+/* Can link a getrlimit function */
+#undef HAVE_GETRLIMIT
+
+/* Define to 1 if you have the <inttypes.h> header file. */
+#undef HAVE_INTTYPES_H
+
+/* Define to 1 if you have the <memory.h> header file. */
+#undef HAVE_MEMORY_H
+
+/* Can link against popen and pclose */
+#undef HAVE_POPEN
+
+/* Define if POSIX socket headers are available */
+#undef HAVE_POSIX_SOCKET
+
+/* Define if you have POSIX threads libraries and header files. */
+#undef HAVE_PTHREAD
+
+/* Have PTHREAD_PRIO_INHERIT. */
+#undef HAVE_PTHREAD_PRIO_INHERIT
+
+/* Can link a read function */
+#undef HAVE_READ
+
+/* Define to 1 if you have the `readlink' function. */
+#undef HAVE_READLINK
+
+/* Can link a realpath function */
+#undef HAVE_REALPATH
+
+/* Define to 1 if you have the <stdint.h> header file. */
+#undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdlib.h> header file. */
+#undef HAVE_STDLIB_H
+
+/* Define to 1 if you have the <strings.h> header file. */
+#undef HAVE_STRINGS_H
+
+/* Define to 1 if you have the <string.h> header file. */
+#undef HAVE_STRING_H
+
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#undef HAVE_SYS_STAT_H
+
+/* Define to 1 if you have the <sys/types.h> header file. */
+#undef HAVE_SYS_TYPES_H
+
+/* Define to 1 if you have the <unistd.h> header file. */
+#undef HAVE_UNISTD_H
+
+/* Interface version number */
+#undef LIBRARY_INTERFACE_VERSION
+
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
+#undef LT_OBJDIR
+
+/* Define to 1 if your C compiler doesn't accept -c and -o together. */
+#undef NO_MINUS_C_MINUS_O
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* The #include argument used to include this packages error codes header. */
+#undef PACKAGE_ERROR_CODES_HEADER
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the home page for this package. */
+#undef PACKAGE_URL
+
+/* Define to the version of this package. */
+#undef PACKAGE_VERSION
+
+/* Directory where CubeLib data is stored */
+#undef PKGDATADIR
+
+/* Directory where CubeLib executables to be run by other programs rather than
+   by users are installed */
+#undef PKGLIBEXECDIR
+
+/* Define to necessary symbol if this constant uses a non-standard name on
+   your system. */
+#undef PTHREAD_CREATE_JOINABLE
+
+/* Define to 1 if you have the ANSI C header files. */
+#undef STDC_HEADERS
+
+/* Version number of package */
+#undef VERSION
+
+/* Define to 1 if `lex' declares `yytext' as a `char *' by default, not a
+   `char[]'. */
+#undef YYTEXT_POINTER
+
+/* Define to 1 if needed to make fixed-width integer constant macros available
+   in C++ */
+#undef __STDC_CONSTANT_MACROS
+
+/* Define to 1 if needed to make fixed-width integer format macros available
+   in C++ */
+#undef __STDC_FORMAT_MACROS
+
+/* Define to 1 if needed to make fixed-width integer limit macros available in
+   C++ */
+#undef __STDC_LIMIT_MACROS

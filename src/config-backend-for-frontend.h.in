@@ -1,0 +1,153 @@
+/* Generated from src/config-backend.h.in by vendor/common/build-config/generate-config-backend-for-frontend.sh.  */
+
+
+/* Compiler constructor support */
+#undef HAVE_BACKEND_COMPILER_CONSTRUCTOR_SUPPORT
+
+/* Defined if compiler instrumentation is available. */
+#undef HAVE_BACKEND_COMPILER_INSTRUMENTATION
+
+/* Define if the compiler instrumentation needs the symbol table. */
+#undef HAVE_BACKEND_COMPILER_INSTRUMENTATION_NEEDS_SYMBOL_TABLE
+
+/* Defined if cuda is available. */
+#undef HAVE_BACKEND_CUDA_SUPPORT
+
+/* Defined if CUDA version is greater or equal 6.0. */
+#undef HAVE_BACKEND_CUDA_VERSION_GREATER_EQUAL_60
+
+/* Defined if CUPTI activity asynchronous buffer handling is available. */
+#undef HAVE_BACKEND_CUPTI_ASYNC_SUPPORT
+
+/* Define if cplus_demangle is available. */
+#undef HAVE_BACKEND_DEMANGLE
+
+/* Defined if dlfcn.h provides RTLD_NEXT option for calls to dlsym function.
+   */
+#undef HAVE_BACKEND_DLFCN_RTLD_NEXT
+
+/* Defined if dynamic linking via dlfcn.h is supported. */
+#undef HAVE_BACKEND_DLFCN_SUPPORT
+
+/* Defined if GCC plug-in support is available. */
+#undef HAVE_BACKEND_GCC_PLUGIN_SUPPORT
+
+/* Defined if getrusage() is available. */
+#undef HAVE_BACKEND_GETRUSAGE
+
+/* Defined if the linker is GNU ld. */
+#undef HAVE_BACKEND_GNU_LINKER
+
+/* Define if libbfd is available. */
+#undef HAVE_BACKEND_LIBBFD
+
+/* Define if linktime library wrapping is possible. */
+#undef HAVE_BACKEND_LIBWRAP_LINKTIME_SUPPORT
+
+/* Define if runtime library wrapping is possible. */
+#undef HAVE_BACKEND_LIBWRAP_RUNTIME_SUPPORT
+
+/* Define if library wrapping is possible at all. */
+#undef HAVE_BACKEND_LIBWRAP_SUPPORT
+
+/* Define if memory tracking is supported. */
+#undef HAVE_BACKEND_MEMORY_SUPPORT
+
+/* Defined if metric perf support is available. */
+#undef HAVE_BACKEND_METRIC_PERF
+
+/* Defined if MPI support is available. */
+#undef HAVE_BACKEND_MPI_SUPPORT
+
+/* Define if nm is available. */
+#undef HAVE_BACKEND_NM
+
+/* Defined if online access is possible. */
+#undef HAVE_BACKEND_ONLINE_ACCESS
+
+/* OPARI2 revision used for version-dependent feature activation. */
+#undef HAVE_BACKEND_OPARI2_REVISION
+
+/* Defined if openacc.h has been found and OpenACC enabled. */
+#undef HAVE_BACKEND_OPENACC
+
+/* Defined if openacc.h and acc_prof.h have been found and OpenACC enabled */
+#undef HAVE_BACKEND_OPENACC_SUPPORT
+
+/* Defined if OpenCL is available. */
+#undef HAVE_BACKEND_OPENCL_SUPPORT
+
+/* Defined if OpenCL API version 1.0 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_0_SUPPORT
+
+/* Defined if OpenCL API version 1.1 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_1_SUPPORT
+
+/* Defined if OpenCL API version 1.2 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_1_2_SUPPORT
+
+/* Defined if OpenCL API version 2.0 is supported. */
+#undef HAVE_BACKEND_OPENCL_VERSION_2_0_SUPPORT
+
+/* Defined if libpapi is available. */
+#undef HAVE_BACKEND_PAPI
+
+/* Defined if PMI is available. */
+#undef HAVE_BACKEND_PMI
+
+/* Defined if recording calls to POSIX asynchronous I/O is possible. */
+#undef HAVE_BACKEND_POSIX_AIO_SUPPORT
+
+/* Defined if recording calls to POSIX I/O is possible. */
+#undef HAVE_BACKEND_POSIX_IO_SUPPORT
+
+/* Defined if sampling support is available. */
+#undef HAVE_BACKEND_SAMPLING_SUPPORT
+
+/* Timer aix available */
+#undef HAVE_BACKEND_SCOREP_TIMER_AIX
+
+/* Timer bgl available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGL
+
+/* Timer bgp available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGP
+
+/* Timer bgq available */
+#undef HAVE_BACKEND_SCOREP_TIMER_BGQ
+
+/* Timer clock_gettime available */
+#undef HAVE_BACKEND_SCOREP_TIMER_CLOCK_GETTIME
+
+/* The clk_id as string used in clock_gettime calls. */
+#undef HAVE_BACKEND_SCOREP_TIMER_CLOCK_GETTIME_CLK_ID_NAME
+
+/* Default timer */
+#undef HAVE_BACKEND_SCOREP_TIMER_DEFAULT
+
+/* Timer gettimeofday available */
+#undef HAVE_BACKEND_SCOREP_TIMER_GETTIMEOFDAY
+
+/* Timer mac available */
+#undef HAVE_BACKEND_SCOREP_TIMER_MAC
+
+/* Timer mingw available */
+#undef HAVE_BACKEND_SCOREP_TIMER_MINGW
+
+/* Timer tsc available */
+#undef HAVE_BACKEND_SCOREP_TIMER_TSC
+
+/* TSC timer */
+#undef HAVE_BACKEND_SCOREP_TIMER_TSC_NAME
+
+/* Defined if SHMEM Profiling Interface support is available. */
+#undef HAVE_BACKEND_SHMEM_PROFILING_INTERFACE
+
+/* Defined if SHMEM support is available. */
+#undef HAVE_BACKEND_SHMEM_SUPPORT
+
+/* Defined if thread local storage support is available. */
+#undef HAVE_BACKEND_THREAD_LOCAL_STORAGE
+
+/* Defined if unwinding support is available. */
+#undef HAVE_BACKEND_UNWINDING_SUPPORT

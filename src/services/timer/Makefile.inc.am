@@ -1,0 +1,50 @@
+## -*- mode: makefile-automake -*-
+
+# This file is part of the Score-P software (http://www.score-p.org)
+#
+# Copyright (c) 2009-2011,
+# RWTH Aachen University, Germany
+#
+# Copyright (c) 2009-2011,
+# Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+#
+# Copyright (c) 2009-2011,
+# Technische Universitaet Dresden, Germany
+#
+# Copyright (c) 2009-2011,
+# University of Oregon, Eugene, USA
+#
+# Copyright (c) 2009-2011, 2015-2016,
+# Forschungszentrum Juelich GmbH, Germany
+#
+# Copyright (c) 2009-2011,
+# German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+#
+# Copyright (c) 2009-2011,
+# Technische Universitaet Muenchen, Germany
+#
+# This software may be modified and distributed under the terms of
+# a BSD-style license. See the COPYING file in the package base
+# directory for details.
+
+
+noinst_LTLIBRARIES += libscorep_timer.la
+libscorep_timer_la_SOURCES = \
+    $(SRC_ROOT)src/services/include/SCOREP_Timer_Avail.h \
+    $(SRC_ROOT)src/services/include/SCOREP_Timer_Ticks.h \
+    $(SRC_ROOT)src/services/include/SCOREP_Timer_Utils.h \
+    $(SRC_ROOT)src/services/timer/SCOREP_Timer.c
+libscorep_timer_la_CPPFLAGS = \
+    $(AM_CPPFLAGS) \
+    $(UTILS_CPPFLAGS) \
+    -I$(INC_ROOT)src/services/include \
+    -I$(INC_ROOT)src/measurement/include \
+    -I$(INC_ROOT)src/measurement \
+    -I$(PUBLIC_INC_DIR) \
+    @SCOREP_TIMER_CPPFLAGS@
+libscorep_timer_la_LDFLAGS = @SCOREP_TIMER_LDFLAGS@
+libscorep_timer_la_LIBADD = @SCOREP_TIMER_LIBS@
+
+EXTRA_DIST += \
+    $(SRC_ROOT)src/services/timer/scorep_timer_tsc.h \
+    $(SRC_ROOT)src/services/timer/scorep_timer_tsc.inc.c

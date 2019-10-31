@@ -1,0 +1,265 @@
+#!/bin/bash
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2012
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2012,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2012, 2014-2015, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2012,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2012,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2012,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2012,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license.  See the COPYING file in the package base
+## directory for details.
+##
+##
+
+## file       run_cuda_test.sh
+
+## Note: create gold files using the 'create_gold_files.sh' script.
+
+echo "===== CUDA Compile and Run Test ====="
+
+rm -f cuda_test
+
+# Get SRC_ROOT
+SRC_ROOT=@abs_top_srcdir@/..
+
+# Get otf2print tool
+OTF2_PRINT=@OTF2_BINDIR@/otf2-print
+
+# Select gold files corresponding to current CUDA version
+cuda_gold_file_version=v@SCOREP_CUDA_VERSION@
+
+# Directory containing the gold files
+TEST_DATA_DIR=$SRC_ROOT/test/adapters/cuda/data/$cuda_gold_file_version
+
+# Set up directory that will contain experiment results
+RESULT_DIR=$PWD/scorep-serial-cuda
+
+export @SYS_LIB_SEARCH_PATH_VAR@=$PWD/@LT_OBJDIR@${@SYS_LIB_SEARCH_PATH_VAR@:+:${@SYS_LIB_SEARCH_PATH_VAR@}}
+
+./scorep -v --build-check --nocompiler --user nvcc $SRC_ROOT/test/adapters/cuda/cuda_test.cu -o cuda_test -I.
+
+echo "Output of CUDA test can be found in $RESULT_DIR"
+
+# Number of CUDA streams for testing (currently fixed)
+num_streams=3
+
+### Check basic (-b) and advanced CUDA features in the example
+for testmode in "-b" ""
+do
+
+### Check various combinations of CUDA runtime features ###
+features=""
+for cudaapi in "" "runtime" "driver"
+do
+
+  for kernel in "" ",kernel" ",kernel,references"
+  do
+
+    # skip at least the test where no CUDA API is recorded, but references enabled
+    if [ "$kernel" = ",kernel,references" -a "x$cudaapi" = "x" ]; then
+        continue
+    fi
+
+    # skip advanced tests for references enabled without driver option
+    if [ "$kernel" = ",kernel,references" -a "x$testmode" = "x" ]; then
+        continue
+    fi
+
+    for idle in "" ",idle" ",pure_idle"
+    do
+
+      if [ "$idle" = ",idle" -a "x$kernel" = "x" ]; then
+        continue
+      fi
+
+      for mcpy in "" ",memcpy"
+      do
+
+        if [ "$idle" = ",pure_idle" -a "x$mcpy" = "x" ]; then
+          continue
+        fi
+
+          for synchr in "" ",sync"
+          do
+
+          # continue if neither kernel nor memory copy is enabled
+          if [ "$synchr" = ",sync" -a "x$kernel" = "x" -a "x$mcpy" = "x" ]; then
+            continue
+          fi
+
+          for memusage in "" ",gpumemusage"
+          do
+
+            features=${cudaapi}
+
+            if [ "x$features" = "x" -a "$kernel" = ",kernel" ]; then
+              kernel="kernel"
+            fi
+            if [ "x$features" = "x" -a "$kernel" = ",kernel,references" ]; then
+              kernel="kernel,references"
+            fi
+            features="${features}${kernel}"
+
+            if [ "x$features" = "x" -a "${mcpy}" = ",memcpy" ]; then
+              mcpy="memcpy"
+            fi
+            features="${features}${mcpy}${synchr}${idle}${memusage}"
+
+            # Remove old result dir (if any)
+            rm -rf $RESULT_DIR
+
+            echo "Testing combination '${features}':"
+
+            SCOREP_CUDA_ENABLE=${features} \
+            SCOREP_OVERWRITE_EXPERIMENT_DIRECTORY=true \
+            SCOREP_ENABLE_TRACING=yes \
+            SCOREP_EXPERIMENT_DIRECTORY=$RESULT_DIR \
+            ./cuda_test ${testmode} -s ${num_streams} > cuda_test.out 2>&1
+            res=$?
+            cat cuda_test.out
+
+            if [ $res -ne 0 ]; then
+                rm -rf scorep-measurement-tmp
+                exit $res
+            fi
+
+            LC_ALL=C grep 'Skipping\|Cannot flush' cuda_test.out
+            if [ $? -eq 0 ]; then
+                echo "CUDA trace file is inconsistent (activities are missing)"
+
+                # NOTE: In some non-reproducible cases the buffer cannot be
+                #       flushed or activities are missing due to time
+                #       synchronization issues.
+                echo "Ignored"
+                continue
+                #rm -rf scorep-measurement-tmp
+                #exit 1
+            fi
+
+            # if 'references' is used without 'driver', expect warning
+            if [[ "$kernel" =~ "references" && "$cudaapi" != "driver" ]]; then
+                LC_ALL=C grep "CUDA option 'references' requires option 'driver'" cuda_test.out
+                if [ $? -ne 0 ]; then
+                    echo "Did not find expected warning message for 'references'"
+                    rm -rf scorep-measurement-tmp
+                    exit 1
+                fi
+            fi
+
+            if [ "x$testmode" = "x-b" ]; then
+              # test results of basic execution
+
+              num_kernels=$($OTF2_PRINT $RESULT_DIR/traces.otf2 | LC_ALL=C grep -c 'init_array')
+              # Kernels launched via the CUDA runtime API create two host-side stub functions
+              # which include the kernel name. Even if no kernels are traced, these stubs still
+              # have recorded enter/leave events.
+              num_kernels_expected=$((2*($num_streams+1)))
+
+              if [[ "$kernel" =~ "kernel" ]]; then
+                  # Now we want to trace the actual device-side kernel events, too.
+                  # Thus expect an additional enter/exit pair for each stream
+                  num_kernels_expected=$((num_kernels_expected + 2*($num_streams+1)))
+              fi
+
+              if [ $num_kernels -ne $num_kernels_expected ]; then
+                  echo "CUDA trace file is inconsistent (wrong number of kernels '${num_kernels}/${num_kernels_expected}')"
+                  rm -rf scorep-measurement-tmp
+                  exit 1
+              fi
+            else
+              # test results of advanced execution
+
+              num_kernels=$($OTF2_PRINT $RESULT_DIR/traces.otf2 | LC_ALL=C grep -c 'clock_block')
+              # Depends on the number of CUDA streams used (num_streams).
+              num_kernels_expected=$((2*$num_streams))
+
+              if [[ "$kernel" =~ "kernel" ]]; then
+                  # Thus expect an additional enter/exit pair for each stream
+                  num_kernels_expected=$((num_kernels_expected + 2*$num_streams))
+              fi
+
+              if [ $num_kernels -ne $num_kernels_expected ]; then
+                  echo "CUDA trace file is inconsistent (wrong number of kernels '${num_kernels}/${num_kernels_expected}')"
+                  rm -rf scorep-measurement-tmp
+                  exit 1
+              fi
+            fi
+
+            if [[ "$kernel" =~ "references" && "$cudaapi" = "driver" ]]; then
+                # test that all kernel launches have reference attributes
+                num_launches=$($OTF2_PRINT $RESULT_DIR/traces.otf2 | LC_ALL=C grep -c 'cuLaunchKernel')
+                num_refs=$($OTF2_PRINT $RESULT_DIR/traces.otf2 | LC_ALL=C grep -c 'ADDITIONAL ATTRIBUTES: ("CUDA_STREAM_REF')
+                num_refs=$((2*$num_refs))
+
+                if [ $num_refs -ne $num_launches ]; then
+                    echo "CUDA trace file is inconsistent (wrong number of reference attributes)"
+                    rm -rf scorep-measurement-tmp
+                    exit 1
+                fi
+            fi
+
+            # For combinations that have a gold file, compare output to gold file
+            features_pure=${features//,/.}
+            testmode_pure=${testmode//-/}
+            goldfile="$testmode_pure.$features_pure.gold"
+            goldfile=$TEST_DATA_DIR/${goldfile//".."/.}
+            if [ -e $goldfile.device ]; then
+                # print, replace timestamps with 0 and write to trace_host.txt
+                $OTF2_PRINT $RESULT_DIR/traces.otf2 |
+                  GREP_OPTIONS= grep '^ENTER\|LEAVE' |
+                  GREP_OPTIONS= grep -Fv 'tmpxft' |
+                  LC_ALL=C sed -e 's/[^ ]*[^ ]/0/3' |
+                  GREP_OPTIONS= egrep '^(ENTER|LEAVE)[[:space:]]+0' |
+                  LC_ALL=C sed -e 's/<[0-9][0-9]*>$/<id>/g' > trace_host.txt
+
+                # print, replace timestamps with 0 and write to trace_device.txt
+                $OTF2_PRINT $RESULT_DIR/traces.otf2 |
+                  GREP_OPTIONS= grep '^ENTER\|LEAVE' |
+                  GREP_OPTIONS= grep -Fv 'tmpxft' |
+                  LC_ALL=C sed -e 's/[^ ]*[^ ]/0/3' |
+                  GREP_OPTIONS= egrep -v '^(ENTER|LEAVE)[[:space:]]+0' |
+                  LC_ALL=C sed -e 's/<[0-9][0-9]*>$/<id>/g' > trace_device.txt
+
+                # compare device events to gold file
+                num_enter_events_gold_device=`GREP_OPTIONS= grep -c ENTER $goldfile.device`
+                num_enter_events_trace_device=`GREP_OPTIONS= grep -c ENTER trace_device.txt`
+                if [[ $num_enter_events_gold_device -ne $num_enter_events_trace_device ]]; then
+                  echo "-------- ERROR: in device event output --------" >&2
+                  diff -u $goldfile.device trace_device.txt >&2
+                  exit 1
+                fi
+
+                echo "Gold file OK"
+            fi
+
+          done #memusage
+        done #sync
+      done #memcpy
+    done #idle
+  done #kernel
+done #cudaapi
+
+done #testmode
+
+echo "====================================="
+
+exit 0

@@ -1,0 +1,80 @@
+#!/bin/bash
+
+##
+## This file is part of the Score-P software (http://www.score-p.org)
+##
+## Copyright (c) 2009-2011,
+## RWTH Aachen University, Germany
+##
+## Copyright (c) 2009-2011,
+## Gesellschaft fuer numerische Simulation mbH Braunschweig, Germany
+##
+## Copyright (c) 2009-2011, 2013, 2019,
+## Technische Universitaet Dresden, Germany
+##
+## Copyright (c) 2009-2011,
+## University of Oregon, Eugene, USA
+##
+## Copyright (c) 2009-2011,
+## Forschungszentrum Juelich GmbH, Germany
+##
+## Copyright (c) 2009-2011,
+## German Research School for Simulation Sciences GmbH, Juelich/Aachen, Germany
+##
+## Copyright (c) 2009-2011,
+## Technische Universitaet Muenchen, Germany
+##
+## This software may be modified and distributed under the terms of
+## a BSD-style license. See the COPYING file in the package base
+## directory for details.
+##
+
+## file       run_filter_test.sh
+
+cleanup()
+{
+   rm -f user_cxx_test
+   rm -rf scorep-measurement-tmp
+}
+trap cleanup EXIT
+
+OTF2_PRINT=@OTF2_BINDIR@/otf2-print
+SRC_ROOT=@abs_top_srcdir@/..
+CXX=@CXX@
+OPENMP_CFLAGS=@OPENMP_CFLAGS@
+export @SYS_LIB_SEARCH_PATH_VAR@=$PWD/@LT_OBJDIR@:@SCOREP_PAPI_LIBDIR@${@SYS_LIB_SEARCH_PATH_VAR@:+:${@SYS_LIB_SEARCH_PATH_VAR@}}
+
+# Execute test without OpenMP and compiler instrumentation (only user)
+./scorep -v --build-check --user --nocompiler $CXX -I. -o user_cxx_test $SRC_ROOT/test/adapters/user/C++/user_test.cpp
+if [ $? -ne 0 ]; then
+    echo "Failed to build serial user_cxx_test"
+    exit 1
+fi
+
+./user_cxx_test
+if [ $? -ne 0 ]; then
+    echo "Failed to run serial user_cxx_test"
+    exit 1
+fi
+
+exit 0
+
+# Do not execute the OpenMP test, because the Studio compiler has not
+# initialized its OpenMP environment when executing the constructor of
+# a static object.
+
+# Execute test with OpenMP compiler and user instrumentation.
+./scorep -v --build-check --user --nocompiler $CXX $OPENMP_CFLAGS -I. -g -o user_cxx_test $SRC_ROOT/test/adapters/user/C++/user_test.cpp
+if [ ! -e user_cxx_test ]; then
+    echo "Failed to build user_cxx_test with OpenMP compiler"
+    exit 1
+fi
+
+./user_cxx_test
+if [ $? -ne 0 ]; then
+    echo "Failed to run user_cxx_test build with OpenMP compiler"
+    exit 1
+fi
+
+exit 0
+
