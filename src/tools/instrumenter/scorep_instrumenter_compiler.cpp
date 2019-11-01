@@ -40,7 +40,7 @@
 #include <UTILS_IO.h>
 
 #define HAVE_LLVM_PLUGIN_SUPPORT true
-#define LLVM_PLUGIN_PATH "/home/jp/all_repos/gl-sc-llvm-instrumentation/build/lib/instrumentationlib.so"
+#define LLVM_PLUGIN_PATH PIRA_SUBMODULE_PATH
 
 #if HAVE( POPEN )
 static void
