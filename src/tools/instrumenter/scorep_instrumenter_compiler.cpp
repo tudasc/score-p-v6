@@ -40,7 +40,7 @@
 #include <UTILS_IO.h>
 
 #define HAVE_LLVM_PLUGIN_SUPPORT true
-#define LLVM_PLUGIN_PATH PIRA_SUBMODULE_PATH
+#define LLVM_PLUGIN_PATH "/home/j_lehr/builds/2XWLJs3Y/0/tuda-sc/projects/pira/extern/src/llvm-instrumenter/build/lib"
 
 #if HAVE( POPEN )
 static void
