@@ -366,7 +366,7 @@ SCOREP_Config_CompilerAdapter::checkArgument( const std::string& arg )
 #elif HAVE_LLVM_PLUGIN_SUPPORT
     if ( arg == "--llvm-filter" )
     {
-        m_cflags += "-Xclang -load -Xclang /home/jp/all_repos/gl-sc-llvm-instrumentation/build/lib/instrumentationlib.so ";
+        m_cflags += "-Xclang -load -Xclang PIRA_SUBMODULE_PATH ";
         return true;
     }
     else if ( arg.substr(0, 14) == "--filter-list=" )
