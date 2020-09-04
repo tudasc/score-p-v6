@@ -375,7 +375,7 @@ SCOREP_Config_CompilerAdapter::checkArgument( const std::string& arg )
         return true;
     }
     else if ( arg.substr(0,16) == "--score-p-filter=" ) {
-      m_cflags += "-mllvm " + arg " ";
+      m_cflags += "-mllvm " + arg + " ";
       return true;
     }
 #endif // HAVE_LLVM_BACKEND_SUPPORT
