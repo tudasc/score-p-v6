@@ -374,7 +374,7 @@ SCOREP_Config_CompilerAdapter::checkArgument( const std::string& arg )
         m_cflags +=  "-mllvm " + arg + " ";
         return true;
     }
-    else if ( arg.substr(0,16) == "--score-p-filter=" ) {
+    else if ( arg.substr(0,17) == "--score-p-filter=" ) {
       m_cflags += "-mllvm " + arg + " ";
       return true;
     }
