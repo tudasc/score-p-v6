@@ -1042,8 +1042,8 @@ int forced_loaded() { return 2;}
 _LT_EOF
       echo "$LTCC $LTCFLAGS -c -o conftest.o conftest.c" >&AS_MESSAGE_LOG_FD
       $LTCC $LTCFLAGS -c -o conftest.o conftest.c 2>&AS_MESSAGE_LOG_FD
-      echo "$AR $AR_FLAGS libconftest.a conftest.o" >&AS_MESSAGE_LOG_FD
-      $AR $AR_FLAGS libconftest.a conftest.o 2>&AS_MESSAGE_LOG_FD
+      echo "$AR cru libconftest.a conftest.o" >&AS_MESSAGE_LOG_FD
+      $AR cru libconftest.a conftest.o 2>&AS_MESSAGE_LOG_FD
       echo "$RANLIB libconftest.a" >&AS_MESSAGE_LOG_FD
       $RANLIB libconftest.a 2>&AS_MESSAGE_LOG_FD
       cat > conftest.c << _LT_EOF
@@ -1493,22 +1493,9 @@ need_locks=$enable_libtool_lock
 m4_defun([_LT_PROG_AR],
 [AC_CHECK_TOOLS(AR, [ar], false)
 : ${AR=ar}
+: ${AR_FLAGS=cru}
 _LT_DECL([], [AR], [1], [The archiver])
-
-# Use ARFLAGS variable as AR's operation code to sync the variable naming with
-# Automake.  If both AR_FLAGS and ARFLAGS are specified, AR_FLAGS should have
-# higher priority because thats what people were doing historically (setting
-# ARFLAGS for automake and AR_FLAGS for libtool).  FIXME: Make the AR_FLAGS
-# variable obsoleted/removed.
-
-test ${AR_FLAGS+y} || AR_FLAGS=${ARFLAGS-cr}
-lt_ar_flags=$AR_FLAGS
-_LT_DECL([], [lt_ar_flags], [0], [Flags to create an archive (by configure)])
-
-# Make AR_FLAGS overridable by 'make ARFLAGS='.  Don't try to run-time override
-# by AR_FLAGS because that was never working and AR_FLAGS is about to die.
-_LT_DECL([], [AR_FLAGS], [\@S|@{ARFLAGS-"\@S|@lt_ar_flags"}],
-         [Flags to create an archive])
+_LT_DECL([], [AR_FLAGS], [1], [Flags to create an archive])
 
 AC_CACHE_CHECK([for archiver @FILE support], [lt_cv_ar_at_file],
   [lt_cv_ar_at_file=no
@@ -1543,9 +1530,7 @@ _LT_DECL([], [archiver_list_spec], [1],
 m4_defun([_LT_CMD_OLD_ARCHIVE],
 [_LT_PROG_AR
 
-# Cray's compiler drivers need STRIP to be an absolute file name when
-# static linking.
-AC_PATH_TOOL(STRIP, strip, :)
+AC_CHECK_TOOL(STRIP, strip, :)
 test -z "$STRIP" && STRIP=:
 _LT_DECL([], [STRIP], [1], [A symbol stripping program])
 
@@ -2882,6 +2867,9 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu | gnu*)
   # before this can be enabled.
   hardcode_into_libs=yes
 
+  # Add ABI-specific directories to the system library path.
+  sys_lib_dlsearch_path_spec="/lib64 /usr/lib64 /lib /usr/lib"
+
   # Ideally, we could use ldconfig to report *all* directores which are
   # searched for libraries, however this is still not possible.  Aside from not
   # being certain /sbin/ldconfig is available, command
@@ -2890,7 +2878,7 @@ linux* | k*bsd*-gnu | kopensolaris*-gnu | gnu*)
   # appending ld.so.conf contents (and includes) to the search path.
   if test -f /etc/ld.so.conf; then
     lt_ld_extra=`awk '/^include / { system(sprintf("cd /etc; cat %s 2>/dev/null", \[$]2)); skip = 1; } { if (!skip) print \[$]0; skip = 0; }' < /etc/ld.so.conf | $SED -e 's/#.*//;/^[	 ]*hwcap[	 ]/d;s/[:,	]/ /g;s/=[^=]*$//;s/=[^= ]* / /g;s/"//g;/^$/d' | tr '\n' ' '`
-    sys_lib_dlsearch_path_spec="/lib /usr/lib $lt_ld_extra"
+    sys_lib_dlsearch_path_spec="$sys_lib_dlsearch_path_spec $lt_ld_extra"
   fi
 
   # We used to test for /lib/ld.so.1 and disable shared libraries on
@@ -4415,30 +4403,12 @@ m4_if([$1], [CXX], [
 	    _LT_TAGVAR(lt_prog_compiler_static, $1)='-qstaticlink'
 	    ;;
 	  *)
-	    case `$CC -V 2>&1` in
+	    case `$CC -V 2>&1 | sed 5q` in
 	    *Sun\ C*)
 	      # Sun C++ 5.9
 	      _LT_TAGVAR(lt_prog_compiler_pic, $1)='-KPIC'
 	      _LT_TAGVAR(lt_prog_compiler_static, $1)='-Bstatic'
 	      _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Qoption ld '
-	      ;;
-	    *Cray\ C*)
-	      # Cray C++ compiler
-	      _LT_TAGVAR(lt_prog_compiler_pic, $1)='-hpic'
-	      _LT_TAGVAR(lt_prog_compiler_static, $1)='-static'
-	      _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
-	      ;;
-	    *pgCC* | *pgcpp*)
-	      # Portland Group/NVIDIA C++ compiler
-	      _LT_TAGVAR(lt_prog_compiler_pic, $1)='-fpic'
-	      _LT_TAGVAR(lt_prog_compiler_static, $1)='-Bstatic'
-	      _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
-	      ;;
-	    *Fujitsu*)
-	      # Fujitsu C/C++ Compiler Driver
-	      _LT_TAGVAR(lt_prog_compiler_pic, $1)='-Kpic'
-	      _LT_TAGVAR(lt_prog_compiler_static, $1)='-Bstatic'
-	      _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
 	      ;;
 	    esac
 	    ;;
@@ -4769,7 +4739,7 @@ m4_if([$1], [CXX], [
 	_LT_TAGVAR(lt_prog_compiler_static, $1)='-qstaticlink'
 	;;
       *)
-	case `$CC -V 2>&1` in
+	case `$CC -V 2>&1 | sed 5q` in
 	*Sun\ Ceres\ Fortran* | *Sun*Fortran*\ [[1-7]].* | *Sun*Fortran*\ 8.[[0-3]]*)
 	  # Sun Fortran 8.3 passes all unrecognized flags to the linker
 	  _LT_TAGVAR(lt_prog_compiler_pic, $1)='-KPIC'
@@ -4792,19 +4762,9 @@ m4_if([$1], [CXX], [
 	  _LT_TAGVAR(lt_prog_compiler_pic, $1)='-fPIC'
 	  _LT_TAGVAR(lt_prog_compiler_static, $1)='-static'
 	  ;;
-	*Cray\ Fortran* | *Cray\ C*)
-	  _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
-	  _LT_TAGVAR(lt_prog_compiler_pic, $1)='-hpic'
-	  _LT_TAGVAR(lt_prog_compiler_static, $1)='-static'
-	  ;;
-	*pgcc* | *pgf77* | *pgf90* | *pgf95* | *pgfortran*)
+	*Portland\ Group*)
 	  _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
 	  _LT_TAGVAR(lt_prog_compiler_pic, $1)='-fpic'
-	  _LT_TAGVAR(lt_prog_compiler_static, $1)='-Bstatic'
-	  ;;
-	*Fujitsu*)
-	  _LT_TAGVAR(lt_prog_compiler_wl, $1)='-Wl,'
-	  _LT_TAGVAR(lt_prog_compiler_pic, $1)='-Kpic'
 	  _LT_TAGVAR(lt_prog_compiler_static, $1)='-Bstatic'
 	  ;;
 	esac
@@ -5233,10 +5193,6 @@ _LT_EOF
 	  _LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
 	  tmp_addflag=' $pic_flag'
 	  ;;
-	pgCC*)				# Portland Group C++ compiler
-	  _LT_TAGVAR(whole_archive_flag_spec, $1)='${wl}--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` ${wl}--no-whole-archive'
-	  tmp_addflag=' $pic_flag'
-	  ;;
 	pgf77* | pgf90* | pgf95* | pgfortran*)
 					# Portland Group f77 and f90 compilers
 	  _LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
@@ -5294,14 +5250,6 @@ _LT_EOF
 	  fi
 	  ;;
 	esac
-	case `$CC -V 2>&1 | sed 5q` in
-	*Cray\ C* | *Cray\ Fortran*)    # Cray C/C++/Fortran
-	  _LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
-	  _LT_TAGVAR(compiler_needs_object, $1)=yes
-	  _LT_TAGVAR(archive_cmds_need_lc, $1)='no'
-	  _LT_TAGVAR(archive_cmds, $1)='save_STRIP=$STRIP; unset STRIP; $CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib; ret=\$?; STRIP=\$save_STRIP; export STRIP; (exit \$ret)'
-	  ;;
-        esac
       else
         _LT_TAGVAR(ld_shlibs, $1)=no
       fi
@@ -5845,16 +5793,6 @@ _LT_EOF
 	# Fabrice Bellard et al's Tiny C Compiler
 	_LT_TAGVAR(ld_shlibs, $1)=yes
 	_LT_TAGVAR(archive_cmds, $1)='$CC -shared $pic_flag -o $lib $libobjs $deplibs $compiler_flags'
-	;;
-      esac
-      case `$CC -V 2>&1 | sed 5q` in
-      *Cray\ C* | *Cray\ Fortran*)    # Cray C/C++/Fortran
-	_LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
-	_LT_TAGVAR(compiler_needs_object, $1)=yes
-	_LT_TAGVAR(archive_cmds, $1)='save_STRIP=$STRIP; unset STRIP; $CC -shared $pic_flag $libobjs $deplibs $compiler_flags $wl-soname $wl$soname -o $lib; ret=\$?; STRIP=\$save_STRIP; export STRIP; (exit \$ret)'
-	;;
-      *)
-	_LT_TAGVAR(ld_shlibs, $1)=no
 	;;
       esac
       ;;
@@ -7072,7 +7010,7 @@ if test yes != "$_lt_caught_CXX_error"; then
 	      ;;
 	    esac
 
-	    _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-rpath $wl$libdir'
+	    _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl--rpath $wl$libdir'
 	    _LT_TAGVAR(export_dynamic_flag_spec, $1)='$wl--export-dynamic'
 	    _LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
             ;;
@@ -7108,7 +7046,7 @@ if test yes != "$_lt_caught_CXX_error"; then
 	    fi
 	    ;;
 	  *)
-	    case `$CC -V 2>&1` in
+	    case `$CC -V 2>&1 | sed 5q` in
 	    *Sun\ C*)
 	      # Sun C++ 5.9
 	      _LT_TAGVAR(no_undefined_flag, $1)=' -zdefs'
@@ -7128,53 +7066,6 @@ if test yes != "$_lt_caught_CXX_error"; then
 	      # necessary to make sure instantiated templates are included
 	      # in the archive.
 	      _LT_TAGVAR(old_archive_cmds, $1)='$CC -xar -o $oldlib $oldobjs'
-	      ;;
-	    *Cray\ C*)		# Cray C++ compiler
-	      # If STRIP is set while creating a shared library with
-	      # the Cray compiler, the library has its symbols
-	      # removed.  So we unset and restore it.
-	      _LT_TAGVAR(archive_cmds, $1)='save_STRIP=$STRIP; unset STRIP; $CC -shared $wl-soname $wl$soname -o $lib $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags; ret=\$?; STRIP=\$save_STRIP; export STRIP; (exit \$ret)'
-	      _LT_TAGVAR(archive_expsym_cmds, $1)=''
-	      _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-rpath $wl$libdir'
-	      _LT_TAGVAR(whole_archive_flag_spec, $1)='-vv $wl--whole-archive`new_convenience=; for conv in $convenience\"\"; do test -z \"$conv\" || new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
-	      _LT_TAGVAR(compiler_needs_object, $1)=yes
-
-	      # Not sure whether something based on
-	      # $CC $CFLAGS -v conftest.$objext -o libconftest$shared_ext 2>&1
-	      # would be better.
-	      output_verbose_link_cmd='func_echo_all'
-	      ;;
-	    *pgCC* | *pgcpp*)
-	      # Portland Group C++ compiler
-	      case `$CC -V` in
-	      *pgCC\ [[1-5]].* | *pgcpp\ [[1-5]].*)
-	        _LT_TAGVAR(prelink_cmds, $1)='tpldir=Template.dir~
-	        rm -rf $tpldir~
-	        $CC --prelink_objects --instantiation_dir $tpldir $objs $libobjs $compile_deplibs~
-	        compile_command="$compile_command `find $tpldir -name \*.o | sort | $NL2SP`"'
-	        _LT_TAGVAR(old_archive_cmds, $1)='tpldir=Template.dir~
-	        rm -rf $tpldir~
-	        $CC --prelink_objects --instantiation_dir $tpldir $oldobjs$old_deplibs~
-	        $AR $AR_FLAGS $oldlib$oldobjs$old_deplibs `find $tpldir -name \*.o | sort | $NL2SP`~
-	        $RANLIB $oldlib'
-	        _LT_TAGVAR(archive_cmds, $1)='tpldir=Template.dir~
-	        rm -rf $tpldir~
-	        $CC --prelink_objects --instantiation_dir $tpldir $predep_objects $libobjs $deplibs $convenience $postdep_objects~
-	        $CC -shared $pic_flag $predep_objects $libobjs $deplibs `find $tpldir -name \*.o | sort | $NL2SP` $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
-	        _LT_TAGVAR(archive_expsym_cmds, $1)='tpldir=Template.dir~
-	        rm -rf $tpldir~
-	        $CC --prelink_objects --instantiation_dir $tpldir $predep_objects $libobjs $deplibs $convenience $postdep_objects~
-	        $CC -shared $pic_flag $predep_objects $libobjs $deplibs `find $tpldir -name \*.o | sort | $NL2SP` $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
-	        ;;
-	      *) # Version 6 and above use weak symbols
-	        _LT_TAGVAR(archive_cmds, $1)='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname -o $lib'
-	        _LT_TAGVAR(archive_expsym_cmds, $1)='$CC -shared $pic_flag $predep_objects $libobjs $deplibs $postdep_objects $compiler_flags $wl-soname $wl$soname $wl-retain-symbols-file $wl$export_symbols -o $lib'
-	        ;;
-	      esac
-
-	      _LT_TAGVAR(hardcode_libdir_flag_spec, $1)='$wl-rpath $wl$libdir'
-	      _LT_TAGVAR(export_dynamic_flag_spec, $1)='$wl--export-dynamic'
-	      _LT_TAGVAR(whole_archive_flag_spec, $1)='$wl--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` $wl--no-whole-archive'
 	      ;;
 	    esac
 	    ;;
@@ -7686,11 +7577,6 @@ if AC_TRY_EVAL(ac_compile); then
 	 fi
        fi
        prev=
-       ;;
-
-    -*)
-       # Ignore all other options starting with a dash
-       # (e.g., "-mIPOPT_obj_output_file_name=<tmp_obj>" used by Intel compiler)
        ;;
 
     *.lto.$objext) ;; # Ignore GCC LTO objects

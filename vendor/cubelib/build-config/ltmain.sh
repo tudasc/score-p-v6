@@ -7071,8 +7071,7 @@ func_mode_link ()
 	;;
 
       -mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
-      |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*|-homp \
-      |-qopenmp|-Popenmp|--openmp|-Kopenmp)
+      |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
 	func_append compiler_flags " $arg"
 	func_append compile_command " $arg"
 	func_append finalize_command " $arg"
@@ -7273,10 +7272,12 @@ func_mode_link ()
       # -tp=*                Portland pgcc target processor selection
       # --sysroot=*          for sysroot support
       # -O*, -g*, -flto*, -fwhopr*, -fuse-linker-plugin GCC link-time optimization
+      # -specs=*             GCC specs files
       # -stdlib=*            select c++ std lib with clang
       -64|-mips[0-9]|-r[0-9][0-9]*|-xarch=*|-xtarget=*|+DA*|+DD*|-q*|-m*| \
       -t[45]*|-txscale*|-p|-pg|--coverage|-fprofile-*|-F*|@*|-tp=*|--sysroot=*| \
-      -O*|-g*|-flto*|-fwhopr*|-fuse-linker-plugin|-fstack-protector*|-stdlib=*)
+      -O*|-g*|-flto*|-fwhopr*|-fuse-linker-plugin|-fstack-protector*|-stdlib=*| \
+      -specs=*)
         func_quote_for_eval "$arg"
 	arg=$func_quote_for_eval_result
         func_append compile_command " $arg"
@@ -7606,8 +7607,7 @@ func_mode_link ()
 	found=false
 	case $deplib in
 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
-        |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*|-homp \
-        |-qopenmp|-Popenmp|--openmp|-Kopenmp)
+        |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
 	  if test prog,link = "$linkmode,$pass"; then
 	    compile_deplibs="$deplib $compile_deplibs"
 	    finalize_deplibs="$deplib $finalize_deplibs"
@@ -8148,21 +8148,6 @@ func_mode_link ()
 	  esac
 	  # This is a shared library
 
-	  # Cray's compiler drivers need a -dynamic flag if any linked
-	  # library is a shared library.  Ensure it gets this flag.
-	  case `$CC -V 2>&1 | sed 5q` in
-	      *Cray*)
-		  case " $compile_command " in
-		      *" -dynamic ") ;;
-		      *) func_append compile_command " -dynamic" ;;
-		  esac
-		  case " $finalize_command " in
-		      *" -dynamic ") ;;
-		      *) func_append finalize_command " -dynamic" ;;
-		  esac
-		  ;;
-	  esac
-
 	  # Warn about portability, can't link against -module's on some
 	  # systems (darwin).  Don't bleat about dlopened modules though!
 	  dlopenmodule=
@@ -8601,10 +8586,7 @@ func_mode_link ()
 	    # practice:
 	    case $deplib in
 	    -L*) new_libs="$deplib $new_libs" ;;
-	    -R*)
-	      if test prog = "$linkmode"; then
-	        new_libs="$deplib $new_libs"
-	      fi ;;
+	    -R*) ;;
 	    *)
 	      # And here is the reason: when a library appears more
 	      # than once as an explicit dependence of a library, or
@@ -10243,24 +10225,7 @@ EOF
 	finalize_deplibs=`$ECHO " $finalize_deplibs" | $SED 's% \([^ $]*\).ltframework% -framework \1%g'`
 	;;
       esac
-      if test -n "$dlfiles" ||
-	 test "$dlself" = "yes" ||
-	 test "$export_dynamic" = "yes"; then
-	# Cray's compiler drivers need a -dynamic flag if the program
-	# is going to be dlopening itself or any libraries.
-	case `$CC -V 2>&1 | sed 5q` in
-	    *Cray*)
-		case " $compile_command " in
-		    *" -dynamic ") ;;
-		    *) func_append compile_command " -dynamic" ;;
-		esac
-		case " $finalize_command " in
-		    *" -dynamic ") ;;
-		    *) func_append finalize_command " -dynamic" ;;
-		esac
-		;;
-	esac
-      fi
+
 
       # move library search paths that coincide with paths to not yet
       # installed libraries to the beginning of the library search list
