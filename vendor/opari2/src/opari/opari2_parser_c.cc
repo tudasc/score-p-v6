@@ -140,6 +140,15 @@ OPARI2_CParser::is_extern_decl( void )
 }
 
 
+bool
+is_filtered( std::string fileName, int lineno) {
+  if ((fileName.find(".cpp") != std::string::npos) && lineno <= 31 && lineno >= 10) {
+    std::cout << "FILTERING == file: " << fileName << "\tline: " << lineno << std::endl;
+    return true;
+  }
+  return false;
+}
+
 
 /**
  * @brief  Instrument pragma directives.
@@ -222,6 +231,7 @@ OPARI2_CParser::process_prestmt( int               ln,
 
         if ( d )
         {
+            std::cout << "The (regular) created directive: " << d->GetName() << std::endl;
             ProcessDirective( d, m_os, &m_require_end, &m_is_for );
             return true;
         }
@@ -660,6 +670,10 @@ OPARI2_CParser::process( void )
                 (  m_line.find_first_not_of( " \t" ) != string::npos ) &&
                 m_line.substr( m_line.find_first_not_of( " \t" ), 4 ) == "else" ) )
         {
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             handle_closed_block();
             m_block_closed = false;
         }
@@ -671,12 +685,23 @@ OPARI2_CParser::process( void )
              ( ( ls = m_line.find_first_not_of( " \t" ) ) != string::npos ) &&
              m_line.substr( ls, 10 ) == "__declspec" )
         {
+
+          /**
+           * Return from here, if directive is to be skipped.
+           * Take care of potential "END" directive.
+           */
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             m_pre_stmt.push_back( m_line );
             vector<string>    directive_prefix( 1, "__declspec" );
             OPARI2_Directive* d =
                 NewDirective( m_pre_stmt, directive_prefix, m_options.lang,
                               m_current_file, m_lineno );
             assert( d );
+
+            std::cout << "The (declspec) created directive: " << d->GetName() << std::endl;
 
             ProcessDirective( d, m_os );
 
@@ -699,22 +724,38 @@ OPARI2_CParser::process( void )
 
         if ( m_pre_cont_line )
         {
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             handle_preprocessor_continuation_line();
         }
         else if ( !m_in_comment && m_options.preprocessed_file &&
                   ( m_line == "___POMP2_INCLUDE___"  ||
                     m_line == "___POMP2_INCLUDE___ " ) ) // Studio compiler appends a blank during preprocessing
         {
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             m_os << "#include \"" << m_options.incfile << "\"" << "\n";
         }
         else if ( !m_in_comment &&
                   ( ( m_lstart = m_line.find_first_not_of( " \t" ) ) != string::npos ) &&
                   m_line[ m_lstart ] == '#' )
         {
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             handle_preprocessor_directive();
         }
         else
         {
+          if (is_filtered(m_current_file, m_lineno)) {
+            m_os << m_line << '\n';
+            continue;
+          }
             handle_regular_line();
         }
     }

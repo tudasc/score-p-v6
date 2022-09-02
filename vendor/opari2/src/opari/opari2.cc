@@ -677,6 +677,7 @@ int
 main( int   argc,
       char* argv[] )
 {
+  std::cout << "This is our OPARI version" << std::endl;
     process_cmd_line( argc, argv );
 
     misc_init();

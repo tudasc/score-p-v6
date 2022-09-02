@@ -403,6 +403,8 @@ NewDirective( vector<string>&   lines,
     OPARI2_Directive*     new_directive = NULL;
     string                sentinel;
 
+    std::cout << "Running NewDirective on " << file << " and with lineno: " << lineno << "\n";
+
     if ( directive_prefix.size() )
     {
         sentinel = directive_prefix[ directive_prefix.size() - 1 ];
@@ -471,6 +473,7 @@ ProcessDirective( OPARI2_Directive* d,
 {
     OPARI2_DirectiveDefinition* d_def = NULL;
     string                      name  = d->GetName();
+    std::cout << "Running ProcessDirective " << d->GetName() << " contained in file " << d->GetFilename() << ':' << d->GetLineno() << "\n";
     //std::cout << "Processing " << name << std::endl;
     if ( name == "$END$" ||                              // end of a directive (block) in C/C++
          ( name.find( "end" ) != string::npos &&         // end of a directive (block) in Fortran
@@ -754,17 +757,19 @@ DirectiveStackPush( OPARI2_Directive* d )
 OPARI2_Directive*
 DirectiveStackTop( OPARI2_Directive* d )
 {
+  std::string dName = d ? d->GetName() : "NULL-directive";
+  std::cout << "DirectiveStackTop called with " << dName << std::endl;
     if ( directive_stack.empty() )
     {
         if ( d )
         {
             cerr << d->GetFilename() << ":" << d->GetLineno() << ":"
-                 << "ERROR: unbalanced pragma/directive nesting for "
-                 << d->GetName() << " directive \n";
+                 << "ERROR: unbalanced pragma/directive nesting for directive"
+                 << d->GetName() << "\n";
         }
         else
         {
-            cerr << "ERROR: unbalanced pragma/directive nesting!\n";
+            cerr << "ERROR: unbalanced pragma/directive nesting for whatever reason.\n";
         }
         cleanup_and_exit();
     }
@@ -845,7 +850,7 @@ Finalize( OPARI2_Option_t& options )
     // check region stack
     if ( !directive_stack.empty() )
     {
-        cerr << "ERROR: unbalanced pragma/directive nesting\n";
+        cerr << "ERROR: unbalanced pragma/directive nesting with unempty stack\n";
         while ( !directive_stack.empty() )
         {
             PrintDirectiveStackTop();
