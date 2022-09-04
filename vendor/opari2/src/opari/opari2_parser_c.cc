@@ -91,6 +91,27 @@ OPARI2_CParser::OPARI2_CParser( OPARI2_Option_t& options )
     m_infile       = options.infile;
 
     m_next_end.push( -1 );
+
+
+    std::map<std::string, std::set<int>> result;
+    ifstream file;
+    file.open("OpariFilterMap");
+    std::string name;
+    std::string n;
+    if (file.is_open()) {
+        while (!file.eof()) {
+            std::getline(file, name);
+            std::set<int> resSet;
+            while (std::isdigit(file.peek())) {
+                std::getline(file, n, ',');
+                resSet.insert(resSet.end(), std::stoi(n));
+            }
+            result.insert(std::make_pair(name, resSet));
+            resSet.clear();
+        }
+        file.close();
+    }
+    filter = result;
 }
 
 string
@@ -142,9 +163,12 @@ OPARI2_CParser::is_extern_decl( void )
 
 bool
 is_filtered( std::string fileName, int lineno) {
-  if ((fileName.find(".cpp") != std::string::npos) && lineno <= 31 && lineno >= 10) {
-    std::cout << "FILTERING == file: " << fileName << "\tline: " << lineno << std::endl;
-    return true;
+  if (filter.find(fileName) != filter.end()) {
+      auto s = filter.at(fileName);
+      if(s.find(lineno) != s.end()) {
+          std::cout << "FILTERING == file: " << fileName << "\tline: " << lineno << std::endl;
+          return true;
+      }
   }
   return false;
 }

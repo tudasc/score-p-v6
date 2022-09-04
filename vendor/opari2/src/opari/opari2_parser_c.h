@@ -51,7 +51,7 @@ private:
     OPARI2_Option_t& m_options;
     ofstream&        m_os;
     ifstream&        m_is;
-
+    std::map<std::string, std::set<int>> filter;
 
     string
     find_next_word( unsigned&          pline,
