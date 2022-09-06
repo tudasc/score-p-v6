@@ -9,6 +9,8 @@
  * directory for details.
  *
  */
+#include <set>
+#include <map>
 
 /** @internal
  *
