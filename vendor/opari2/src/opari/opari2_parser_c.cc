@@ -99,19 +99,20 @@ OPARI2_CParser::OPARI2_CParser( OPARI2_Option_t& options )
     std::string name;
     std::string n;
     if (file.is_open()) {
-        while (!file.eof()) {
-            std::getline(file, name);
+        while (std::getline(file, name)) {
             std::set<int> resSet;
             while (std::isdigit(file.peek())) {
                 std::getline(file, n, ',');
                 resSet.insert(resSet.end(), std::stoi(n));
             }
-            result.insert(std::make_pair(name, resSet));
+            //FIXME Hard coded filepath for Prototype only
+            result.insert(std::make_pair("/work" + name, resSet));
             resSet.clear();
         }
         file.close();
     }
     filter = result;
+
 }
 
 string
