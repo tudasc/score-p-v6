@@ -162,7 +162,7 @@ OPARI2_CParser::is_extern_decl( void )
 
 
 bool
-is_filtered( std::string fileName, int lineno) {
+OPARI2_CParser::is_filtered( std::string fileName, int lineno) {
   if (filter.find(fileName) != filter.end()) {
       auto s = filter.at(fileName);
       if(s.find(lineno) != s.end()) {

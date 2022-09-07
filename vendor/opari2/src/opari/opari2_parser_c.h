@@ -92,6 +92,8 @@ private:
     bool
     get_next_line( void );
 
+    bool
+    is_filtered( std::string fileName, int lineno);
 
 public:
 /**  @brief Instrument directives / runtime APIs in C/C++ source file.
