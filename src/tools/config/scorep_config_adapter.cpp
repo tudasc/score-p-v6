@@ -371,12 +371,12 @@ SCOREP_Config_CompilerAdapter::checkArgument( const std::string& arg )
     }
     else if ( arg.substr(0, 14) == "--filter-list=" )
     {
-        m_cflags +=  "-mllvm " + arg + " ";
+        setenv("INSTRUMENTOR_ALLOWLIST", arg.substr(14, arg.size()), 1);
         return true;
     }
     else if ( arg.substr(0,17) == "--score-p-filter=" ) {
-      m_cflags += "-mllvm " + arg + " ";
-      return true;
+        setenv("INSTRUMENTOR_SCOREPFILTER", arg.substr(17, arg.size()), 1);
+        return true;
     }
 #endif // HAVE_LLVM_BACKEND_SUPPORT
 #endif /*HAVE_BACKEND( COMPILER_INSTRUMENTATION )*/
