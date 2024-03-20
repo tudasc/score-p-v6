@@ -371,11 +371,11 @@ SCOREP_Config_CompilerAdapter::checkArgument( const std::string& arg )
     }
     else if ( arg.substr(0, 14) == "--filter-list=" )
     {
-        setenv("INSTRUMENTOR_ALLOWLIST", arg.substr(14, arg.size()), 1);
+        setenv("INSTRUMENTOR_ALLOWLIST", arg.substr(14, arg.size()).c_str(), 1);
         return true;
     }
     else if ( arg.substr(0,17) == "--score-p-filter=" ) {
-        setenv("INSTRUMENTOR_SCOREPFILTER", arg.substr(17, arg.size()), 1);
+        setenv("INSTRUMENTOR_SCOREPFILTER", arg.substr(17, arg.size()).c_str(), 1);
         return true;
     }
 #endif // HAVE_LLVM_BACKEND_SUPPORT
