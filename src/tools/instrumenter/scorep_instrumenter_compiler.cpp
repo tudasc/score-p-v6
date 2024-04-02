@@ -139,7 +139,6 @@ SCOREP_Instrumenter_CompilerAdapter::getConfigToolFlag( SCOREP_Instrumenter_CmdL
     for ( std::vector<std::string>::const_iterator file_it = filter_files.begin();
           file_it != filter_files.end(); ++file_it)
     {
-        //flags += " -Xclang -load -Xclang " LLVM_PLUGIN_PATH " -mllvm --filter-list=" + *file_it;
         flags += " --llvm-filter --score-p-filter=" + *file_it;
     }
 #endif // HAVE_LLVM_PLUGIN_SUPPORT
