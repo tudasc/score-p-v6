@@ -2,7 +2,7 @@
 
 This version of Score-P is modified to use the Clang / LLVM 19.0 plugin that we developed as part of the [PIRA](https://github.com/tudasc/PIRA) project.
 Before building this version of Score-P you need to adjust the path to the LLVM plugin.
-This is set as a ```#define LLVM_PLUGIN_PATH ABS/PATH/TO/BUILD/plugin.so``` in the file ```src/tools/instrumenter/scorep_instrumenter_compiler.cpp```.
+This is set as a ```#define LLVM_PLUGIN_PATH ABS/PATH/TO/BUILD/plugin.so``` in the file ```src/tools/config/scorep_config_adapter.hpp```.
 
 Thereafter, you can configure the Score-P version using the command line
 

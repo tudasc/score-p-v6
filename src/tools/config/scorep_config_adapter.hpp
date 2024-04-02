@@ -35,6 +35,7 @@
 #include "scorep_config_types.hpp"
 
 #define HAVE_LLVM_PLUGIN_SUPPORT true
+#define LLVM_PLUGIN_PATH PIRA_SUBMODULE_PATH
 
 class SCOREP_Config_LibwrapAdapter;
 
